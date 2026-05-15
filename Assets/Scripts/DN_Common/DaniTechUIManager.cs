@@ -125,4 +125,8 @@ public class DaniTechUIManager : MonoBehaviour
         CloseUI(DaniTechUIRootType.PopupUI, uiType);
     }
 
+    public DaniTechUIBase OpenScoreUI(DaniTechUIType uiType)
+    {
+        return OpenUI(DaniTechUIRootType.ContentUI, uiType);
+    }
 }

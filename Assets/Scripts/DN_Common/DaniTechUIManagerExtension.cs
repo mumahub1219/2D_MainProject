@@ -13,12 +13,13 @@ public enum DaniTechUIRootType
 public enum DaniTechUIType
 {
     DNSimplePopup,
-    DNMainUI,
+    MainUI,
     DNMyProfilePopup, // 신규UI추가 1) 새로운 UIType을 추가한다
     DNInventory,
-    DNLoadingUI,
+    LoadingUI,
     DNDialogueUI,
-    DNInfoBookUI
+    DNInfoBookUI,
+    ScoreUI
 }
 
 public static class DaniTechUIManagerExtension
@@ -36,7 +37,7 @@ public static class DaniTechUIManagerExtension
     public static void ShowStartupUIOnGameStart(this DaniTechUIManager uiManager)
     {
         uiManager.OpenLoadingUI();
-        uiManager.OpenUI(DaniTechUIRootType.MainUI, DaniTechUIType.DNMainUI);
+        uiManager.OpenUI(DaniTechUIRootType.MainUI, DaniTechUIType.MainUI);
         // 게임 로비 UI를 여기서 오픈해주자 -> uiManager.
         // MainUI도
     }
@@ -86,7 +87,7 @@ public static class DaniTechUIManagerExtension
 
     public static void OpenLoadingUI(this DaniTechUIManager uiManager)
     {
-        var uiBase = uiManager.OpenUI(DaniTechUIRootType.VeryFrontUI, DaniTechUIType.DNLoadingUI);
+        var uiBase = uiManager.OpenUI(DaniTechUIRootType.VeryFrontUI, DaniTechUIType.LoadingUI);
         if (uiBase == null)
         {
             Debug.LogWarning($"UI가 생성되지 않았습니다");
@@ -96,7 +97,7 @@ public static class DaniTechUIManagerExtension
 
     public static void CloseLoadingUI(this DaniTechUIManager uiManager)
     {
-        uiManager.CloseUI(DaniTechUIRootType.VeryFrontUI, DaniTechUIType.DNLoadingUI);
+        uiManager.CloseUI(DaniTechUIRootType.VeryFrontUI, DaniTechUIType.LoadingUI);
     }
 
     public static void OpenDialogueUI(this DaniTechUIManager uiManager, string startDialogueId)
@@ -111,6 +112,16 @@ public static class DaniTechUIManagerExtension
         if (uiBase is DaniTech_DialogueUI dialogueUi)
         {
             dialogueUi.StartDialogue(startDialogueId);
+        }
+    }
+
+    public static void OpenScoreUI(this DaniTechUIManager uiManager)
+    {
+        var uiBase = uiManager.OpenUI(DaniTechUIRootType.PopupUI, DaniTechUIType.ScoreUI);
+        if (uiBase == null)
+        {
+            Debug.LogWarning($"UI가 생성되지 않았습니다");
+            return;
         }
     }
 }
