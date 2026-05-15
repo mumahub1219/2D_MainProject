@@ -7,11 +7,13 @@ TagManager:
   - Gold
   - Map
   - Enemy
+  - Coin
+  - Spike
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Dummy

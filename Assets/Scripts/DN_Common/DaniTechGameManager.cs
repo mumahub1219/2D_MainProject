@@ -8,6 +8,8 @@ public class DaniTechGameManager : MonoBehaviour
     // 플레이 중에 저장되어야 하는 정보들이 있는 위치
     private DaniTechPlayerModel _playerModel = new DaniTechPlayerModel();
 
+    private int _currentCoinScore;
+
     private void Awake()
     {
         Inst = this;
@@ -38,6 +40,11 @@ public class DaniTechGameManager : MonoBehaviour
     {
         // 추후에 한곳에서 관리할 수 있게 익스텐션으로 빼도 된다
         _playerModel.PlayerTotalExp += exp;
+    }
+
+    public void IncreaseCoinScore()
+    {
+        _currentCoinScore++;
     }
 
     public void AddItem(string itemDataId, int addItemCount)
