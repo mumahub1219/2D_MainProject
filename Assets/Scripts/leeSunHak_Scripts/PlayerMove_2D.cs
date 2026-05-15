@@ -72,17 +72,19 @@ public class PlayerMove_2D : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        var objectComponent = collision.gameObject.GetComponent<CoinObject>();
-
-        if (objectComponent.CompareTag("coin") == false)
+        if (collision.gameObject.CompareTag("Coin") == false)
         {
             return;
         }
-        else if (objectComponent.CompareTag("coin") == true)
+
+        var objectComponent = collision.gameObject.GetComponent<CoinObject>();
+        if (objectComponent == null)
         {
-            DaniTechGameManager.Inst.IncreaseCoinScore();
-            Destroy(objectComponent);
+            return;
         }
+
+        DaniTechGameManager.Inst.IncreaseCoinScore();
+        Destroy(collision.gameObject);
     }
 
     private void OnDrawGizmos()

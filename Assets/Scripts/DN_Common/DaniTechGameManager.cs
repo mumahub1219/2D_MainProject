@@ -8,7 +8,7 @@ public class DaniTechGameManager : MonoBehaviour
     // 플레이 중에 저장되어야 하는 정보들이 있는 위치
     private DaniTechPlayerModel _playerModel = new DaniTechPlayerModel();
 
-    private int _currentCoinScore;
+    private int _CoinScore;
 
     private void Awake()
     {
@@ -44,7 +44,31 @@ public class DaniTechGameManager : MonoBehaviour
 
     public void IncreaseCoinScore()
     {
-        _currentCoinScore++;
+        _CoinScore++;
+        UpdateScoreUI();
+        EndGameCondition();
+    }
+
+    public void UpdateScoreUI()
+    {
+        var obj = DaniTechUIManager.Instance.GetComponentInChildren<ScoreUI>();
+
+        if (obj == null)
+        {
+            Debug.LogError("obj가 널입니다.");
+            return;
+        }
+
+        obj.CurrentCoinScore(_CoinScore);
+    }
+
+    public void EndGameCondition()
+    {
+        bool isCoinScoreEnough = (_CoinScore == 5);
+        if (isCoinScoreEnough)
+        {
+            Application.Quit();
+        }
     }
 
     public void AddItem(string itemDataId, int addItemCount)

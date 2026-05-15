@@ -3239,11 +3239,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5537784735723340190, guid: d05fb65ea1f7ce543a20dfaf5108a4f1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7137445251660476546, guid: d05fb65ea1f7ce543a20dfaf5108a4f1, type: 3}
       propertyPath: m_Name
       value: Coin (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7764785420685576217, guid: d05fb65ea1f7ce543a20dfaf5108a4f1, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7365669701439817343, guid: d05fb65ea1f7ce543a20dfaf5108a4f1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4943,6 +4952,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1014082497763270827, guid: d05fb65ea1f7ce543a20dfaf5108a4f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088926476361639189, guid: d05fb65ea1f7ce543a20dfaf5108a4f1, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088926476361639189, guid: d05fb65ea1f7ce543a20dfaf5108a4f1, type: 3}
+      propertyPath: m_Simulated
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7137445251660476546, guid: d05fb65ea1f7ce543a20dfaf5108a4f1, type: 3}
