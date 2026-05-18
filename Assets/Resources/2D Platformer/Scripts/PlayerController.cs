@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -92,7 +92,7 @@ namespace Platformer
         {
             if (other.gameObject.tag == "Coin")
             {
-                gameManager.coinsCounter += 1;
+                // GameManager_Platformer.coinsCounter += 1;
                 Destroy(other.gameObject);
             }
         }

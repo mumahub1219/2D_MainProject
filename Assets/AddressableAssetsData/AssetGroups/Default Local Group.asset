@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 537ef5608af49ff43991e2ac013dcfda
+    m_Address: Texture2D/LoadingRawImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 667b719d1d688874a8f6a8ad59d98106
     m_Address: Icon/Icon_Item_Box_1
     m_ReadOnly: 0

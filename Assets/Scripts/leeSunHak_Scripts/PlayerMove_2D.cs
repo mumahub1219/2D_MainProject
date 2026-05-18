@@ -83,7 +83,7 @@ public class PlayerMove_2D : MonoBehaviour
             return;
         }
 
-        DaniTechGameManager.Inst.IncreaseCoinScore();
+        GameManager.Inst.IncreaseCoinScore();
         Destroy(collision.gameObject);
     }
 
