@@ -252,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1350379601070225985}
   m_Layer: 0
-  m_Name: Player_VirtualGuy 1
+  m_Name: Player_VirtualGuy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
