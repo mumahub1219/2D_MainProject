@@ -42,6 +42,9 @@ public class PlayerMove_2D : MonoBehaviour
         {
             Flip();
         }
+
+        RunAnimation(Mathf.Abs(_horizontalInput));
+        JumpAnimation();
     }
 
     void FixedUpdate()
@@ -53,13 +56,11 @@ public class PlayerMove_2D : MonoBehaviour
     void Move()
     {
         _rigidBody.linearVelocity = new Vector2(_horizontalInput * _moveSpeed, _rigidBody.linearVelocity.y);
-        RunAnimation();
     }
 
     void Jump()
     {
         _rigidBody.linearVelocity = new Vector2(_rigidBody.linearVelocity.x, _jumpForce);
-        JumpAnimation();
     }
 
     void Flip()
@@ -98,15 +99,18 @@ public class PlayerMove_2D : MonoBehaviour
 
     public void JumpAnimation()
     {
-        _animator.SetBool("jump", true);
+        if (_isGrounded == false)
+        {
+            _animator.SetBool("jump", true);
+        }
+        else
+        {
+            _animator.SetBool("jump", false);
+        }
     }
 
-    public void RunAnimation()
+    public void RunAnimation(float currentSpeed)
     {
-        var moveSpeed = (_moveSpeed > 1.0f);
-        if (moveSpeed) 
-        {
-            _animator.SetFloat("speed", 6.0f);
-        }
+        _animator.SetFloat("speed", currentSpeed);
     }
 }
