@@ -32,7 +32,7 @@ public class DaniTech_DialogueUI : UIBase
         bool isNextDialogueExist = CheckAndStartNextDialogue();
         if(isNextDialogueExist == false)
         {
-            UIManager.Instance.CloseContentUI(DaniTechUIType.DNDialogueUI);
+            UIManager.Instance.CloseContentUI(UIType.DNDialogueUI);
         }
     }
 

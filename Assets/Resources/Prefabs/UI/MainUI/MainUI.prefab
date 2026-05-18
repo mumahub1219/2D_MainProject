@@ -65,7 +65,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6176324135793879317}
   m_Father: {fileID: 2422702815304308256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -197,6 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6792430984257630398}
+  - component: {fileID: 112227674571922503}
   m_Layer: 0
   m_Name: MainUI
   m_TagString: Untagged
@@ -225,3 +227,129 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &112227674571922503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6363701663895931192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f91e463020b4f4085af88eee7a0e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainUI_2DMainProject
+  Button_Inventory: {fileID: 7143625427179941434}
+--- !u!1001 &6662637270996543713
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6678302759057783066}
+    m_Modifications:
+    - target: {fileID: 588768400916823122, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_Name
+      value: Button_Basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 103.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+--- !u!224 &6176324135793879317 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 702780756173029876, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+  m_PrefabInstance: {fileID: 6662637270996543713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7143625427179941434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4563606806005597915, guid: 40c9e6d71fa571b44a91bae072f74486, type: 3}
+  m_PrefabInstance: {fileID: 6662637270996543713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05593e213339b4a4782714561b45d9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton

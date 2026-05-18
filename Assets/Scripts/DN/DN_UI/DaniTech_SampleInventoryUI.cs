@@ -57,7 +57,7 @@ public class DaniTech_SampleInventoryUI : UIBase
 
     public void OnClick_ClosePopup()
     {
-        UIManager.Instance.CloseContentUI(DaniTechUIType.DNInventory);
+        // UIManager.Instance.CloseContentUI(DaniTechUIType.DNInventory);
     }
 
 

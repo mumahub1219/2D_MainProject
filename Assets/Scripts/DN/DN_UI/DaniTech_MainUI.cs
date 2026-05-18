@@ -17,14 +17,12 @@ public class DaniTech_MainUI : UIBase
 
     public void OnClick_OpenInventory()
     {
-        UIManager.Instance.OpenInventoryPopup();
         GameManager.Inst.SaveData();
     }
 
     public void OnClick_OpenMyProfile()
     {
         //UIManager.Instance.OpenMyProfilePopup("character_hellena_01");
-        UIManager.Instance.OpenInventoryPopup();
         Debug.LogWarning("프로필 오픈");
     }
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum DaniTechUIRootType
+public enum UIRootType
 {
     None = 0,
     BackgroundUI,
@@ -10,12 +10,12 @@ public enum DaniTechUIRootType
     VeryFrontUI
 }
 
-public enum DaniTechUIType
+public enum UIType
 {
     DNSimplePopup,
     MainUI,
     DNMyProfilePopup, // 신규UI추가 1) 새로운 UIType을 추가한다
-    DNInventory,
+    InventoryUI,
     LoadingUI,
     DNDialogueUI,
     DNInfoBookUI,
@@ -25,7 +25,7 @@ public enum DaniTechUIType
 
 public static class UIManagerExtension
 {
-    public static string GetUIPath(this UIManager uiManager, DaniTechUIRootType uiRootType, DaniTechUIType uiType)
+    public static string GetUIPath(this UIManager uiManager, UIRootType uiRootType, UIType uiType)
     {
         string path = string.Empty; // "" == string.Empty
 
@@ -38,15 +38,14 @@ public static class UIManagerExtension
     public static void ShowStartupUIOnGameStart(this UIManager uiManager)
     {
         uiManager.OpenLoadingUI();
-        uiManager.OpenContentUI(DaniTechUIType.LobbyUI);
-
+        uiManager.OpenContentUI(UIType.LobbyUI);
         // 게임 로비 UI를 여기서 오픈해주자 -> uiManager.
         // MainUI도
     }
 
     public static void OpenSimplePopup(this UIManager uiManager, string msg)
     {
-        var uiBase = uiManager.OpenPopupUI(DaniTechUIType.DNSimplePopup);
+        var uiBase = uiManager.OpenPopupUI(UIType.DNSimplePopup);
         if (uiBase == null)
         {
             Debug.LogWarning($"UI가 생성되지 않았습니다");
@@ -64,7 +63,7 @@ public static class UIManagerExtension
     public static void OpenMyProfilePopup(this UIManager uiManager, string characterDataId)
     {
         // 신규UI추가 4) 이렇게 UI 타입을 던져서 UI 생성을 요청한다
-        var uiBase = uiManager.OpenPopupUI(DaniTechUIType.DNMyProfilePopup);
+        var uiBase = uiManager.OpenPopupUI(UIType.DNMyProfilePopup);
         if (uiBase == null)
         {
             Debug.LogWarning($"UI가 생성되지 않았습니다");
@@ -77,19 +76,9 @@ public static class UIManagerExtension
         }
     }
 
-    public static void OpenInventoryPopup(this UIManager uiManger)
-    {
-        var uiBase = uiManger.OpenContentUI(DaniTechUIType.DNInventory);
-        if (uiBase == null)
-        {
-            Debug.LogWarning($"UI가 생성되지 않았습니다");
-            return;
-        }
-    }
-
     public static void OpenLoadingUI(this UIManager uiManager)
     {
-        var uiBase = uiManager.OpenUI(DaniTechUIRootType.VeryFrontUI, DaniTechUIType.LoadingUI);
+        var uiBase = uiManager.OpenUI(UIRootType.VeryFrontUI, UIType.LoadingUI);
         if (uiBase == null)
         {
             Debug.LogWarning($"UI가 생성되지 않았습니다");
@@ -99,12 +88,12 @@ public static class UIManagerExtension
 
     public static void CloseLoadingUI(this UIManager uiManager)
     {
-        uiManager.CloseUI(DaniTechUIRootType.VeryFrontUI, DaniTechUIType.LoadingUI);
+        uiManager.CloseUI(UIRootType.VeryFrontUI, UIType.LoadingUI);
     }
 
     public static void OpenDialogueUI(this UIManager uiManager, string startDialogueId)
     {
-        var uiBase = uiManager.OpenContentUI(DaniTechUIType.DNDialogueUI);
+        var uiBase = uiManager.OpenContentUI(UIType.DNDialogueUI);
         if(uiBase == null)
         {
             Debug.LogWarning($"UI가 생성되지 않았습니다");
@@ -119,7 +108,7 @@ public static class UIManagerExtension
 
     public static void OpenScoreUI(this UIManager uiManager)
     {
-        var uiBase = uiManager.OpenUI(DaniTechUIRootType.PopupUI, DaniTechUIType.ScoreUI);
+        var uiBase = uiManager.OpenUI(UIRootType.PopupUI, UIType.ScoreUI);
         if (uiBase == null)
         {
             Debug.LogWarning($"UI가 생성되지 않았습니다");

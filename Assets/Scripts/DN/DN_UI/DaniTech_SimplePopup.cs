@@ -72,7 +72,7 @@ public class DaniTech_SimplePopup : UIBase
         await UniTask.Delay(TimeSpan.FromSeconds(1.5), cancellationToken: _cancelToken.Token);
 
         // 완료 후 스스로 닫자
-        UIManager.Instance.ClosePopupUI(DaniTechUIType.DNSimplePopup);
+        UIManager.Instance.ClosePopupUI(UIType.DNSimplePopup);
     }
 
     public void SetUI(string msg)

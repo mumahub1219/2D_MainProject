@@ -13,7 +13,7 @@ public class MainUI_2D_Platform : UIBase
 
     public void Onclick_GameStart()
     {
-        UIManager.Instance.CloseUI(DaniTechUIRootType.MainUI, DaniTechUIType.MainUI);
+        UIManager.Instance.CloseUI(UIRootType.MainUI, UIType.MainUI);
         UIManager.Instance.OpenScoreUI();
     }
 

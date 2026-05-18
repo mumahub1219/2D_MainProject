@@ -13,8 +13,8 @@ public class LobbyUI_2DGameProject : UIBase
 
     public void OnClick_GameStart()
     {
-        UIManager.Instance.CloseContentUI(DaniTechUIType.LobbyUI);
-        UIManager.Instance.OpenUI(DaniTechUIRootType.MainUI, DaniTechUIType.MainUI);
+        UIManager.Instance.CloseContentUI(UIType.LobbyUI);
+        UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.MainUI);
     }
     
     public void OnClick_GameEnd()

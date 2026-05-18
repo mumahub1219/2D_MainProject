@@ -19,7 +19,7 @@ public class DaniTech_MyProfilePopup : UIBase
     public void OnClick_Close()
     {
         // + 자기자신을 비활성화하는 것이 아니라 꼭! UI 매니저를 통해서 닫기 요청을 해주자
-        UIManager.Instance.ClosePopupUI(DaniTechUIType.DNMyProfilePopup);
+        UIManager.Instance.ClosePopupUI(UIType.DNMyProfilePopup);
     }
 
     public void RefreshCharacterUI(string characterDataId)
