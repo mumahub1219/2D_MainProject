@@ -2,7 +2,7 @@
 using UnityEngine;
 
 // 관리주체 역할
-public class DaniTech_SampleInventoryUI : DaniTechUIBase
+public class DaniTech_SampleInventoryUI : UIBase
 {
     [SerializeField] private GameObject Prefab_Slot;
     [SerializeField] private Transform Transform_UISlotRoot;

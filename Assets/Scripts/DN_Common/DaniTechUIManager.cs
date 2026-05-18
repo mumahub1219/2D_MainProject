@@ -13,7 +13,7 @@ public class DaniTechUIManager : MonoBehaviour
     public static DaniTechUIManager Instance { get; set; }
 
     // 얘는 생성과 제거에 관한 부분 -> Instancing과 가비지컬렉터와 연관이 있는 애
-    private Dictionary<DaniTechUIType, DaniTechUIBase> _createdUIDic = new Dictionary<DaniTechUIType, DaniTechUIBase>();
+    private Dictionary<DaniTechUIType, UIBase> _createdUIDic = new Dictionary<DaniTechUIType, UIBase>();
     // 얘는 활성과 비활성에 관한 부분 -> SetActive
     private HashSet<DaniTechUIType> _openedUIDic = new HashSet<DaniTechUIType>();
 
@@ -29,7 +29,7 @@ public class DaniTechUIManager : MonoBehaviour
         this.ShowStartupUIOnGameStart();
     }
 
-    public DaniTechUIBase OpenUI(DaniTechUIRootType uiRootType, DaniTechUIType uiType, bool isInitialHide = false)
+    public UIBase OpenUI(DaniTechUIRootType uiRootType, DaniTechUIType uiType, bool isInitialHide = false)
     {
         // 딱히 요청이 있진 않고 오픈만 하면 되는 UI에서 사용
 
@@ -89,13 +89,13 @@ public class DaniTechUIManager : MonoBehaviour
             GameObject gObj = Instantiate(loadedObj, root);
             if (gObj != null)
             {
-                var uiBase = gObj.GetComponent<DaniTechUIBase>();
+                var uiBase = gObj.GetComponent<UIBase>();
                 _createdUIDic.Add(uiType, uiBase);
             }
         }
     }
 
-    private DaniTechUIBase GetCreatedUI(DaniTechUIRootType uiRootType, DaniTechUIType uiType)
+    private UIBase GetCreatedUI(DaniTechUIRootType uiRootType, DaniTechUIType uiType)
     {
         if (_createdUIDic.ContainsKey(uiType) == false)
         {
@@ -105,12 +105,12 @@ public class DaniTechUIManager : MonoBehaviour
     }
 
 
-    public DaniTechUIBase OpenContentUI(DaniTechUIType uiType)
+    public UIBase OpenContentUI(DaniTechUIType uiType)
     {
         return OpenUI(DaniTechUIRootType.ContentUI, uiType);
     }
 
-    public DaniTechUIBase OpenPopupUI(DaniTechUIType uiType)
+    public UIBase OpenPopupUI(DaniTechUIType uiType)
     {
         return OpenUI(DaniTechUIRootType.PopupUI, uiType);
     }
@@ -125,7 +125,7 @@ public class DaniTechUIManager : MonoBehaviour
         CloseUI(DaniTechUIRootType.PopupUI, uiType);
     }
 
-    public DaniTechUIBase OpenScoreUI(DaniTechUIType uiType)
+    public UIBase OpenScoreUI(DaniTechUIType uiType)
     {
         return OpenUI(DaniTechUIRootType.ContentUI, uiType);
     }

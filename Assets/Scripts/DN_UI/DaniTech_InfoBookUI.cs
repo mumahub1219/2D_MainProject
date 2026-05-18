@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
 
-public class DaniTech_InfoBookUI : DaniTechUIBase
+public class DaniTech_InfoBookUI : UIBase
 {
 }

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DaniTech_DialogueUI : DaniTechUIBase
+public class DaniTech_DialogueUI : UIBase
 {
     [SerializeField] private GameObject Layout_CharacterName;
     [SerializeField] private Text Text_Character;

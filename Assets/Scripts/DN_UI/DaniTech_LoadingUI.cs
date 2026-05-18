@@ -5,7 +5,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DaniTech_LoadingUI : DaniTechUIBase
+public class DaniTech_LoadingUI : UIBase
 {
     [SerializeField] private RawImage RawImage_LoadingImg;
     [SerializeField] private Slider Slider_LoadingBar;

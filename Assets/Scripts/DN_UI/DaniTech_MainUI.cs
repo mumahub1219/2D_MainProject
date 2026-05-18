@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DaniTech_MainUI : DaniTechUIBase
+public class DaniTech_MainUI : UIBase
 {
     [SerializeField] private DaniTechUIButton Btn_MyProfile;
     [SerializeField] private DaniTechUIButton Btn_StartBattle;

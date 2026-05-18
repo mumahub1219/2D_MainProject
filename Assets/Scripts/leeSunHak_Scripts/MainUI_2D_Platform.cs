@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MainUI_2D_Platform : DaniTechUIBase
+public class MainUI_2D_Platform : UIBase
 {
     [SerializeField] private DaniTechUIButton Button_GameStart;
     [SerializeField] private DaniTechUIButton Button_EndGame;

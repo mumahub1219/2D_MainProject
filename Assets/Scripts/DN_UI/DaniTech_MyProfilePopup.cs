@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class DaniTech_MyProfilePopup : DaniTechUIBase
+public class DaniTech_MyProfilePopup : UIBase
 {
     [SerializeField] private Text Text_Title;
     [SerializeField] private Text Text_Name;

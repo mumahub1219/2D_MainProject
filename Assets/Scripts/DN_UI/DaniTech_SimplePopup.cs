@@ -6,7 +6,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DaniTech_SimplePopup : DaniTechUIBase
+public class DaniTech_SimplePopup : UIBase
 {
     [SerializeField] Text Text_Msg;
 
