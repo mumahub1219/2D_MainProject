@@ -81,19 +81,19 @@ public class LoadingUI : UIBase
     {
         if (curValue > 0.8)
         {
-            Image_SliderColor.color = ColorArray_LoadingBar.Length >= 4 ? ColorArray_LoadingBar[3] : Color.white;
+            Image_SliderColor.color = ColorArray_LoadingBar.Length >= 4 ? ColorArray_LoadingBar[3] : Color.red;
         }
         else if(curValue > 0.6)
         {
-            Image_SliderColor.color = ColorArray_LoadingBar.Length >= 3 ? ColorArray_LoadingBar[2] : Color.white;
+            Image_SliderColor.color = ColorArray_LoadingBar.Length >= 3 ? ColorArray_LoadingBar[2] : Color.yellow;
         }
         else if (curValue > 0.4)
         {
-            Image_SliderColor.color = ColorArray_LoadingBar.Length >= 2 ? ColorArray_LoadingBar[1] : Color.white;
+            Image_SliderColor.color = ColorArray_LoadingBar.Length >= 2 ? ColorArray_LoadingBar[1] : Color.green;
         }
         else
         {
-            Image_SliderColor.color = ColorArray_LoadingBar.Length >= 1 ? ColorArray_LoadingBar[0] : Color.white;
+            Image_SliderColor.color = ColorArray_LoadingBar.Length >= 1 ? ColorArray_LoadingBar[0] : Color.blue;
         }
     }
 }

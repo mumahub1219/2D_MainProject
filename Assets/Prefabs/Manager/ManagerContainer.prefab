@@ -48,7 +48,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2349718445449996461, guid: ab8976ca7e823c048b1ad65f7b8d5d57, type: 3}
       propertyPath: m_Name
-      value: DNGameObjectManager
+      value: GameObjectManager
       objectReference: {fileID: 0}
     - target: {fileID: 7737818265192872857, guid: ab8976ca7e823c048b1ad65f7b8d5d57, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110,7 +110,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 67997097225992002, guid: e2541046dc399f044af17c00794ef9d7, type: 3}
       propertyPath: m_Name
-      value: DNGameManager
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 3381554362602067370, guid: e2541046dc399f044af17c00794ef9d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -172,7 +172,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5873177719204860152, guid: 7d6eed183f059a54fb81017aeb3bf2dc, type: 3}
       propertyPath: m_Name
-      value: DNResourceManager
+      value: ResourceManager
       objectReference: {fileID: 0}
     - target: {fileID: 5930474978057771660, guid: 7d6eed183f059a54fb81017aeb3bf2dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -234,7 +234,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1615409074175657400, guid: 660e5c7f541c16c4ea5809bf64ebaa99, type: 3}
       propertyPath: m_Name
-      value: DNSoundManager
+      value: SoundManager
       objectReference: {fileID: 0}
     - target: {fileID: 7516979760071183503, guid: 660e5c7f541c16c4ea5809bf64ebaa99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,7 +296,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 382245226932300732, guid: 1c0a9028d530c1e40a591ff66b85d6d6, type: 3}
       propertyPath: m_Name
-      value: DNNetworkManager
+      value: NetworkManager
       objectReference: {fileID: 0}
     - target: {fileID: 1754963567364115200, guid: 1c0a9028d530c1e40a591ff66b85d6d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -438,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4290482773801034447, guid: aaede92c031aa694a98680d503f754a7, type: 3}
       propertyPath: m_Name
-      value: DNUIManager
+      value: UIManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -460,7 +460,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1515202960661559965, guid: 28e44f548fa4c8247b052b63d08c6877, type: 3}
       propertyPath: m_Name
-      value: DNGameDataManager
+      value: GameDataManager
       objectReference: {fileID: 0}
     - target: {fileID: 7086107928524121999, guid: 28e44f548fa4c8247b052b63d08c6877, type: 3}
       propertyPath: m_LocalPosition.x
