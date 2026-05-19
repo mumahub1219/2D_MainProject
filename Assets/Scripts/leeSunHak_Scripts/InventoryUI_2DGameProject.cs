@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LoadingUI_2DGameProject : MonoBehaviour
+public class LoadingUI_2DGameProject : UIBase
 {
     [SerializeField] private UIButton Button_Close;
 

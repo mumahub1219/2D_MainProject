@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MainUI_2DMainProject : MonoBehaviour
+public class MainUI_2DMainProject : UIBase
 {
     [SerializeField] private UIButton Button_Inventory;
     [SerializeField] private UIButton Button_Dictionary;

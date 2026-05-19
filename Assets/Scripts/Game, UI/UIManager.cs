@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : UIBase
 {
     [SerializeField] Canvas Canvas_BgRoot;
     [SerializeField] Canvas Canvas_MainRoot;
