@@ -50,7 +50,7 @@
     "IconPath": "Icon/Icon_Item_Box_1"
   },
   {
-    "Id": "Item_Starwberry_1",
+    "Id": "Item_Strawberry_1",
     "Name": "딸기",
     "Description": "딸기, 겨울에 더 맛있다.",
     "ItemType": "Normal",

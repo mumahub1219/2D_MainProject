@@ -855,7 +855,7 @@ MonoBehaviour:
   Button_CloseBG: {fileID: 7564917494275547173}
   Button_Close: {fileID: 3151489141597810317}
   Prefab_Slot: {fileID: 3347826845903962747, guid: 0b5bdae6f4c59fe41b227216dae872e3, type: 3}
-  Image_MainIcon: {fileID: 4236140318681137003}
+  Image_MainIcon: {fileID: 4259637075436431775}
   Text_Name: {fileID: 1038898727832634349}
   Text_Description: {fileID: 8876386871077086875}
   Transform_SlotRoot: {fileID: 7247205629031913711}

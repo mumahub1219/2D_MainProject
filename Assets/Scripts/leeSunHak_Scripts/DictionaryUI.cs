@@ -57,22 +57,22 @@ public class DictionaryUI : UIBase
         foreach (var dataKv in dataList)
         {
             var data = dataKv.Value;
-            if(data == null)
+            if (data == null)
             {
                 continue;
             }
 
             CreateDictionarySlot(data.Id);
-
-            if (_slotList.Count > 0)
-            {
-                foreach (var slotKv in _slotList)
-                {
-                    var slot = slotKv.Value;
-                    slot.Onclick_DictionarySlot();
-                }
-            }
         }
+            
+        //if (_slotList.Count > 0)
+        //{
+        //    foreach (var slotKv in _slotList)
+        //    {
+        //        var slot = slotKv.Value;
+        //        slot.Onclick_DictionarySlot();
+        //    }
+        //}
     }
 
     private void CreateDictionarySlot(string dataId)
@@ -109,7 +109,7 @@ public class DictionaryUI : UIBase
         {
             var slot = slotKv.Value;
             var dataId = slot.GetSlotDataId();
-            slot.SetSelectedUI(slotDataId == dataId);
+            slot.SetSelected(slotDataId == dataId);
         }
     }
 }

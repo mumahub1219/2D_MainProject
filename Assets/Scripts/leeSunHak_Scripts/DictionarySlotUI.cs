@@ -60,8 +60,8 @@ public class DictionarySlotUI : MonoBehaviour
 
     }
 
-    public void SetSelectedUI(bool isSelect)
+    public void SetSelected(bool isSelect)
     {
-        GObj_Selected.SetActive(true);
+        GObj_Selected.SetActive(isSelect);
     }
 }
