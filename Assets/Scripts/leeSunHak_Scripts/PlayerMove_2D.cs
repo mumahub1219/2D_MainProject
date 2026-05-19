@@ -71,23 +71,6 @@ public class PlayerMove_2D : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Coin") == false)
-        {
-            return;
-        }
-
-        var objectComponent = collision.gameObject.GetComponent<CoinObject>();
-        if (objectComponent == null)
-        {
-            return;
-        }
-
-        GameManager.Inst.IncreaseCoinScore();
-        Destroy(collision.gameObject);
-    }
-
     private void OnDrawGizmos()
     {
         if (_groundCheck != null)
@@ -112,5 +95,21 @@ public class PlayerMove_2D : MonoBehaviour
     public void RunAnimation(float currentSpeed)
     {
         _animator.SetFloat("speed", currentSpeed);
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spike") == false)
+        {
+            return;
+        }
+
+        var objectComponent = collision.gameObject.GetComponent<SpikeObject>();
+        if (objectComponent == null)
+        {
+            return;
+        }
+
+        GameManager.Inst.RestartPlayer();
     }
 }

@@ -62,6 +62,11 @@ public class GameManager : MonoBehaviour
         obj.CurrentCoinScore(_CoinScore);
     }
 
+    public void RestartPlayer()
+    {
+
+    }
+
     public void EndGameCondition()
     {
         bool isCoinScoreEnough = (_CoinScore == 5);
