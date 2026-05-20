@@ -174,7 +174,7 @@ public class PlayerMove_2D : MonoBehaviour
         var skillProjectile = gObj.GetComponent<SkillProjectile>();
         if (skillProjectile == null) return;
 
-        skillProjectile.InitSkillObject(_lookRight, this.transform.position);
+        skillProjectile.InitSkillObject(_lookRight, this.transform.position, 500);
 
     }
 
