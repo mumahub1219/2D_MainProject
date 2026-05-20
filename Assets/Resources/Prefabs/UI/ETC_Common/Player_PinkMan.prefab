@@ -155,8 +155,6 @@ MonoBehaviour:
     m_Bits: 8
   AnimatiorController_Entitiy: {fileID: 6834993955404794198}
   Collider_PlayerNormalAttack: {fileID: 2464509200138298617}
-  Prefab_SkillProjectile: {fileID: 4894794474862553827, guid: 3a96c0b8b80fd0040a8189746437e9a9, type: 3}
-  Transform_SkillProjectileRoot: {fileID: 7271433208842999121}
 --- !u!61 &910071920813595036
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -277,7 +275,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 501
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6367560908665664636, guid: d348dff3819df794186a80cb95777629, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
