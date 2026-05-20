@@ -286,6 +286,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5557907121095850432, guid: f3796eff39144e247b21b9a07242646b, type: 3}
+      propertyPath: _amplitude
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6838133629150802440, guid: f3796eff39144e247b21b9a07242646b, type: 3}
       propertyPath: m_Name
       value: Blade (1)
@@ -3367,6 +3371,10 @@ PrefabInstance:
       propertyPath: Root_SkillObject
       value: 
       objectReference: {fileID: 1877293502}
+    - target: {fileID: 8505567666318350724, guid: d9614b341da396f43a8b38d13a069d93, type: 3}
+      propertyPath: Prefab_SkillProjectile
+      value: 
+      objectReference: {fileID: 4894794474862553827, guid: 3a96c0b8b80fd0040a8189746437e9a9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

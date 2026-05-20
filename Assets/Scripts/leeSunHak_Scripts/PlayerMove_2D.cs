@@ -119,9 +119,10 @@ public class PlayerMove_2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Spike") == false) return;
         
-        var objectComponent = collision.gameObject.GetComponent<SpikeObject>();
+        var objectComponent = collision.gameObject.GetComponent<BladeObject>();
         if (objectComponent == null) return;
 
+        Debug.Log("가시에 닿았습니다!");
         GameManager.Inst.RestartPlayer();
     }
 
