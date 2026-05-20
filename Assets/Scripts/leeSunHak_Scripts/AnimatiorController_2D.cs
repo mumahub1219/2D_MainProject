@@ -19,14 +19,18 @@ public class AnimatorController_2D : MonoBehaviour
 
     public void SetState(EntityAnimState newState)
     {
-        if(newState == EntityAnimState.Idle && _currentState == EntityAnimState.Idle)
+        if(newState == _currentState)
         {
             return;
         }
 
+        ResetAllParameters();
+
         _currentState = newState;
         switch (_currentState)
         {
+            case EntityAnimState.Idle:
+                break;
             case EntityAnimState.Walk:
                 Animator_Player.SetBool("IsWalk", true);
                 break;
@@ -48,6 +52,6 @@ public class AnimatorController_2D : MonoBehaviour
     private void ResetAllParameters()
     {
         Animator_Player.SetBool("IsRun", false);
-        Animator_Player.SetBool("IsDead", false);
+        Animator_Player.SetBool("IsJump", false);
     }
 }

@@ -55,6 +55,8 @@ public class PlayerMove_2D : MonoBehaviour
         {
             Flip();
         }
+
+        UpdateAnimationState();
     }
 
     void FixedUpdate()
@@ -71,7 +73,6 @@ public class PlayerMove_2D : MonoBehaviour
     void Jump()
     {
         _rigidBody.linearVelocity = new Vector2(_rigidBody.linearVelocity.x, _jumpForce);
-        ChangePlayerState(EntityAnimState.Jump);
     }
 
     void Flip()
@@ -80,12 +81,31 @@ public class PlayerMove_2D : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
-        ChangePlayerState(EntityAnimState.Run);
     }
 
     private void ChangePlayerState(EntityAnimState newState)
     {
         AnimatiorController_Entitiy.SetState(newState);
+    }
+
+    private void UpdateAnimationState()
+    {
+        if (_isGrounded == false)
+        {
+            ChangePlayerState(EntityAnimState.Jump);
+        }
+        else
+        {
+            if (_horizontalInput != 0)
+            {
+                ChangePlayerState(EntityAnimState.Run);
+            }
+            else
+            {
+                ChangePlayerState(EntityAnimState.Idle);
+            }
+        }
+
     }
 
     private void OnDrawGizmos()
@@ -114,7 +134,7 @@ public class PlayerMove_2D : MonoBehaviour
         {
             if(isShowMsg == true)
             {
-                UIManager.Instance.OpenSimplePopup("스킬이 이이 사용 중입니다");
+                UIManager.Instance.OpenSimplePopup("스킬이 이미 사용 중입니다");
             }
 
             return false;
@@ -127,7 +147,6 @@ public class PlayerMove_2D : MonoBehaviour
     public void UseNormalAttack()
     {
         if(CheckSKillUseable(isShowMsg:false) == false) return;
-
 
         Collider_PlayerNormalAttack.gameObject.SetActive(true);
         StartCoroutine(CostartNoramalAttack());
@@ -150,11 +169,11 @@ public class PlayerMove_2D : MonoBehaviour
     public void ProjectileSkill()
     {
         if (CheckSKillUseable() == false) return;
-        CoreateProjectileSkillObject();
+        CreateProjectileSkillObject();
 
     }
 
-    private void CoreateProjectileSkillObject()
+    private void CreateProjectileSkillObject()
     {
         var gObj = Instantiate(Prefab_SkillProjectile, Transform_SkillProjectileRoot);
         if (gObj == null) return;

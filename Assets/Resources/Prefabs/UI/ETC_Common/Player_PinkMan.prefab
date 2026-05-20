@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 4641464220284082490}
   - component: {fileID: 4673616723394564035}
   - component: {fileID: 2689713385795308968}
+  - component: {fileID: 6834993955404794198}
   m_Layer: 0
   m_Name: Player_PinkMan
   m_TagString: Player
@@ -152,7 +153,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  _animator: {fileID: 2689713385795308968}
+  AnimatiorController_Entitiy: {fileID: 6834993955404794198}
   Collider_PlayerNormalAttack: {fileID: 2464509200138298617}
   Prefab_SkillProjectile: {fileID: 4894794474862553827, guid: 3a96c0b8b80fd0040a8189746437e9a9, type: 3}
   Transform_SkillProjectileRoot: {fileID: 7271433208842999121}
@@ -310,6 +311,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6834993955404794198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6262889456136478467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01267e69ff7fa24eb6bb0c2ea466bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimatorController_2D
+  Animator_Player: {fileID: 2689713385795308968}
 --- !u!1 &6965925262127538080
 GameObject:
   m_ObjectHideFlags: 0

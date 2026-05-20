@@ -18,7 +18,6 @@ public class SkillProjectile : SkillBase
         // SpriteRenderer_Effect.flipY = !isDirectionRight; Y축 전환이 필요한 경우 사용
 
         _damage = damage;
-
     }
 
     private void Update()
