@@ -7,6 +7,7 @@ public class ObjectManager : MonoBehaviour
     // 생성할 몬스터의 프리팹
     [SerializeField] private GameObject Prefab_Enemy;
     [SerializeField] private Transform Root_Enemy;
+    [SerializeField] private Transform Root_SkillObject;
 
     public static ObjectManager Inst { get; set; }
 

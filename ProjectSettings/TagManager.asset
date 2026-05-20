@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Coin
   - Spike
+  - SkillObject
   layers:
   - Default
   - TransparentFX

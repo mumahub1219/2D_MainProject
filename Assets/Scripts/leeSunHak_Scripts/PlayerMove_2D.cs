@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -15,15 +16,26 @@ public class PlayerMove_2D : MonoBehaviour
 
     [SerializeField] private Animator _animator;
 
+    [Header("스킬")]
+    [SerializeField] private Collider2D Collider_PlayerNormalAttack;
+    [SerializeField] private GameObject Prefab_SkillProjectile;
+    [SerializeField] private Transform Transform_SkillProjectileRoot;
+
     private Rigidbody2D _rigidBody;
     private bool _isGrounded;
     private float _horizontalInput;
     private bool _lookRight = true;
+    private bool _isSkillUsing = false;
+
+    public enum ViewType { sideView, TopVie, }
+
+    private Vector2 _lookDirection;
 
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        Collider_PlayerNormalAttack.gameObject.SetActive(false);
     }
 
     void Update()
@@ -99,17 +111,79 @@ public class PlayerMove_2D : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Spike") == false)
-        {
-            return;
-        }
-
+        if (collision.gameObject.CompareTag("Spike") == false) return;
+        
         var objectComponent = collision.gameObject.GetComponent<SpikeObject>();
-        if (objectComponent == null)
-        {
-            return;
-        }
+        if (objectComponent == null) return;
 
         GameManager.Inst.RestartPlayer();
     }
+
+
+    public bool CheckSKillUseable(bool isShowMsg = true)
+    {
+        if (_isSkillUsing == true)
+        {
+            if(isShowMsg == true)
+            {
+                UIManager.Instance.OpenSimplePopup("스킬이 이이 사용 중입니다");
+            }
+
+            return false;
+        }
+
+
+        return true;
+    }
+
+    public void UseNormalAttack()
+    {
+        if(CheckSKillUseable(isShowMsg:false) == false) return;
+
+
+        Collider_PlayerNormalAttack.gameObject.SetActive(true);
+        StartCoroutine(CostartNoramalAttack());
+    }
+
+    public void UseUseCircleSkill()
+    {
+        if (CheckSKillUseable() == false) return;
+        
+
+    }
+
+    public void UseRaySkill()
+    {
+        if (CheckSKillUseable() == false) return;
+        
+
+    }
+
+    public void ProjectileSkill()
+    {
+        if (CheckSKillUseable() == false) return;
+        CoreateProjectileSkillObject();
+
+    }
+
+    private void CoreateProjectileSkillObject()
+    {
+        var gObj = Instantiate(Prefab_SkillProjectile, Transform_SkillProjectileRoot);
+        if (gObj == null) return;
+
+        var skillProjectile = gObj.GetComponent<SkillProjectile>();
+        if (skillProjectile == null) return;
+
+        skillProjectile.InitSkillObject(_lookRight, this.transform.position);
+
+    }
+
+    IEnumerator CostartNoramalAttack()
+    {
+        _isSkillUsing = true;
+        yield return new WaitForSeconds(1.0f);
+        Collider_PlayerNormalAttack.gameObject.SetActive(false);
+        _isSkillUsing = false;
+    }
+
 }
