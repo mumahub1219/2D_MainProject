@@ -48,6 +48,6 @@ public class DaniTech_GameTestUI : MonoBehaviour
    
     public void OnClick_SelectTestBtn()
     {
-        ObjectManager.Inst.RequestSpawnEnemy();
+        GameObjectManager.Inst.RequestSpawnEnemy();
     }
 }

@@ -74,7 +74,7 @@ public class DaniTech_2DFieldObject : MonoBehaviour
 
 
                 // 채집과 드랍 1-5) 추가 완료 되었다면 이 오브젝트를 비활성화 또는 제거하자 (우리는 제거를 선택)
-                ObjectManager.Inst.RequestDestroyFieldObject(_fieldObjectInstanceId);
+                GameObjectManager.Inst.RequestDestroyFieldObject(_fieldObjectInstanceId);
             }
         }
     }

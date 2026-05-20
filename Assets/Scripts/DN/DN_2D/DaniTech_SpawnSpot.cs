@@ -65,7 +65,7 @@ public class DaniTech_SpawnSpot : MonoBehaviour
         {
             case DNSpawnSpotType.Harvest:
             case DNSpawnSpotType.DropItem:
-                ObjectManager.Inst.CreateFieldObject(_spawnObjectDataId, this.transform).Forget();
+                GameObjectManager.Inst.CreateFieldObject(_spawnObjectDataId, this.transform).Forget();
                 // 추가처리가 들어가기 까지는 해당 스폰스팟이 더이상 동작하지 않게 비활성화 한다
                 this.gameObject.SetActive(false);
                 break;

@@ -19,8 +19,6 @@ public class PlayerMove_2D : MonoBehaviour
 
     [Header("스킬")]
     [SerializeField] private Collider2D Collider_PlayerNormalAttack;
-    [SerializeField] private GameObject Prefab_SkillProjectile;
-    [SerializeField] private Transform Transform_SkillProjectileRoot;
 
     private Rigidbody2D _rigidBody;
     private bool _isGrounded;
@@ -169,21 +167,9 @@ public class PlayerMove_2D : MonoBehaviour
     public void ProjectileSkill()
     {
         if (CheckSKillUseable() == false) return;
-        CreateProjectileSkillObject();
-
+        GameObjectManager.Inst.RequestSpawnSkillObject();
     }
 
-    private void CreateProjectileSkillObject()
-    {
-        var gObj = Instantiate(Prefab_SkillProjectile, Transform_SkillProjectileRoot);
-        if (gObj == null) return;
-
-        var skillProjectile = gObj.GetComponent<SkillProjectile>();
-        if (skillProjectile == null) return;
-
-        skillProjectile.InitSkillObject(_lookRight, this.transform.position, 500);
-
-    }
 
     IEnumerator CostartNoramalAttack()
     {

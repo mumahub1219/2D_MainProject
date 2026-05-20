@@ -9,6 +9,8 @@ public class SkillProjectile : SkillBase
     private Vector3 _moveDirection = new Vector3(1, 0 , 0);
     private int _damage;
 
+    public int SkillObjectInstancId { get; private set; }
+
     public void InitSkillObject(bool isDirectionRight, Vector3 playerPos, int damage)
     {
         this.transform.position = playerPos;
@@ -18,6 +20,11 @@ public class SkillProjectile : SkillBase
         // SpriteRenderer_Effect.flipY = !isDirectionRight; Y축 전환이 필요한 경우 사용
 
         _damage = damage;
+    }
+
+    public void InitSkillObjectInfo(int instanceId)
+    {
+        SkillObjectInstancId = instanceId;
     }
 
     private void Update()

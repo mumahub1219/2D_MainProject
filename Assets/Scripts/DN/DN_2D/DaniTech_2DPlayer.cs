@@ -137,7 +137,7 @@ public class DaniTech_2DPlayer : MonoBehaviour
         }
 
         // 6-3) 충돌된 오브젝트를 플레이어가 직접 제거하는게 아니라, Id로 게임오브젝트매니저한테 삭제를 요청한다
-        ObjectManager.Inst.RequestDestroyEntityObject(enemyComponent.EntityInstancId);
+        GameObjectManager.Inst.RequestDestroyEntityObject(enemyComponent.EntityInstancId);
 
         // 6-4) 피그미를 잡으면 스코어를 올려주자!
         AddGameScore();

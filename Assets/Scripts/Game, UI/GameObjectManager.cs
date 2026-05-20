@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectManager : MonoBehaviour
+public class GameObjectManager : MonoBehaviour
 {
     // 생성할 몬스터의 프리팹
     [SerializeField] private GameObject Prefab_Enemy;
     [SerializeField] private Transform Root_Enemy;
+
+    [SerializeField] private GameObject Prefab_SkillProjectile;
     [SerializeField] private Transform Root_SkillObject;
 
-    public static ObjectManager Inst { get; set; }
+    public static GameObjectManager Inst { get; set; }
 
     // 생성된 오브젝트의 키가 됨
     private int _objectInstanceKeyGenerator = 0;
+    private int _skillObjectInstanceKeyGenerator = 0;
 
     // 생성된 오브젝트의 생명을 보관
     private Dictionary<int, GameObject> _createdGameObjectContainer = new Dictionary<int, GameObject>();
+    private Dictionary<int, GameObject> _createdSkillObjectContainer = new Dictionary<int, GameObject>();
     private Dictionary<int, DaniTech_2DFieldObject> _fieldObjectContainer = new Dictionary<int, DaniTech_2DFieldObject>();
 
     private void Awake()
@@ -95,9 +99,47 @@ public class ObjectManager : MonoBehaviour
         Destroy(gObj);
     }
 
+    // [스킬 오브젝트] ===================================================================================================
 
+    public void RequestSpawnSkillObject()
+    {
+        if (Prefab_SkillProjectile == null) return;
 
+        var gObj = Instantiate(Prefab_SkillProjectile, Root_SkillObject);
+        if (gObj == null) return;
 
+        _skillObjectInstanceKeyGenerator++;
+        
+
+        if (_createdSkillObjectContainer.ContainsKey(_skillObjectInstanceKeyGenerator) == true) return;
+
+        _createdSkillObjectContainer.Add(_skillObjectInstanceKeyGenerator, gObj);
+        InitGeneratedSkillObject(_skillObjectInstanceKeyGenerator, gObj);
+    }
+
+    private void InitGeneratedSkillObject(int generatedId, GameObject gObj)
+    {
+        SkillProjectile skillObject = gObj.GetComponent<SkillProjectile>();
+        if (skillObject == null) return;
+
+        skillObject.InitSkillObjectInfo(generatedId);
+    }
+
+    public GameObject GetSkillObjectCanBeNull(int instanceId)
+    {
+        if (_createdSkillObjectContainer.ContainsKey(instanceId) == false) return null;
+
+        return _createdSkillObjectContainer[instanceId];
+    }
+
+    public void RequestDestroySkillObject(int instanceId)
+    {
+        var gObj = GetSkillObjectCanBeNull(instanceId);
+        if (gObj == null) return;
+
+        _createdSkillObjectContainer.Remove(instanceId);
+        Destroy(gObj);
+    }
 
 
     //[필드 오브젝트] ====================================================================================================
