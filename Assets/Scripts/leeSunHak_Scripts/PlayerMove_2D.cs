@@ -14,7 +14,8 @@ public class PlayerMove_2D : MonoBehaviour
     [SerializeField] private float _checkRadius = 0.5f;
     [SerializeField] private LayerMask _groundLayer;
 
-    [SerializeField] private Animator _animator;
+    [Header("애니메이터")]
+    [SerializeField] private AnimatorController_2D AnimatiorController_Entitiy;
 
     [Header("스킬")]
     [SerializeField] private Collider2D Collider_PlayerNormalAttack;
@@ -54,9 +55,6 @@ public class PlayerMove_2D : MonoBehaviour
         {
             Flip();
         }
-
-        RunAnimation(Mathf.Abs(_horizontalInput));
-        JumpAnimation();
     }
 
     void FixedUpdate()
@@ -73,6 +71,7 @@ public class PlayerMove_2D : MonoBehaviour
     void Jump()
     {
         _rigidBody.linearVelocity = new Vector2(_rigidBody.linearVelocity.x, _jumpForce);
+        ChangePlayerState(EntityAnimState.Jump);
     }
 
     void Flip()
@@ -81,6 +80,12 @@ public class PlayerMove_2D : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+        ChangePlayerState(EntityAnimState.Run);
+    }
+
+    private void ChangePlayerState(EntityAnimState newState)
+    {
+        AnimatiorController_Entitiy.SetState(newState);
     }
 
     private void OnDrawGizmos()
@@ -90,23 +95,6 @@ public class PlayerMove_2D : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(_groundCheck.position, _checkRadius);
         }
-    }
-
-    public void JumpAnimation()
-    {
-        if (_isGrounded == false)
-        {
-            _animator.SetBool("jump", true);
-        }
-        else
-        {
-            _animator.SetBool("jump", false);
-        }
-    }
-
-    public void RunAnimation(float currentSpeed)
-    {
-        _animator.SetFloat("speed", currentSpeed);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
