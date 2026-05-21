@@ -116,18 +116,6 @@ public class PlayerMove_2D : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Spike") == false) return;
-        
-        var objectComponent = collision.gameObject.GetComponent<BladeObject>();
-        if (objectComponent == null) return;
-
-        Debug.Log("가시에 닿았습니다!");
-        GameManager.Inst.RespawnPlayer();
-    }
-
-
     public bool CheckSKillUseable(bool isShowMsg = true)
     {
         if (_isSkillUsing == true)
@@ -172,7 +160,6 @@ public class PlayerMove_2D : MonoBehaviour
         GameObjectManager.Inst.RequestSpawnSkillObject(0, _lookRight, transform.position, _playerdamage);
     }
 
-
     IEnumerator CostartNoramalAttack()
     {
         _isSkillUsing = true;
@@ -180,6 +167,4 @@ public class PlayerMove_2D : MonoBehaviour
         Collider_PlayerNormalAttack.gameObject.SetActive(false);
         _isSkillUsing = false;
     }
-
-    
 }

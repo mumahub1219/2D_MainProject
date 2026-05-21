@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SpikeObject : MonoBehaviour
+public class CheckPoint : MonoBehaviour
 {
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -10,6 +10,7 @@ public class SpikeObject : MonoBehaviour
         var objectComponent = collision.gameObject.GetComponent<PlayerMove_2D>();
         if (objectComponent == null) return;
 
-        GameManager.Inst.RespawnPlayer();
+        GameManager.Inst.SetRespawnPosition(objectComponent.transform.position);
     }
+
 }

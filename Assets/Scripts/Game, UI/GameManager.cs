@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Inst { get; set; }
 
     public PlayerMove_2D LocalPlayer;
+    [SerializeField] private Vector3 _respawnPosition;
 
     // 플레이 중에 저장되어야 하는 정보들이 있는 위치
     private DaniTechPlayerModel _playerModel = new DaniTechPlayerModel();
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadSaveData();
+
+        if (LocalPlayer != null)
+        {
+            _respawnPosition = LocalPlayer.transform.position;
+        }
     }
 
     public void SaveData()
@@ -66,8 +72,22 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        if (LocalPlayer == null) return;
 
+        if (LocalPlayer.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
+        {
+            rigidbody2D.linearVelocity = Vector2.zero;
+            rigidbody2D.angularVelocity = 0.0f;
+        }
+
+        LocalPlayer.transform.position = _respawnPosition;
     }
+
+    public void SetRespawnPosition(Vector3 newPosition)
+    {
+        _respawnPosition = newPosition;
+    }
+
 
     public void EndGameCondition()
     {
