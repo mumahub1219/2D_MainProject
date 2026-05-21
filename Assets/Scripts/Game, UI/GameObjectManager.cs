@@ -101,7 +101,7 @@ public class GameObjectManager : MonoBehaviour
 
     // [스킬 오브젝트] ===================================================================================================
 
-    public void RequestSpawnSkillObject(bool isRight, Vector3 startSkillPosition)
+    public void RequestSpawnSkillObject(bool isRight, Vector3 startSkillPosition, int damage)
     {
         if (Prefab_SkillProjectile == null) return;
 
@@ -112,7 +112,7 @@ public class GameObjectManager : MonoBehaviour
 
         var skillObj = gObj.GetComponent<SkillProjectile>(); // todo : 나중에 스킬 베이즈로 공용화 필요
         if (skillObj == null) return;
-        skillObj.InitSkillObject(isRight, startSkillPosition, 100);
+        skillObj.InitSkillObject(isRight, startSkillPosition, damage);
 
 
         if (_createdSkillObjectContainer.ContainsKey(_skillObjectInstanceKeyGenerator) == true) return;

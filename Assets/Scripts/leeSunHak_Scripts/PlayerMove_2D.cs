@@ -25,6 +25,7 @@ public class PlayerMove_2D : MonoBehaviour
     private float _horizontalInput;
     private bool _lookRight = true;
     private bool _isSkillUsing = false;
+    private int _playerdamage = 0;
 
     public enum ViewType { sideView, TopVie, }
 
@@ -168,7 +169,7 @@ public class PlayerMove_2D : MonoBehaviour
     public void ProjectileSkill()
     {
         if (CheckSKillUseable() == false) return;
-        GameObjectManager.Inst.RequestSpawnSkillObject(_lookRight, transform.position);
+        GameObjectManager.Inst.RequestSpawnSkillObject(_lookRight, transform.position, _playerdamage);
         
     }
 
