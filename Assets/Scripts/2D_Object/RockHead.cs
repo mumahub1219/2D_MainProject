@@ -29,4 +29,14 @@ public class RockHead : MonoBehaviour
         float newY = _startPosition.y + (modifiedProgress * _moveDistance);
         transform.position = new Vector3(_startPosition.x, newY, _startPosition.z);
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") == false) return;
+
+        var objectComponent = collision.gameObject.GetComponent<PlayerMove_2D>();
+        if (objectComponent == null) return;
+
+        GameManager.Inst.RespawnPlayer();
+    }
 }
