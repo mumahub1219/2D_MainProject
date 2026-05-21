@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 455c2764dda51084c924120111d37dd7
+    m_Address: 2DObject/Monster_Stand
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 537ef5608af49ff43991e2ac013dcfda
     m_Address: Texture2D/LoadingRawImage
     m_ReadOnly: 0
@@ -72,6 +77,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b580732116b6e7442abb33e500271ec5
     m_Address: Texture2D/LoadingImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba0078d7dceb51448b8c340fabc39872
+    m_Address: 2DObject/Monster_Move
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

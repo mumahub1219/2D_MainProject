@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8122d263b05de143bf234fc7348b3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterBasic
+  SkillCoolTime: 5
+  Prefab_MonsterSkillObject: {fileID: 4894794474862553827, guid: 3a96c0b8b80fd0040a8189746437e9a9, type: 3}
+  SpriteRenderer_Monster: {fileID: 6627811897836811848}
 --- !u!50 &5336684423402810778
 Rigidbody2D:
   serializedVersion: 5
@@ -59,7 +62,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 5
@@ -222,7 +225,7 @@ Animator:
   m_GameObject: {fileID: 2944356783977162841}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 146367ea2d0ad12438b371c0eb94fc51, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -11,15 +11,17 @@ public class GameObjectManager : MonoBehaviour
     [SerializeField] private GameObject Prefab_SkillProjectile;
     [SerializeField] private Transform Root_SkillObject;
 
+    [SerializeField] private Transform Root_Monster;
+
     public static GameObjectManager Inst { get; set; }
 
     // 생성된 오브젝트의 키가 됨
     private int _objectInstanceKeyGenerator = 0;
-    private int _skillObjectInstanceKeyGenerator = 0;
 
     // 생성된 오브젝트의 생명을 보관
     private Dictionary<int, GameObject> _createdGameObjectContainer = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> _createdSkillObjectContainer = new Dictionary<int, GameObject>();
+    private Dictionary<int, MonsterBasic> _createdMonsterContainer = new Dictionary<int, MonsterBasic>();
     private Dictionary<int, DaniTech_2DFieldObject> _fieldObjectContainer = new Dictionary<int, DaniTech_2DFieldObject>();
 
     private void Awake()
@@ -101,24 +103,24 @@ public class GameObjectManager : MonoBehaviour
 
     // [스킬 오브젝트] ===================================================================================================
 
-    public void RequestSpawnSkillObject(bool isRight, Vector3 startSkillPosition, int damage)
+    public void RequestSpawnSkillObject(int ownerInstanceId, bool isRight, Vector3 startSkillPosition, int damage)
     {
         if (Prefab_SkillProjectile == null) return;
 
         var gObj = Instantiate(Prefab_SkillProjectile, Root_SkillObject);
         if (gObj == null) return;
 
-        _skillObjectInstanceKeyGenerator++;
+        _objectInstanceKeyGenerator++;
 
         var skillObj = gObj.GetComponent<SkillProjectile>(); // todo : 나중에 스킬 베이즈로 공용화 필요
         if (skillObj == null) return;
-        skillObj.InitSkillObject(isRight, startSkillPosition, damage);
+        skillObj.InitSkillObject(ownerInstanceId, isRight, startSkillPosition, damage);
 
 
-        if (_createdSkillObjectContainer.ContainsKey(_skillObjectInstanceKeyGenerator) == true) return;
+        if (_createdSkillObjectContainer.ContainsKey(_objectInstanceKeyGenerator) == true) return;
 
-        _createdSkillObjectContainer.Add(_skillObjectInstanceKeyGenerator, gObj);
-        InitGeneratedSkillObject(_skillObjectInstanceKeyGenerator, gObj);
+        _createdSkillObjectContainer.Add(_objectInstanceKeyGenerator, gObj);
+        InitGeneratedSkillObject(_objectInstanceKeyGenerator, gObj);
     }
 
     private void InitGeneratedSkillObject(int generatedId, GameObject gObj)
@@ -145,6 +147,35 @@ public class GameObjectManager : MonoBehaviour
         Destroy(gObj);
     }
 
+    //[몬스터 오브젝트] ====================================================================================================
+
+    public async UniTaskVoid CreateMonsterObject(string monsterDataId, Transform spawnSpot)
+    {
+        var monsterData = GameDataManager.Instance.GetMonsterData(monsterDataId);
+        if (monsterData == null) return;
+
+        var createdObj = await ResourceManager.Inst.InstantiateAsync(monsterData.PrefabPath, Root_Monster, true);
+        createdObj.transform.position = spawnSpot.position;
+
+        AddMonsterObjectOncreate(createdObj, monsterDataId);
+    }
+
+    private void AddMonsterObjectOncreate(GameObject createcObject, string monsterDataId)
+    {
+        _objectInstanceKeyGenerator++;
+        var generatedInstanceId = _objectInstanceKeyGenerator;
+
+        var monsterComponent = createcObject.GetComponent<MonsterBasic>();
+        if (monsterComponent == null) return;
+
+        _createdMonsterContainer.Add(generatedInstanceId, monsterComponent);
+        monsterComponent.InitMonster(generatedInstanceId, monsterDataId);
+    }
+
+    public void RequestDestroyMonsterObject(int instatanceId)
+    {
+
+    }
 
     //[필드 오브젝트] ====================================================================================================
 
