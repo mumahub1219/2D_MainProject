@@ -60,6 +60,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69e6eeba0cc2b8943bf39efc4a9d8510
+    m_Address: Icon/Icon_Item_Strawberry_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6caf508fb2c9a304cbab300f30d5cf19
     m_Address: Sound/Voice_Pug_1_I_WantToEatPizza
     m_ReadOnly: 0
