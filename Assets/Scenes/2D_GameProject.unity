@@ -549,11 +549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820adbabf72deac49aa43c0a1d28fba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove_2D
---- !u!4 &645720078 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1350379601070225985, guid: 110411934e80aa14c872abe3b84172d8, type: 3}
-  m_PrefabInstance: {fileID: 815932760}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &787179819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -627,7 +622,6 @@ GameObject:
   - component: {fileID: 803129624}
   - component: {fileID: 803129623}
   - component: {fileID: 803129622}
-  - component: {fileID: 803129625}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -709,20 +703,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &803129625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803129621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1de438484910254bbe8c12a69c168c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  Transform_Player: {fileID: 645720078}
-  smoothing: 5
 --- !u!1001 &815932760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3341,6 +3321,10 @@ PrefabInstance:
     - target: {fileID: 1861007714871500051, guid: d9614b341da396f43a8b38d13a069d93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059351217301852743, guid: d9614b341da396f43a8b38d13a069d93, type: 3}
+      propertyPath: MainCamera
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3552758040336409257, guid: d9614b341da396f43a8b38d13a069d93, type: 3}
       propertyPath: m_Name
