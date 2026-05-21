@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -121,6 +122,8 @@ public class GameObjectManager : MonoBehaviour
 
         _createdSkillObjectContainer.Add(_objectInstanceKeyGenerator, gObj);
         InitGeneratedSkillObject(_objectInstanceKeyGenerator, gObj);
+
+        StartCoroutine(DestroySkillObject(skillObj.SkillObjectInstancId));
     }
 
     private void InitGeneratedSkillObject(int generatedId, GameObject gObj)
@@ -145,6 +148,12 @@ public class GameObjectManager : MonoBehaviour
 
         _createdSkillObjectContainer.Remove(instanceId);
         Destroy(gObj);
+    }
+
+    IEnumerator DestroySkillObject(int instanceId)
+    {
+        yield return new WaitForSeconds(2.0f);
+        RequestDestroySkillObject(instanceId);
     }
 
     //[몬스터 오브젝트] ====================================================================================================

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SkillProjectile : SkillBase
 {
@@ -34,4 +35,6 @@ public class SkillProjectile : SkillBase
     {
         transform.position += _moveDirection * ProjectileSpeed * Time.deltaTime;
     }
+
+    
 }

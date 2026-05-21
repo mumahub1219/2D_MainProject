@@ -170,7 +170,6 @@ public class PlayerMove_2D : MonoBehaviour
     {
         if (CheckSKillUseable() == false) return;
         GameObjectManager.Inst.RequestSpawnSkillObject(0, _lookRight, transform.position, _playerdamage);
-        
     }
 
 
@@ -182,4 +181,5 @@ public class PlayerMove_2D : MonoBehaviour
         _isSkillUsing = false;
     }
 
+    
 }
