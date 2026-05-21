@@ -124,7 +124,7 @@ public class PlayerMove_2D : MonoBehaviour
         if (objectComponent == null) return;
 
         Debug.Log("가시에 닿았습니다!");
-        GameManager.Inst.RestartPlayer();
+        GameManager.Inst.RespawnPlayer();
     }
 
 

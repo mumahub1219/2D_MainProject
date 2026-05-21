@@ -35,6 +35,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3817c62c3f07eca4fbb1602b7b5ecadd
+    m_Address: Icon/Icon_Bear
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 43237ee419ec47b49a6349f963676aa1
     m_Address: 2DPrefab/Harvest_Potato
     m_ReadOnly: 0

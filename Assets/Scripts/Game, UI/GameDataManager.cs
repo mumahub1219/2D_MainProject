@@ -102,14 +102,14 @@ public class GameDataManager : MonoBehaviour
 
     public void LoadDialogueData()
     {
-        DialogueGroupDataList = LoadData<DialogueGroupData>("DNDialogueGroup");
-        DialogueDataList = LoadData<DialogueData>("DNDialogue");
+        DialogueGroupDataList = LoadData<DialogueGroupData>("DialogueGroup");
+        DialogueDataList = LoadData<DialogueData>("Dialogue");
     }
 
     public void LoadAll()
     {
-        FieldObjectDataList = LoadData<FieldObjectData>("DNFieldObject");
-        MonsterDataList = LoadData<MonsterData>("DNMonster");
+        FieldObjectDataList = LoadData<FieldObjectData>("FieldObject");
+        MonsterDataList = LoadData<MonsterData>("Monster");
     }
 
 
