@@ -12,7 +12,7 @@ public class SkillProjectile : SkillBase
     private Vector3 _moveDirection = new Vector3(1, 0 , 0);
 
     private int _damage = 1;
-    public int _ownerInstanceId;
+    private int _ownerInstanceId;
 
     private event Action<int, int> _onSkillCollision;
 
@@ -78,6 +78,10 @@ public class SkillProjectile : SkillBase
 
             _onSkillCollision?.Invoke(monsterInstanceId, _damage);
 
+            GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
+        }
+        else if (collision.CompareTag("Map"))
+        {
             GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
         }
     }

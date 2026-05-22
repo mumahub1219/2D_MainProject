@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
         }
 
         localPlayer.transform.position = _respawnPosition;
+        localPlayer.SetPlayerHp();
     }
 
     public void SetRespawnPosition(Vector3 newPosition)

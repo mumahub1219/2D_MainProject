@@ -21,8 +21,8 @@ public class PlayerMove_2D : MonoBehaviour
     [SerializeField] private Collider2D Collider_PlayerNormalAttack;
 
     [Header("전투 관련 정보")]
-    [SerializeField] private int _playerHp = 1000;
-    [SerializeField] private int _playerBaseAtk = 100;
+    [SerializeField] private int _playerHp;
+    [SerializeField] private int _playerBaseAtk;
 
     private Rigidbody2D _rigidBody;
     private bool _isGrounded;
@@ -112,7 +112,6 @@ public class PlayerMove_2D : MonoBehaviour
                 ChangePlayerState(EntityAnimState.Idle);
             }
         }
-
     }
 
     private void OnDrawGizmos()
@@ -180,6 +179,8 @@ public class PlayerMove_2D : MonoBehaviour
 
         if (_playerHp - damage <= 0)
         {
+            _playerHp = 0;
+            Debug.Log(_playerHp);
             PlayerDie();
         }
     }
@@ -187,6 +188,11 @@ public class PlayerMove_2D : MonoBehaviour
     public void PlayerDie()
     {
         GameManager.Inst.RespawnPlayer();
+    }
+
+    public void SetPlayerHp()
+    {
+        _playerHp = 100;
     }
 
     private void OnMonsterCollied(int monsterInstanceId, int skillDamage)
