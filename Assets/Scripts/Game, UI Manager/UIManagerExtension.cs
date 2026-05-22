@@ -21,7 +21,8 @@ public enum UIType
     DNInfoBookUI,
     ScoreUI,
     LobbyUI,
-    DictionaryUI
+    DictionaryUI,
+    QuitUI
 }
 
 public static class UIManagerExtension
