@@ -35,11 +35,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3817c62c3f07eca4fbb1602b7b5ecadd
-    m_Address: Icon/Icon_Bear
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3a2d9154b1082d3429826d7ce9572c50
     m_Address: Icon/Icon_Item_Melon_1
     m_ReadOnly: 0

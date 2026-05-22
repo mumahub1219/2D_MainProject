@@ -33,14 +33,14 @@
     "PrefabPath": null
   },
   {
-    "Id": "mob_bear_1",
+    "Id": "mob_stand_1",
     "Name": "곰곰이",
     "Description": "생각을 많이하는 곰이다.",
     "BaseHp": 500,
     "BaseAtk": 20,
     "NormalAtkMultiple": 1,
     "SkillAtkMultipleList": "2",
-    "IconPath": "Icon/Icon_Bear",
+    "IconPath": "Icon/Icon_Monster_Stand",
     "PrefabPath": "2DObject/Monster_Stand"
   },
   {
