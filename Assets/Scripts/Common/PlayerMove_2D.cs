@@ -175,8 +175,9 @@ public class PlayerMove_2D : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _playerHp -= damage;
+        Debug.Log(_playerHp);
 
-        if (_playerHp - damage < 0)
+        if (_playerHp - damage <= 0)
         {
             PlayerDie();
         }
@@ -187,4 +188,11 @@ public class PlayerMove_2D : MonoBehaviour
         GameManager.Inst.RespawnPlayer();
     }
 
+    private void OnMonsterCollied(int monsterInstanceId, int skillDamage)
+    {
+        var monsterComponent = GameObjectManager.Inst.GetMonsterObjectInstanceId(monsterInstanceId);
+        if (monsterComponent == null) return;
+
+        monsterComponent.TakeDamage(skillDamage);
+    }
 }

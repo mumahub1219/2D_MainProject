@@ -39,6 +39,12 @@ public class MonsterBasic : MonsterBase
         StartCoroutine(CheckAndUseSkill());
     }
 
+    public int GetMonsterInstanceId()
+    {
+        return _instanceId;
+    }
+
+    // 데미지 부분
     private int GetFinalNormalDamage(int baseAtk, float normalMultiple)
     {
         return (int)(baseAtk * normalMultiple);
@@ -49,6 +55,17 @@ public class MonsterBasic : MonsterBase
         return (int)(baseAtk * skillMultiple);
     }
 
+    
+
+    // 방향 부분
+    private void ChangeMonsterDirection() 
+    {
+        _lookRight = !_lookRight;
+        _moveDirection = new Vector3(_lookRight ? 1 : -1, 0, 0);
+        SetMeshDirectionByMoveDirection((int)_moveDirection.x);
+    }
+
+    // 스킬 부분
     IEnumerator CheckAndUseSkill()
     {
         while (_isAlive)
@@ -63,13 +80,6 @@ public class MonsterBasic : MonsterBase
             ChangeMonsterDirection();
             UseSkill();
         }
-    }
-
-    private void ChangeMonsterDirection() 
-    {
-        _lookRight = !_lookRight;
-        _moveDirection = new Vector3(_lookRight ? 1 : -1, 0, 0);
-        SetMeshDirectionByMoveDirection((int)_moveDirection.x);
     }
 
     private void SetMeshDirectionByMoveDirection(int x)
@@ -90,9 +100,17 @@ public class MonsterBasic : MonsterBase
         {
             var player = GameObjectManager.Inst.GetLocalPlayer();
 
-
-
             player.TakeDamage(damage);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        _baseHp -= damage;
+
+        if (_baseHp <= 0)
+        {
+            GameObjectManager.Inst.RequestDestroyMonsterObject(_instanceId);
         }
     }
 }

@@ -61,12 +61,23 @@ public class SkillProjectile : SkillBase
     {
         bool isOwnerPlayer = (_ownerInstanceId == 0);
 
-        if (collision.CompareTag("Player") == (isOwnerPlayer == false))
+        if (collision.CompareTag("Player") && (isOwnerPlayer == false))
         {
-            //var player = GameObjectManager.Inst.GetLocalPlayer();
-            //player.TakeDamage(_damage);
-
             _onSkillCollision?.Invoke(0, _damage);
+
+            GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
+        }
+        else if (collision.CompareTag("Enemy") && (isOwnerPlayer == true))
+        {
+            var gObj = collision.gameObject;
+            if (gObj == null) return;
+
+            var monsterComponent = gObj.GetComponent<MonsterBasic>();
+            if (monsterComponent == null) return;
+
+            var monsterInstanceId = monsterComponent.GetMonsterInstanceId();
+
+            _onSkillCollision?.Invoke(monsterInstanceId, _damage);
 
             GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
         }

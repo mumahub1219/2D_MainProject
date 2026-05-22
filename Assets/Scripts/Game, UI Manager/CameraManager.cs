@@ -40,6 +40,8 @@ public class CameraManager : MonoBehaviour
     public void GetLocalPlayerPosition()
     {
         var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        if (localPlayer == null) return;
+
         SetTarget(localPlayer.transform);
     }
 

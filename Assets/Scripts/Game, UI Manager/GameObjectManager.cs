@@ -23,7 +23,7 @@ public class GameObjectManager : MonoBehaviour
     // 생성된 오브젝트의 생명을 보관
     private Dictionary<int, GameObject> _createdGameObjectContainer = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> _createdSkillObjectContainer = new Dictionary<int, GameObject>();
-    private Dictionary<int, MonsterBasic> _createdMonsterContainer = new Dictionary<int, MonsterBasic>();
+    private Dictionary<int, MonsterBasic> _MonsterObjectContainer = new Dictionary<int, MonsterBasic>();
     private Dictionary<int, DaniTech_2DFieldObject> _fieldObjectContainer = new Dictionary<int, DaniTech_2DFieldObject>();
 
     private PlayerMove_2D _localPlayer;
@@ -199,13 +199,28 @@ public class GameObjectManager : MonoBehaviour
         var monsterComponent = createcObject.GetComponent<MonsterBasic>();
         if (monsterComponent == null) return;
 
-        _createdMonsterContainer.Add(generatedInstanceId, monsterComponent);
+        _MonsterObjectContainer.Add(generatedInstanceId, monsterComponent);
         monsterComponent.InitMonster(generatedInstanceId, monsterDataId);
     }
 
     public void RequestDestroyMonsterObject(int instatanceId)
     {
+        var monsterComponent = GetMonsterObjectInstanceId(instatanceId);
+        if (monsterComponent == null) return;
 
+        _MonsterObjectContainer.Remove(instatanceId);
+        Destroy(monsterComponent.gameObject);
+    }
+
+    public MonsterBasic GetMonsterObjectInstanceId(int monsterInstanceId)
+    {
+        if(_MonsterObjectContainer.ContainsKey(monsterInstanceId) == false)
+        {
+            Debug.LogError($"{monsterInstanceId} 찾으려는 몬스터 오브젝트가 유효하지 않습니다");
+            return null;
+        }
+
+        return _MonsterObjectContainer[monsterInstanceId];
     }
 
     //[필드 오브젝트] ====================================================================================================
