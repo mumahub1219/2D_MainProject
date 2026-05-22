@@ -5,7 +5,7 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Inst { get; set; }
 
-    [Header("카메라 참조")]
+    [Header("카메라")]
     public Camera MainCamera;
 
     [Header("추적 설정")]
@@ -13,16 +13,10 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Vector3 _offset = new Vector3(0, 0, -10);
     [SerializeField] private float _smoothSpeed = 5.0f;
 
-    
-
     private void Awake()
     {
         Inst = this;
-
-        if(MainCamera == null)
-        {
-            MainCamera = Camera.main;
-        }
+        CameraSetting();
     }
 
     private void Start()
@@ -35,21 +29,33 @@ public class CameraManager : MonoBehaviour
         CameraMove(_cameraTarget);
     }
 
+    public void CameraSetting()
+    {
+        if (MainCamera == null)
+        {
+            MainCamera = Camera.main;
+        }
+    }
+
     public void SetTarget(Transform newTarget)
     {
+        if (newTarget == null) return;
+        
         _cameraTarget = newTarget;
     }
 
     public void CameraMove(Transform cameraTarget)
     {
-        if (cameraTarget == null) return;
+        if (cameraTarget == null || MainCamera == null) return;
 
-        Vector3 targetPosition = cameraTarget.position + _offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, _smoothSpeed * Time.deltaTime);
-        transform.position = smoothedPosition;
+        float targetX = cameraTarget.position.x + _offset.x;
+        float targetY = MainCamera.transform.position.y;
+        float targetZ = _offset.z;
 
-        //Vector3 targetPosition = new Vector3(cameraTarget.position.x, _fixedY, _fixedZ);
-        //Vector3 movePosition = Vector3.Lerp(transform.position, targetPosition, _smoothSpeed * Time.deltaTime);
-        //transform.position = movePosition;
+        Vector3 targetPosition = new Vector3(targetX, targetY, targetZ);
+
+        Vector3 smoothedPosition = Vector3.Lerp(MainCamera.transform.position, targetPosition, _smoothSpeed * Time.deltaTime);
+
+        MainCamera.transform.position = smoothedPosition;
     }
 }
