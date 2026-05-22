@@ -40,6 +40,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a2d9154b1082d3429826d7ce9572c50
+    m_Address: Icon/Icon_Item_Melon_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a3385c756601ef4f80b69a01ccc10ba
+    m_Address: Icon/Icon_Item_Orange_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 43237ee419ec47b49a6349f963676aa1
     m_Address: 2DPrefab/Harvest_Potato
     m_ReadOnly: 0
@@ -52,6 +62,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 537ef5608af49ff43991e2ac013dcfda
     m_Address: Texture2D/LoadingRawImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a9eb835396045b41bcdff9701e66ce8
+    m_Address: Icon/Icon_Item_Pineapple_1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -72,6 +87,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f44f0509ed049e4dbe0904fd8318ca5
     m_Address: 2DPrefab/Harvest_Corn
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9037dda14f959ee4293f94e356b43c10
+    m_Address: Icon/Icon_Item_Cherry_1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -100,13 +120,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8d61a3cf509c944a9072703554e32fb
-    m_Address: Sound/Voice_Pug_1_success
+  - m_GUID: d49d2fcf9ecdda74686017c94ae78e3f
+    m_Address: Icon/Icon_Item_Kiwi_1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: eafec7f1452f7d24f9fbe1a3e9ed9fde
-    m_Address: Icon/Icon_Item_Box_1
+  - m_GUID: d8d61a3cf509c944a9072703554e32fb
+    m_Address: Sound/Voice_Pug_1_success
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

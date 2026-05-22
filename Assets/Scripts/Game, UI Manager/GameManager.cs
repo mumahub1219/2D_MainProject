@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -19,8 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        LoadSaveData();
-        RespawnSpot();
+        StartCoroutine(InitGameLoop());
     }
 
     public void SaveData()
@@ -79,10 +79,23 @@ public class GameManager : MonoBehaviour
     public void RespawnSpot()
     {
         var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+
         if (localPlayer != null)
         {
             _respawnPosition = localPlayer.transform.position;
         }
+    }
+
+    private IEnumerator InitGameLoop()
+    {
+        LoadSaveData();
+
+        while (GameObjectManager.Inst.GetLocalPlayer() == null)
+        {
+            yield return null;
+        }
+
+        RespawnSpot();
     }
 
     public void RespawnPlayer()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class CameraManager : MonoBehaviour
@@ -21,7 +22,7 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        GetLocalPlayerPosition();
+        StartCoroutine(InitCameraLoop());
     }
 
     private void LateUpdate()
@@ -35,6 +36,16 @@ public class CameraManager : MonoBehaviour
         {
             MainCamera = Camera.main;
         }
+    }
+
+    private IEnumerator InitCameraLoop()
+    {
+        while (GameObjectManager.Inst.GetLocalPlayer() == null)
+        {
+            yield return null;
+        }
+
+        GetLocalPlayerPosition();
     }
 
     public void GetLocalPlayerPosition()
