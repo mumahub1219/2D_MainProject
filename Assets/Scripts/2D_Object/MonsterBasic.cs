@@ -83,7 +83,4 @@ public class MonsterBasic : MonsterBase
         int finalSkillDamage = GetFinalSkillDamage(_baseAtk, skillMultiple);
         GameObjectManager.Inst.RequestSpawnSkillObject(_instanceId, _lookRight, this.transform.position, finalSkillDamage);
     }
-
-
-
 }

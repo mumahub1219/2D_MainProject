@@ -34,21 +34,25 @@ public class MainUI_2DMainProject : UIBase
 
     public void Onclick_UseNormalAttack()
     {
-        GameManager.Inst.LocalPlayer.UseNormalAttack();
+        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        localPlayer.UseNormalAttack();
     }
 
     public void Onclick_UseCircleSkill() 
-    { 
-        GameManager.Inst.LocalPlayer.UseUseCircleSkill();
+    {
+        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        localPlayer.UseUseCircleSkill();
     }
 
     public void Onclick_UseRaySkill()
     {
-        GameManager.Inst.LocalPlayer.UseRaySkill();
+        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        localPlayer.UseRaySkill();
     }
 
     public void Onclick_ProjectileSkill()
     {
-        GameManager.Inst.LocalPlayer.ProjectileSkill();
+        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        localPlayer.ProjectileSkill();
     }
 }

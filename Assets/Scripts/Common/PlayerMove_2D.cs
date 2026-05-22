@@ -20,22 +20,29 @@ public class PlayerMove_2D : MonoBehaviour
     [Header("스킬")]
     [SerializeField] private Collider2D Collider_PlayerNormalAttack;
 
+    [Header("전투 관련 정보")]
+    [SerializeField] private int _playerHp = 1000;
+    [SerializeField] private int _playerBaseAtk = 100;
+
     private Rigidbody2D _rigidBody;
     private bool _isGrounded;
     private float _horizontalInput;
     private bool _lookRight = true;
     private bool _isSkillUsing = false;
-    private int _playerdamage = 0;
 
-    public enum ViewType { sideView, TopVie, }
-
+    public enum ViewType { sideView, TopView, }
     private Vector2 _lookDirection;
 
-    void Awake()
+    private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         Collider_PlayerNormalAttack.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        GameObjectManager.Inst.RegisterLocalPlayer(this);
     }
 
     void Update()
@@ -116,6 +123,7 @@ public class PlayerMove_2D : MonoBehaviour
         }
     }
 
+    // 스킬 부분
     public bool CheckSKillUseable(bool isShowMsg = true)
     {
         if (_isSkillUsing == true)
@@ -127,7 +135,6 @@ public class PlayerMove_2D : MonoBehaviour
 
             return false;
         }
-
 
         return true;
     }
@@ -143,21 +150,17 @@ public class PlayerMove_2D : MonoBehaviour
     public void UseUseCircleSkill()
     {
         if (CheckSKillUseable() == false) return;
-        
-
     }
 
     public void UseRaySkill()
     {
         if (CheckSKillUseable() == false) return;
-        
-
     }
 
     public void ProjectileSkill()
     {
         if (CheckSKillUseable() == false) return;
-        GameObjectManager.Inst.RequestSpawnSkillObject(0, _lookRight, transform.position, _playerdamage);
+        GameObjectManager.Inst.RequestSpawnSkillObject(0, _lookRight, transform.position, _playerBaseAtk);
     }
 
     IEnumerator CostartNoramalAttack()
@@ -167,4 +170,21 @@ public class PlayerMove_2D : MonoBehaviour
         Collider_PlayerNormalAttack.gameObject.SetActive(false);
         _isSkillUsing = false;
     }
+
+    // 상호 작용 부분
+    public void TakeDamage(int damage)
+    {
+        _playerHp -= damage;
+
+        if (_playerHp - damage < 0)
+        {
+            PlayerDie();
+        }
+    }
+
+    public void PlayerDie()
+    {
+
+    }
+
 }

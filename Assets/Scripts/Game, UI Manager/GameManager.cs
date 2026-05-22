@@ -5,13 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Inst { get; set; }
 
-    public PlayerMove_2D LocalPlayer;
-    [SerializeField] private Vector3 _respawnPosition;
-
     // 플레이 중에 저장되어야 하는 정보들이 있는 위치
     private DaniTechPlayerModel _playerModel = new DaniTechPlayerModel();
 
     private int _CoinScore;
+
+    [SerializeField] private Vector3 _respawnPosition;
 
     private void Awake()
     {
@@ -21,11 +20,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadSaveData();
-
-        if (LocalPlayer != null)
-        {
-            _respawnPosition = LocalPlayer.transform.position;
-        }
+        RespawnSpot();
     }
 
     public void SaveData()
@@ -50,6 +45,7 @@ public class GameManager : MonoBehaviour
         _playerModel.PlayerTotalExp += exp;
     }
 
+    // 스코어 UI 부분
     public void IncreaseCoinScore()
     {
         _CoinScore++;
@@ -70,25 +66,6 @@ public class GameManager : MonoBehaviour
         obj.CurrentCoinScore(_CoinScore);
     }
 
-    public void RespawnPlayer()
-    {
-        if (LocalPlayer == null) return;
-
-        if (LocalPlayer.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
-        {
-            rigidbody2D.linearVelocity = Vector2.zero;
-            rigidbody2D.angularVelocity = 0.0f;
-        }
-
-        LocalPlayer.transform.position = _respawnPosition;
-    }
-
-    public void SetRespawnPosition(Vector3 newPosition)
-    {
-        _respawnPosition = newPosition;
-    }
-
-
     public void EndGameCondition()
     {
         bool isCoinScoreEnough = (_CoinScore == 5);
@@ -98,6 +75,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 플레이어 리스폰 부분
+    public void RespawnSpot()
+    {
+        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        if (localPlayer != null)
+        {
+            _respawnPosition = localPlayer.transform.position;
+        }
+    }
+
+    public void RespawnPlayer()
+    {
+        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        if (localPlayer == null) return;
+
+        if (localPlayer.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
+        {
+            rigidbody2D.linearVelocity = Vector2.zero;
+            rigidbody2D.angularVelocity = 0.0f;
+        }
+
+        localPlayer.transform.position = _respawnPosition;
+    }
+
+    public void SetRespawnPosition(Vector3 newPosition)
+    {
+        _respawnPosition = newPosition;
+    }
+
+    // 아이템 추가
     public void AddItem(string itemDataId, int addItemCount)
     {
         // 저장할때 고유값 ID를 부여하기 위해 사용

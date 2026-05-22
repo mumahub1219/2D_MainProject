@@ -21,7 +21,7 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        SetTarget(GameManager.Inst.LocalPlayer.transform);
+        GetLocalPlayerPosition();
     }
 
     private void LateUpdate()
@@ -35,6 +35,12 @@ public class CameraManager : MonoBehaviour
         {
             MainCamera = Camera.main;
         }
+    }
+
+    public void GetLocalPlayerPosition()
+    {
+        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        SetTarget(localPlayer.transform);
     }
 
     public void SetTarget(Transform newTarget)

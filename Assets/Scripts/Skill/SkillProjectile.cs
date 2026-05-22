@@ -9,7 +9,7 @@ public class SkillProjectile : SkillBase
 
     private Vector3 _moveDirection = new Vector3(1, 0 , 0);
 
-    private int _damage;
+    private int _damage = 1;
     private int _ownerInstanceId;
 
     public int SkillObjectInstancId { get; private set; }
@@ -36,5 +36,23 @@ public class SkillProjectile : SkillBase
         transform.position += _moveDirection * ProjectileSpeed * Time.deltaTime;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        CheckCollision(collision);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        CheckCollision(collision.collider);
+    }
+
+    private void CheckCollision(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            var player = GameObjectManager.Inst.GetLocalPlayer();
+            player.TakeDamage(_damage);
+        }
     
+    }
 }
