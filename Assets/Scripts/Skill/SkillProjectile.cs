@@ -12,9 +12,14 @@ public class SkillProjectile : SkillBase
     private Vector3 _moveDirection = new Vector3(1, 0 , 0);
 
     private int _damage = 1;
-    private int _ownerInstanceId;
+    public int _ownerInstanceId;
 
     private event Action<int, int> _onSkillCollision;
+
+    private void Update()
+    {
+        transform.position += _moveDirection * ProjectileSpeed * Time.deltaTime;
+    }
 
     private void OnDisable()
     {
@@ -31,7 +36,6 @@ public class SkillProjectile : SkillBase
 
         _damage = damage;
         _ownerInstanceId = ownerInstanceId;
-
         _onSkillCollision = onSkillCollision;
 
         this.gameObject.tag = parentTag;
@@ -40,11 +44,6 @@ public class SkillProjectile : SkillBase
     public void InitSkillObjectInfo(int instanceId)
     {
         SkillObjectInstancId = instanceId;
-    }
-
-    private void Update()
-    {
-        transform.position += _moveDirection * ProjectileSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -926,11 +926,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: a9a7ce82-4060-4016-9bec-c3449650808d
+  cloudProjectId: 070941f8-ae8e-4361-aec8-03f66cd33f85
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: UnityBasic_DaniTech
-  organizationId: hellena1717
+  projectName: 2D_MainProject
+  organizationId: mumahub1219
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

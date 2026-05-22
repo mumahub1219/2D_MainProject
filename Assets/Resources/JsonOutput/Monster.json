@@ -34,12 +34,14 @@
   },
   {
     "Id": "mob_stand_1",
-    "Name": "곰곰이",
+    "Name": "고정 몬스터",
     "Description": "생각을 많이하는 곰이다.",
     "BaseHp": 500,
     "BaseAtk": 20,
     "NormalAtkMultiple": 1,
-    "SkillAtkMultipleList": "2",
+    "SkillAtkMultipleList": [
+      2
+    ],
     "IconPath": "Icon/Icon_Monster_Stand",
     "PrefabPath": "2DObject/Monster_Stand"
   },
@@ -50,7 +52,10 @@
     "BaseHp": 1000,
     "BaseAtk": 100,
     "NormalAtkMultiple": 0.5,
-    "SkillAtkMultipleList": "1.5, 5",
+    "SkillAtkMultipleList": [
+      1.5,
+      5
+    ],
     "IconPath": "Icon/Icon_Bear",
     "PrefabPath": "2DObject/Monster_Move"
   }
