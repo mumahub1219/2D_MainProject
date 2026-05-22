@@ -81,6 +81,18 @@ public class MonsterBasic : MonsterBase
     {
         float skillMultiple = _monsterData.SkillAtkMultipleList.Count > 0 ? _monsterData.SkillAtkMultipleList[0] : 0;
         int finalSkillDamage = GetFinalSkillDamage(_baseAtk, skillMultiple);
-        GameObjectManager.Inst.RequestSpawnSkillObject(_instanceId, _lookRight, this.transform.position, finalSkillDamage);
+        GameObjectManager.Inst.RequestSpawnSkillObject(_instanceId, _lookRight, this.transform.position, finalSkillDamage, this.gameObject.tag, OnSkillCollision);
+    }
+
+    private void OnSkillCollision(int colliedObjectInstanceId, int damage)
+    {
+        if (colliedObjectInstanceId == 0)
+        {
+            var player = GameObjectManager.Inst.GetLocalPlayer();
+
+
+
+            player.TakeDamage(damage);
+        }
     }
 }

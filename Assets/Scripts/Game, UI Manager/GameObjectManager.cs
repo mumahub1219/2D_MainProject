@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -125,7 +126,7 @@ public class GameObjectManager : MonoBehaviour
 
     // [스킬 오브젝트] ===================================================================================================
 
-    public void RequestSpawnSkillObject(int ownerInstanceId, bool isRight, Vector3 startSkillPosition, int damage)
+    public void RequestSpawnSkillObject(int ownerInstanceId, bool isRight, Vector3 startSkillPosition, int damage, string parentTag, Action<int, int> onSkillCollision = null)
     {
         if (Prefab_SkillProjectile == null) return;
 
@@ -136,7 +137,7 @@ public class GameObjectManager : MonoBehaviour
 
         var skillObj = gObj.GetComponent<SkillProjectile>(); // todo : 나중에 스킬 베이즈로 공용화 필요
         if (skillObj == null) return;
-        skillObj.InitSkillObject(ownerInstanceId, isRight, startSkillPosition, damage);
+        skillObj.InitSkillObject(ownerInstanceId, isRight, startSkillPosition, damage, parentTag, onSkillCollision);
 
 
         if (_createdSkillObjectContainer.ContainsKey(_objectInstanceKeyGenerator) == true) return;

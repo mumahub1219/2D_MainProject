@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class SkillProjectile : SkillBase
 {
+    public int SkillObjectInstancId { get; private set; }
 
     [SerializeField] private SpriteRenderer SpriteRenderer_Effect;
     [SerializeField] private float ProjectileSpeed = 5.0f;
@@ -12,9 +14,14 @@ public class SkillProjectile : SkillBase
     private int _damage = 1;
     private int _ownerInstanceId;
 
-    public int SkillObjectInstancId { get; private set; }
+    private event Action<int, int> _onSkillCollision;
 
-    public void InitSkillObject(int ownerInstanceId, bool isDirectionRight, Vector3 playerPos, int damage)
+    private void OnDisable()
+    {
+        _onSkillCollision = null;
+    }
+
+    public void InitSkillObject(int ownerInstanceId, bool isDirectionRight, Vector3 playerPos, int damage, string parentTag, Action<int, int> onSkillCollision)
     {
         this.transform.position = playerPos;
 
@@ -24,6 +31,10 @@ public class SkillProjectile : SkillBase
 
         _damage = damage;
         _ownerInstanceId = ownerInstanceId;
+
+        _onSkillCollision = onSkillCollision;
+
+        this.gameObject.tag = parentTag;
     }
 
     public void InitSkillObjectInfo(int instanceId)
@@ -48,11 +59,16 @@ public class SkillProjectile : SkillBase
 
     private void CheckCollision(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        bool isOwnerPlayer = (_ownerInstanceId == 0);
+
+        if (collision.CompareTag("Player") == (isOwnerPlayer == false))
         {
-            var player = GameObjectManager.Inst.GetLocalPlayer();
-            player.TakeDamage(_damage);
+            //var player = GameObjectManager.Inst.GetLocalPlayer();
+            //player.TakeDamage(_damage);
+
+            _onSkillCollision?.Invoke(0, _damage);
+
+            GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
         }
-    
     }
 }
