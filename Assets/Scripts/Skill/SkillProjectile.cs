@@ -80,7 +80,7 @@ public class SkillProjectile : SkillBase
 
             GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
         }
-        else if (collision.CompareTag("Map"))
+        else if (collision.CompareTag("Map") || collision.CompareTag("Spike"))
         {
             GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
         }
