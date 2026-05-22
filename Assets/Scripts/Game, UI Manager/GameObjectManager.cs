@@ -10,7 +10,8 @@ public class GameObjectManager : MonoBehaviour
     [SerializeField] private GameObject Prefab_Enemy;
     [SerializeField] private Transform Root_Enemy;
 
-    [SerializeField] private GameObject Prefab_SkillProjectile;
+    [SerializeField] private GameObject Prefab_SkillProjectile_First;
+    [SerializeField] private GameObject Prefab_SkillProjectile_Second;
     [SerializeField] private Transform Root_SkillObject;
 
     [SerializeField] private Transform Root_Monster;
@@ -126,11 +127,11 @@ public class GameObjectManager : MonoBehaviour
 
     // [스킬 오브젝트] ===================================================================================================
 
-    public void RequestSpawnSkillObject(int ownerInstanceId, bool isRight, Vector3 startSkillPosition, int damage, string parentTag, Action<int, int> onSkillCollision = null)
+    public void RequestSpawnSkillObjectFirst(int ownerInstanceId, bool isRight, Vector3 startSkillPosition, int damage, string parentTag, Action<int, int> onSkillCollision = null)
     {
-        if (Prefab_SkillProjectile == null) return;
+        if (Prefab_SkillProjectile_First == null) return;
 
-        var gObj = Instantiate(Prefab_SkillProjectile, Root_SkillObject);
+        var gObj = Instantiate(Prefab_SkillProjectile_First, Root_SkillObject);
         if (gObj == null) return;
 
         _objectInstanceKeyGenerator++;
@@ -139,6 +140,25 @@ public class GameObjectManager : MonoBehaviour
         if (skillObj == null) return;
         skillObj.InitSkillObject(ownerInstanceId, isRight, startSkillPosition, damage, parentTag, onSkillCollision);
 
+        if (_createdSkillObjectContainer.ContainsKey(_objectInstanceKeyGenerator) == true) return;
+
+        _createdSkillObjectContainer.Add(_objectInstanceKeyGenerator, gObj);
+        InitGeneratedSkillObject(_objectInstanceKeyGenerator, gObj);
+
+        StartCoroutine(DestroySkillObject(skillObj.SkillObjectInstancId));
+    }
+    public void RequestSpawnSkillObjectSecond(int ownerInstanceId, bool isRight, Vector3 startSkillPosition, int damage, string parentTag, Action<int, int> onSkillCollision = null)
+    {
+        if (Prefab_SkillProjectile_Second == null) return;
+
+        var gObj = Instantiate(Prefab_SkillProjectile_Second, Root_SkillObject);
+        if (gObj == null) return;
+
+        _objectInstanceKeyGenerator++;
+
+        var skillObj = gObj.GetComponent<SkillProjectile>(); // todo : 나중에 스킬 베이즈로 공용화 필요
+        if (skillObj == null) return;
+        skillObj.InitSkillObject(ownerInstanceId, isRight, startSkillPosition, damage, parentTag, onSkillCollision);
 
         if (_createdSkillObjectContainer.ContainsKey(_objectInstanceKeyGenerator) == true) return;
 

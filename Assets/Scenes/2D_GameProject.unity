@@ -3279,6 +3279,14 @@ PrefabInstance:
       propertyPath: Prefab_SkillProjectile
       value: 
       objectReference: {fileID: 4894794474862553827, guid: 3a96c0b8b80fd0040a8189746437e9a9, type: 3}
+    - target: {fileID: 8505567666318350724, guid: d9614b341da396f43a8b38d13a069d93, type: 3}
+      propertyPath: Prefab_SkillProjectile_First
+      value: 
+      objectReference: {fileID: 4894794474862553827, guid: 3a96c0b8b80fd0040a8189746437e9a9, type: 3}
+    - target: {fileID: 8505567666318350724, guid: d9614b341da396f43a8b38d13a069d93, type: 3}
+      propertyPath: Prefab_SkillProjectile_Second
+      value: 
+      objectReference: {fileID: 4894794474862553827, guid: 3b67b25da518d9b459fd34e7857340b8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

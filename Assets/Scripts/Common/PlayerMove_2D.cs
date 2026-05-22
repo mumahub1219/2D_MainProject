@@ -160,7 +160,7 @@ public class PlayerMove_2D : MonoBehaviour
     public void ProjectileSkill()
     {
         if (CheckSKillUseable() == false) return;
-        GameObjectManager.Inst.RequestSpawnSkillObject(0, _lookRight, transform.position, _playerBaseAtk, this.gameObject.tag);
+        GameObjectManager.Inst.RequestSpawnSkillObjectFirst(0, _lookRight, transform.position, _playerBaseAtk, this.gameObject.tag);
     }
 
     IEnumerator CostartNoramalAttack()
