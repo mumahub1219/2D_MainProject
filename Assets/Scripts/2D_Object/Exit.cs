@@ -7,7 +7,7 @@ public class Exit : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            UIManager.Instance.OpenContentUI(UIType.QuitUI);
+            UIManager.Instance.OpenPopupUI(UIType.QuitUI);
         }
     }
 }
