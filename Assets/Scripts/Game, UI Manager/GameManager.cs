@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private int _CoinScore;
 
     [SerializeField] private Vector3 _respawnPosition;
+    [SerializeField] private Vector3 _startRespawnPosition;
 
     private void Awake()
     {
@@ -37,6 +38,12 @@ public class GameManager : MonoBehaviour
     private void LoadSaveData()
     {
         _playerModel = NetworkManager.Inst.RequstLoadSaveData();
+    }
+
+    // 플레이어 정보 받기
+    private PlayerMove_2D GetPlayerInfo()
+    {
+        return GameObjectManager.Inst.GetLocalPlayer();
     }
 
     public void IncreasePlayerExp(int exp)
@@ -78,11 +85,13 @@ public class GameManager : MonoBehaviour
     // 플레이어 리스폰 부분
     public void RespawnSpot()
     {
-        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        var localPlayer = GetPlayerInfo();
 
         if (localPlayer != null)
         {
-            _respawnPosition = localPlayer.transform.position;
+            var currentPosition = localPlayer.transform.position;
+            _respawnPosition = currentPosition;
+            _startRespawnPosition = currentPosition;
         }
     }
 
@@ -90,7 +99,9 @@ public class GameManager : MonoBehaviour
     {
         LoadSaveData();
 
-        while (GameObjectManager.Inst.GetLocalPlayer() == null)
+        var localPlayer = GetPlayerInfo();
+
+        while (localPlayer == null)
         {
             yield return null;
         }
@@ -100,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
+        var localPlayer = GetPlayerInfo();
         if (localPlayer == null) return;
 
         if (localPlayer.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
@@ -116,6 +127,15 @@ public class GameManager : MonoBehaviour
     public void SetRespawnPosition(Vector3 newPosition)
     {
         _respawnPosition = newPosition;
+    }
+
+    public void InitializaionRespawnSpot()
+    {
+        var localPlayer = GetPlayerInfo();
+        if (localPlayer == null) return;
+
+        localPlayer.transform.position = _startRespawnPosition;
+        _respawnPosition = _startRespawnPosition;
     }
 
     // 아이템 추가
