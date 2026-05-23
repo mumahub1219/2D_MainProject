@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class GameObjectManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameObjectManager : MonoBehaviour
     [SerializeField] private Transform Root_SkillObject;
 
     [SerializeField] private Transform Root_Monster;
+    [SerializeField] private Transform Root_Item;
 
     public static GameObjectManager Inst { get; set; }
 
@@ -24,7 +26,8 @@ public class GameObjectManager : MonoBehaviour
     // 생성된 오브젝트의 생명을 보관
     private Dictionary<int, GameObject> _createdGameObjectContainer = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> _createdSkillObjectContainer = new Dictionary<int, GameObject>();
-    private Dictionary<int, MonsterBasic> _MonsterObjectContainer = new Dictionary<int, MonsterBasic>();
+    private Dictionary<int, MonsterBasic> _monsterObjectContainer = new Dictionary<int, MonsterBasic>();
+    private Dictionary<int, ItemObject> _itemObjectContainer = new Dictionary<int, ItemObject>();
     private Dictionary<int, DaniTech_2DFieldObject> _fieldObjectContainer = new Dictionary<int, DaniTech_2DFieldObject>();
 
     private PlayerMove_2D _localPlayer;
@@ -219,7 +222,7 @@ public class GameObjectManager : MonoBehaviour
         var monsterComponent = createcObject.GetComponent<MonsterBasic>();
         if (monsterComponent == null) return;
 
-        _MonsterObjectContainer.Add(generatedInstanceId, monsterComponent);
+        _monsterObjectContainer.Add(generatedInstanceId, monsterComponent);
         monsterComponent.InitMonster(generatedInstanceId, monsterDataId);
     }
 
@@ -228,20 +231,69 @@ public class GameObjectManager : MonoBehaviour
         var monsterComponent = GetMonsterObjectInstanceId(instatanceId);
         if (monsterComponent == null) return;
 
-        _MonsterObjectContainer.Remove(instatanceId);
+        _monsterObjectContainer.Remove(instatanceId);
         Destroy(monsterComponent.gameObject);
     }
 
     public MonsterBasic GetMonsterObjectInstanceId(int monsterInstanceId)
     {
-        if(_MonsterObjectContainer.ContainsKey(monsterInstanceId) == false)
+        if(_monsterObjectContainer.ContainsKey(monsterInstanceId) == false)
         {
             Debug.LogError($"{monsterInstanceId} 찾으려는 몬스터 오브젝트가 유효하지 않습니다");
             return null;
         }
 
-        return _MonsterObjectContainer[monsterInstanceId];
+        return _monsterObjectContainer[monsterInstanceId];
     }
+
+    //[아이템 오브젝트] ====================================================================================================
+    public async UniTaskVoid CreateItemObject(string itemObjectDataId, Transform spawnSpot)
+    {
+        var itemObject = GameDataManager.Instance.GetItemData(itemObjectDataId);
+        if (itemObject != null)
+        {
+            var createdObj = await ResourceManager.Inst.InstantiateAsync(itemObject.PrefabPath, Root_Item, true);
+            createdObj.transform.position = spawnSpot.position;
+            AddItemObjectOnCreate(createdObj, itemObjectDataId);
+        }
+    }
+
+    private void AddItemObjectOnCreate(GameObject createdObject, string itemObjectDataId)
+    {
+        _objectInstanceKeyGenerator++;
+        var generatedInstanceId = _objectInstanceKeyGenerator;
+        var itemObject = createdObject.GetComponent<ItemObject>();
+
+        if (itemObject != null)
+        {
+            _itemObjectContainer.Add(generatedInstanceId, itemObject);
+            itemObject.InitItemObjectInfoOncreated(generatedInstanceId, itemObjectDataId);
+        }
+    }
+
+    public void RequestDestroyItemObject(int instanceId)
+    {
+        var itemObjectComponet = GetItemObjectByInstanceId(instanceId);
+        if (itemObjectComponet == null) 
+        {
+            return;
+        }
+
+        _itemObjectContainer.Remove(instanceId);
+        Destroy(itemObjectComponet.gameObject);
+    }
+
+    public ItemObject GetItemObjectByInstanceId(int itemObjectInstanceId)
+    {
+        if (_itemObjectContainer.ContainsKey(itemObjectInstanceId) == false)
+        {
+            Debug.LogError($"{itemObjectInstanceId} 찾으려는 필드 오브젝트가 유효하지 않습니다");
+            return null;
+        }
+
+        return _itemObjectContainer[itemObjectInstanceId];
+    }
+
 
     //[필드 오브젝트] ====================================================================================================
 

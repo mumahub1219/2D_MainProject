@@ -899,6 +899,10 @@ PrefabInstance:
       propertyPath: _playerHp
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 3600981735824604479, guid: 110411934e80aa14c872abe3b84172d8, type: 3}
+      propertyPath: _playerBaseAtk
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6262889456136478467, guid: 110411934e80aa14c872abe3b84172d8, type: 3}
       propertyPath: m_Name
       value: Player_PinkMan
