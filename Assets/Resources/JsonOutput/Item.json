@@ -7,7 +7,8 @@
     "Grade": "Normal",
     "MaxStackCount": 100,
     "SellingPrice": 100,
-    "IconPath": "Icon/Icon_Item_Kiwi_1"
+    "IconPath": "Icon/Icon_Item_Kiwi_1",
+    "PrefabPath": null
   },
   {
     "Id": "Item_Melon_1",
@@ -17,7 +18,8 @@
     "Grade": "Legend",
     "MaxStackCount": 50,
     "SellingPrice": 200,
-    "IconPath": "Icon/Icon_Item_Melon_1"
+    "IconPath": "Icon/Icon_Item_Melon_1",
+    "PrefabPath": null
   },
   {
     "Id": "Item_Orange_1",
@@ -27,7 +29,8 @@
     "Grade": "Epic",
     "MaxStackCount": 100,
     "SellingPrice": 150,
-    "IconPath": "Icon/Icon_Item_Orange_1"
+    "IconPath": "Icon/Icon_Item_Orange_1",
+    "PrefabPath": null
   },
   {
     "Id": "Item_Cherry_1",
@@ -37,7 +40,8 @@
     "Grade": "Normal",
     "MaxStackCount": 200,
     "SellingPrice": 20,
-    "IconPath": "Icon/Icon_Item_Cherry_1"
+    "IconPath": "Icon/Icon_Item_Cherry_1",
+    "PrefabPath": null
   },
   {
     "Id": "Item_Pineapple_1",
@@ -47,7 +51,8 @@
     "Grade": "Normal",
     "MaxStackCount": 50,
     "SellingPrice": 150,
-    "IconPath": "Icon/Icon_Item_Pineapple_1"
+    "IconPath": "Icon/Icon_Item_Pineapple_1",
+    "PrefabPath": null
   },
   {
     "Id": "Item_Strawberry_1",
@@ -57,6 +62,7 @@
     "Grade": "Normal",
     "MaxStackCount": 200,
     "SellingPrice": 50,
-    "IconPath": "Icon/Icon_Item_Strawberry_1"
+    "IconPath": "Icon/Icon_Item_Strawberry_1",
+    "PrefabPath": "2DPrefab/FieldItem_Strawberry"
   }
 ]

@@ -2,14 +2,26 @@
 
 public class ItemObject : ItemBase
 {
-    [SerializeField] private int _itemObjectInstanceId;
-    [SerializeField] private string _itemObjectDataId;
-    [SerializeField] private string _itemObjectName;
-
+    private int _itemObjectInstanceId;
+    private string _itemObjectDataId;
+    private string _itemObjectName;
 
     public void InitItemObjectInfoOncreated(int instanceId, string itemObjectDataId)
     {
+        _itemObjectInstanceId = instanceId;
+        _itemObjectDataId  = itemObjectDataId;
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SkillObject"))
+        {
+            return;
+        }
+        else if (collision.CompareTag("Player"))
+        {
+            GameObjectManager.Inst.RequestDestroyItemObject(this._itemObjectInstanceId);
+        }
     }
 
 }

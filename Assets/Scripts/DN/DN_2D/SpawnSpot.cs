@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 
-public enum DNSpawnSpotType
+public enum SpawnSpotType
 {
     None = 0,
     Harvest,
     DropItem,
     Dialogue,
-    Monster
+    Monster,
+    fieldItem
 }
 
-public enum DNStartSpawnType
+public enum StartSpawnType
 {
     None = 0,
     OnAwake,
@@ -18,17 +19,17 @@ public enum DNStartSpawnType
     // UniTask나 코루틴으로 일정 시간마다 랜덤 생성도 구현해보자
 }
 
-public class DaniTech_SpawnSpot : MonoBehaviour
+public class SpawnSpot : MonoBehaviour
 {
-    [SerializeField] private DNSpawnSpotType _spawnSpotType;
-    [SerializeField] private DNStartSpawnType _startSpawnType;
+    [SerializeField] private SpawnSpotType _spawnSpotType;
+    [SerializeField] private StartSpawnType _startSpawnType;
 
     [SerializeField] private string _spawnObjectDataId;
     [SerializeField] private Collider2D Collider_OnSpawnStart;
 
     private void Awake()
     {
-        if(_startSpawnType == DNStartSpawnType.OnAwake)
+        if(_startSpawnType == StartSpawnType.OnAwake)
         {
             StartSpawn();
         }
@@ -36,7 +37,7 @@ public class DaniTech_SpawnSpot : MonoBehaviour
 
     private void Start()
     {
-        if (_startSpawnType == DNStartSpawnType.OnEnable)
+        if (_startSpawnType == StartSpawnType.OnEnable)
         {
             StartSpawn();
         }
@@ -44,7 +45,7 @@ public class DaniTech_SpawnSpot : MonoBehaviour
 
         if (Collider_OnSpawnStart != null)
         {
-            Collider_OnSpawnStart.enabled = (_startSpawnType == DNStartSpawnType.OnRange);
+            Collider_OnSpawnStart.enabled = (_startSpawnType == StartSpawnType.OnRange);
         }
     }
 
@@ -63,16 +64,21 @@ public class DaniTech_SpawnSpot : MonoBehaviour
 
         switch (_spawnSpotType)
         {
-            case DNSpawnSpotType.Harvest:
-            case DNSpawnSpotType.DropItem:
+            case SpawnSpotType.Harvest:
+                break;
+            case SpawnSpotType.fieldItem:
+                GameObjectManager.Inst.CreateItemObject(_spawnObjectDataId, this.transform).Forget();
+                this.gameObject.SetActive(false);
+                break;
+            case SpawnSpotType.DropItem:
                 GameObjectManager.Inst.CreateFieldObject(_spawnObjectDataId, this.transform).Forget();
                 // 추가처리가 들어가기 까지는 해당 스폰스팟이 더이상 동작하지 않게 비활성화 한다
                 this.gameObject.SetActive(false);
                 break;
-            case DNSpawnSpotType.Monster:
+            case SpawnSpotType.Monster:
                 GameObjectManager.Inst.CreateMonsterObject(_spawnObjectDataId, this.transform).Forget();
                 break;
-            case DNSpawnSpotType.Dialogue:
+            case SpawnSpotType.Dialogue:
                 // 다이얼로그 발생 유형은 시작 시 이 스폰스팟을 더이상 사용하지 않게 비활성화 한다 (제거도 무관)
                 UIManager.Instance.OpenDialogueUI(_spawnObjectDataId);
                 this.gameObject.SetActive(false);

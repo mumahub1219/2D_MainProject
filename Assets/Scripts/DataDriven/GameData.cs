@@ -52,6 +52,7 @@ public class ItemData : GameDataBase
     public string MaxStackCount;
     public string SellingPrice;
     public string IconPath;
+    public string PrefabPath;
 }
 
 [System.Serializable]

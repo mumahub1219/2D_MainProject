@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5936162343003005978}
   m_Layer: 0
   m_Name: SkillObject_Projectile_First
-  m_TagString: Untagged
+  m_TagString: SkillObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillProjectile
   SpriteRenderer_Effect: {fileID: 8199015240256710732}
   ProjectileSpeed: 5
-  _ownerInstanceId: 0
 --- !u!50 &5936162343003005978
 Rigidbody2D:
   serializedVersion: 5
