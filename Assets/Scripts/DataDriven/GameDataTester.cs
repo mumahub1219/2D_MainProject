@@ -47,7 +47,7 @@ public static class GameDataTester
             string[] skillNameList = myHero.SkillList.Split(',');
             foreach (string skillName in skillNameList)
             {
-                var skillData = GameDataManager.Instance.GetSkill(skillName);
+                var skillData = GameDataManager.Instance.GetSkillData(skillName);
                 if (skillData != null)
                 {
                     Debug.Log($"로드된 캐릭터: {myHero.Name}는 {skillData.Name}을 갖고 있다!");

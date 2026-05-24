@@ -123,7 +123,7 @@ public class GameDataManager : MonoBehaviour
         return CharacterDataList.TryGetValue(id, out var item) ? item : null;
     }
 
-    public SkillData GetSkill(string id)
+    public SkillData GetSkillData(string id)
     {
         if (SkillDataList == null || string.IsNullOrEmpty(id)) return null;
 

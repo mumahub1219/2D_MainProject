@@ -41,7 +41,7 @@ public class DaniTech_MyProfilePopup : UIBase
             string[] skillNameList = myHero.SkillList.Split(',');
             foreach (string skillName in skillNameList)
             {
-                var skillData = GameDataManager.Instance.GetSkill(skillName);
+                var skillData = GameDataManager.Instance.GetSkillData(skillName);
                 if (skillData != null)
                 {
                     dummyDescription += $"로드된 캐릭터: {myHero.Name}는 {skillData.Name}을 갖고 있다!";

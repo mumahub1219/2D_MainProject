@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,8 +14,8 @@ public class GameObjectManager : MonoBehaviour
 
     [SerializeField] private GameObject Prefab_SkillProjectile_First;
     [SerializeField] private GameObject Prefab_SkillProjectile_Second;
-    [SerializeField] private Transform Root_SkillObject;
 
+    [SerializeField] private Transform Root_SkillObject;
     [SerializeField] private Transform Root_Monster;
     [SerializeField] private Transform Root_Item;
 
@@ -26,6 +27,8 @@ public class GameObjectManager : MonoBehaviour
     // 생성된 오브젝트의 생명을 보관
     private Dictionary<int, GameObject> _createdGameObjectContainer = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> _createdSkillObjectContainer = new Dictionary<int, GameObject>();
+
+    private Dictionary<int, SkillProjectile> _createdSkillProjectileContainer = new Dictionary<int, SkillProjectile>();
     private Dictionary<int, MonsterBasic> _monsterObjectContainer = new Dictionary<int, MonsterBasic>();
     private Dictionary<int, ItemObject> _itemObjectContainer = new Dictionary<int, ItemObject>();
     private Dictionary<int, DaniTech_2DFieldObject> _fieldObjectContainer = new Dictionary<int, DaniTech_2DFieldObject>();
@@ -129,7 +132,6 @@ public class GameObjectManager : MonoBehaviour
     }
 
     // [스킬 오브젝트] ===================================================================================================
-
     public void RequestSpawnSkillObjectFirst(int ownerInstanceId, bool isRight, Vector3 startSkillPosition, int damage, string parentTag, Action<int, int> onSkillCollision = null)
     {
         if (Prefab_SkillProjectile_First == null) return;
@@ -186,7 +188,7 @@ public class GameObjectManager : MonoBehaviour
         return _createdSkillObjectContainer[instanceId];
     }
 
-    public void RequestDestroySkillObject(int instanceId)
+    public void RequestDestroySkillObjectFirstAndSecond(int instanceId)
     {
         var gObj = GetSkillObjectCanBeNull(instanceId);
         if (gObj == null) return;
@@ -201,8 +203,52 @@ public class GameObjectManager : MonoBehaviour
         RequestDestroySkillObject(instanceId);
     }
 
-    //[몬스터 오브젝트] ====================================================================================================
+    // [스킬 오브젝트] ===================================================================================================
+    public async UniTaskVoid CreatedSkillObject(string skillDataId, Transform spawnSpot)
+    {
+        var skillData = GameDataManager.Instance.GetSkillData(skillDataId);
+        if (skillData == null) return;
 
+        var createdObj = await ResourceManager.Inst.InstantiateAsync(skillDataId.PrefabPath, Root_SkillObject, true);
+        createdObj.transform.position = spawnSpot.position;
+
+        AddSkillObjectOncreate(createdObj, skillDataId);
+    }
+
+    private void AddSkillObjectOncreate(GameObject createdObject, string skillDataId)
+    {
+        _objectInstanceKeyGenerator++;
+        var generatedInstanceId = _objectInstanceKeyGenerator;
+
+        var skillComponent = createdObject.GetComponent<SkillProjectile>();
+        if (skillComponent == null) return;
+
+        _createdSkillProjectileContainer.Add(generatedInstanceId, skillComponent);
+        skillComponent.InitSkillObjectInfo(generatedInstanceId);
+    }
+
+    private void RequestDestroySkillObject(int instanceId)
+    {
+        var skillComponent = GetSkillObjectInstanceId(instanceId);
+        if (skillComponent == null) return;
+
+        _createdSkillProjectileContainer.Remove(instanceId);
+        Destroy(skillComponent.gameObject);
+    }
+
+    public SkillProjectile GetSkillObjectInstanceId(int skillInstanceId)
+    {
+        if (_createdSkillProjectileContainer.ContainsKey(skillInstanceId) == false)
+        {
+            Debug.LogError($"{skillInstanceId} 찾으려는 스킬 오브젝트가 유효하지 않습니다");
+
+            return null;
+        }
+
+        return _createdSkillProjectileContainer[skillInstanceId];
+    }
+
+    //[몬스터 오브젝트] ====================================================================================================
     public async UniTaskVoid CreateMonsterObject(string monsterDataId, Transform spawnSpot)
     {
         var monsterData = GameDataManager.Instance.GetMonsterData(monsterDataId);
@@ -214,12 +260,12 @@ public class GameObjectManager : MonoBehaviour
         AddMonsterObjectOncreate(createdObj, monsterDataId);
     }
 
-    private void AddMonsterObjectOncreate(GameObject createcObject, string monsterDataId)
+    private void AddMonsterObjectOncreate(GameObject createdObject, string monsterDataId)
     {
         _objectInstanceKeyGenerator++;
         var generatedInstanceId = _objectInstanceKeyGenerator;
 
-        var monsterComponent = createcObject.GetComponent<MonsterBasic>();
+        var monsterComponent = createdObject.GetComponent<MonsterBasic>();
         if (monsterComponent == null) return;
 
         _monsterObjectContainer.Add(generatedInstanceId, monsterComponent);

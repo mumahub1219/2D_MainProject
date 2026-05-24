@@ -64,7 +64,7 @@ public class SkillProjectile : SkillBase
         {
             _onSkillCollision?.Invoke(0, _damage);
 
-            GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
+            GameObjectManager.Inst.RequestDestroySkillObjectFirstAndSecond(this.SkillObjectInstancId);
         }
         else if (collision.CompareTag("Enemy") && (isOwnerPlayer == true))
         {
@@ -78,11 +78,11 @@ public class SkillProjectile : SkillBase
 
             _onSkillCollision?.Invoke(monsterInstanceId, _damage);
 
-            GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
+            GameObjectManager.Inst.RequestDestroySkillObjectFirstAndSecond(this.SkillObjectInstancId);
         }
         else if (collision.CompareTag("Map") || collision.CompareTag("Spike"))
         {
-            GameObjectManager.Inst.RequestDestroySkillObject(this.SkillObjectInstancId);
+            GameObjectManager.Inst.RequestDestroySkillObjectFirstAndSecond(this.SkillObjectInstancId);
         }
     }
 }
