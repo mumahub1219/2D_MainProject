@@ -44,6 +44,7 @@ public class PlayerMove_2D : MonoBehaviour
     private void Start()
     {
         GameObjectManager.Inst.RegisterLocalPlayer(this);
+        StartCoroutine(CoSetInitialRespawn());
     }
 
     void Update()
@@ -121,6 +122,14 @@ public class PlayerMove_2D : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(_groundCheck.position, _checkRadius);
         }
+    }
+
+    private IEnumerator CoSetInitialRespawn()
+    {
+        yield return null;
+
+        GameManager.Inst.SetRespawnPosition(this.transform.position);
+        GameManager.Inst.RespawnSpot();
     }
 
     // 스킬 부분

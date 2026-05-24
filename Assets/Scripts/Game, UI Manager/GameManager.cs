@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(InitGameLoop());
+        LoadSaveData();
     }
 
     public void SaveData()
@@ -93,20 +93,6 @@ public class GameManager : MonoBehaviour
             _respawnPosition = currentPosition;
             _startRespawnPosition = currentPosition;
         }
-    }
-
-    private IEnumerator InitGameLoop()
-    {
-        LoadSaveData();
-
-        var localPlayer = GetPlayerInfo();
-
-        while (localPlayer == null)
-        {
-            yield return null;
-        }
-
-        RespawnSpot();
     }
 
     public void RespawnPlayer()
