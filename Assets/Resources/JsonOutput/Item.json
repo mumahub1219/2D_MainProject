@@ -8,7 +8,7 @@
     "MaxStackCount": 100,
     "SellingPrice": 100,
     "IconPath": "Icon/Icon_Item_Kiwi_1",
-    "PrefabPath": null
+    "PrefabPath": "2DPrefab/FieldItem_Kiwi"
   },
   {
     "Id": "Item_Melon_1",
@@ -19,7 +19,7 @@
     "MaxStackCount": 50,
     "SellingPrice": 200,
     "IconPath": "Icon/Icon_Item_Melon_1",
-    "PrefabPath": null
+    "PrefabPath": "2DPrefab/FieldItem_Melon"
   },
   {
     "Id": "Item_Orange_1",
@@ -30,7 +30,7 @@
     "MaxStackCount": 100,
     "SellingPrice": 150,
     "IconPath": "Icon/Icon_Item_Orange_1",
-    "PrefabPath": null
+    "PrefabPath": "2DPrefab/FieldItem_Orange"
   },
   {
     "Id": "Item_Cherry_1",
@@ -41,7 +41,7 @@
     "MaxStackCount": 200,
     "SellingPrice": 20,
     "IconPath": "Icon/Icon_Item_Cherry_1",
-    "PrefabPath": null
+    "PrefabPath": "2DPrefab/FieldItem_Cherry"
   },
   {
     "Id": "Item_Pineapple_1",
@@ -52,7 +52,7 @@
     "MaxStackCount": 50,
     "SellingPrice": 150,
     "IconPath": "Icon/Icon_Item_Pineapple_1",
-    "PrefabPath": null
+    "PrefabPath": "2DPrefab/FieldItem_Pineapple"
   },
   {
     "Id": "Item_Strawberry_1",
