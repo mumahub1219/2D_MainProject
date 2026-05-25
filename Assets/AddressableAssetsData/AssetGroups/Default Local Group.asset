@@ -50,8 +50,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a96c0b8b80fd0040a8189746437e9a9
+    m_Address: 2DObject/SkillObject_Projectile_Apple
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3af1bdff029305e47a18d59f1b0acb23
     m_Address: 2DPrefab/FieldItem_Melon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b67b25da518d9b459fd34e7857340b8
+    m_Address: 2DObject/SkillObject_Projectile_Banana
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

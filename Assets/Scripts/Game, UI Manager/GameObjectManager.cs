@@ -152,6 +152,7 @@ public class GameObjectManager : MonoBehaviour
 
         StartCoroutine(DestroySkillObject(skillObj.SkillObjectInstancId));
     }
+
     public void RequestSpawnSkillObjectSecond(int ownerInstanceId, bool isRight, Vector3 startSkillPosition, int damage, string parentTag, Action<int, int> onSkillCollision = null)
     {
         if (Prefab_SkillProjectile_Second == null) return;
@@ -209,9 +210,10 @@ public class GameObjectManager : MonoBehaviour
         var skillData = GameDataManager.Instance.GetSkillData(skillDataId);
         if (skillData == null) return;
 
-        var createdObj = await ResourceManager.Inst.InstantiateAsync(skillDataId.PrefabPath, Root_SkillObject, true);
+        var createdObj = await ResourceManager.Inst.InstantiateAsync(skillData.PrefabPath, Root_SkillObject, true);
         createdObj.transform.position = spawnSpot.position;
 
+        
         AddSkillObjectOncreate(createdObj, skillDataId);
     }
 
