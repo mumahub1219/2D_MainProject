@@ -205,7 +205,7 @@ public class GameObjectManager : MonoBehaviour
     }
 
     // [스킬 오브젝트] ===================================================================================================
-    public async UniTaskVoid CreatedSkillObject(string skillDataId, Transform spawnSpot)
+    public async UniTaskVoid CreateSkillObject(string skillDataId, Transform spawnSpot)
     {
         var skillData = GameDataManager.Instance.GetSkillData(skillDataId);
         if (skillData == null) return;

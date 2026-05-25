@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LoadingUI_2DGameProject : UIBase
+public class InventoryUI_2DGameProject : UIBase
 {
     [SerializeField] private UIButton Button_Close;
 
@@ -13,4 +13,6 @@ public class LoadingUI_2DGameProject : UIBase
     {
         UIManager.Instance.CloseContentUI(UIType.InventoryUI);
     }
+
+    
 }
