@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class HudMainUI : UIBase
@@ -21,11 +22,19 @@ public class HudMainUI : UIBase
         var slotComponent = gObj.GetComponent<HudSlotUI>();
         if (slotComponent == null) return;
 
+        slotComponent.InitSlot(instanceId, targetTransform);
+
         _hudSlotList.Add(instanceId, slotComponent);
     }
 
-    public void RemoveHudSlot() 
+    public void RemoveHudSlot(int instanceId) 
     {
-        
+        if (_hudSlotList.ContainsKey(instanceId) == true)
+        {
+            var slot = _hudSlotList[instanceId];
+
+            Destroy(slot.gameObject);
+            _hudSlotList.Remove(instanceId);
+        }
     }
 }

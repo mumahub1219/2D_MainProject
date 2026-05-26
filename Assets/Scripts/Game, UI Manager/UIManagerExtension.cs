@@ -132,14 +132,14 @@ public static class UIManagerExtension
         }
     }
 
-    public static void RemoveHudSlot(this UIManager uIManager)
+    public static void RemoveHudSlot(this UIManager uIManager, int instanceId)
     {
         var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
         if (uiBase == null) return;
 
         if (uiBase is HudMainUI hudMainUI)
         {
-            hudMainUI.RemoveHudSlot();
+            hudMainUI.RemoveHudSlot(instanceId);
         }
     }
 

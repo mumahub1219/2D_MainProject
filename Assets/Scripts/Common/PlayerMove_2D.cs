@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -21,8 +22,13 @@ public class PlayerMove_2D : MonoBehaviour
     [SerializeField] private Collider2D Collider_PlayerNormalAttack;
 
     [Header("전투 관련 정보")]
-    [SerializeField] private int _playerHp;
-    [SerializeField] private int _playerBaseAtk;
+    [SerializeField] private int _playerMaxHp;
+    [SerializeField] private int _playerHp = 100;
+    [SerializeField] private int _playerBaseAtk = 100;
+
+    [SerializeField] private int _playerMp = 100;
+    [SerializeField] private int _playerMaxMp;
+
 
     private Rigidbody2D _rigidBody;
     private bool _isGrounded;
@@ -34,16 +40,24 @@ public class PlayerMove_2D : MonoBehaviour
     public enum ViewType { sideView, TopView, }
     private Vector2 _lookDirection;
 
+    private event Action<int, int> _hpChanged;
+    private event Action<int, int> _mpChanged;
+
+
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         Collider_PlayerNormalAttack.gameObject.SetActive(false);
+
+        _playerMaxHp = _playerHp;
+        _playerMaxMp = _playerMp;
     }
 
     private void Start()
     {
         GameObjectManager.Inst.RegisterLocalPlayer(this);
+        UIManager.Instance.AddHudSlot(0, this.gameObject.transform);
         StartCoroutine(CoSetInitialRespawn());
     }
 
@@ -186,10 +200,13 @@ public class PlayerMove_2D : MonoBehaviour
         _playerHp -= damage;
         Debug.Log(_playerHp);
 
+        InvokeStatChangedEvent();
+
         if (_playerHp - damage <= 0)
         {
             _playerHp = 0;
             Debug.Log(_playerHp);
+            UIManager.Instance.RemoveHudSlot(0);
             PlayerDie();
         }
     }
@@ -201,7 +218,7 @@ public class PlayerMove_2D : MonoBehaviour
 
     public void SetPlayerHp()
     {
-        _playerHp = 100;
+        _playerHp = _playerMaxHp;
     }
 
     private void OnMonsterCollied(int monsterInstanceId, int skillDamage)
@@ -210,5 +227,23 @@ public class PlayerMove_2D : MonoBehaviour
         if (monsterComponent == null) return;
 
         monsterComponent.TakeDamage(skillDamage);
+    }
+
+    public void BindeOnStatChangedEvent(Action<int, int> hpChangedCallBack, Action<int, int> mpChangedCallBack)
+    {
+        _hpChanged += hpChangedCallBack;
+        _mpChanged += mpChangedCallBack;
+    }
+
+    public void ResetStatChangedEvent()
+    {
+        _hpChanged = null;
+        _mpChanged = null;
+    }
+
+    private void InvokeStatChangedEvent()
+    {
+        _hpChanged?.Invoke(_playerHp, _playerMaxHp);
+        _mpChanged?.Invoke(_playerMp, _playerMaxMp);
     }
 }

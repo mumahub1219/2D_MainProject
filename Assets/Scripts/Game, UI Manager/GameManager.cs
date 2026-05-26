@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        UIManager.Instance.RemoveHudSlot(0);
+
         var localPlayer = GetPlayerInfo();
         if (localPlayer == null) return;
 
@@ -108,6 +110,7 @@ public class GameManager : MonoBehaviour
 
         localPlayer.transform.position = _respawnPosition;
         localPlayer.SetPlayerHp();
+        UIManager.Instance.AddHudSlot(0, this.gameObject.transform);
     }
 
     public void SetRespawnPosition(Vector3 newPosition)

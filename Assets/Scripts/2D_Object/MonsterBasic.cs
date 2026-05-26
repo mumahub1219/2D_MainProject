@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class MonsterBasic : MonsterBase
@@ -13,10 +14,16 @@ public class MonsterBasic : MonsterBase
 
     private MonsterData _monsterData;
     private int _baseHp;
+    private int _maxHp;
     private int _baseAtk;
+    private int _baseMp;
+    private int _maxMp;
     private bool _isAlive = true;
     private bool _lookRight = true;
     private Vector3 _moveDirection;
+
+    private event Action<int, int> _hpChanged;
+    private event Action<int, int> _mpChanged;
 
     private void OnDisable()
     {
@@ -33,9 +40,11 @@ public class MonsterBasic : MonsterBase
         {
             _monsterData = monsterData;
             _baseHp = _monsterData.BaseHp;
+            _maxHp = _baseHp;
             _baseAtk = _monsterData.BaseAtk;
         }
 
+        UIManager.Instance.AddHudSlot(instanceId, this.gameObject.transform);
         StartCoroutine(CheckAndUseSkill());
     }
 
@@ -107,10 +116,30 @@ public class MonsterBasic : MonsterBase
     public void TakeDamage(int damage)
     {
         _baseHp -= damage;
+        InvokeStatChangedEvent();
 
         if (_baseHp <= 0)
         {
             GameObjectManager.Inst.RequestDestroyMonsterObject(_instanceId);
+            UIManager.Instance.RemoveHudSlot(_instanceId);
         }
+    }
+
+    public void BindeOnStatChangedEvent(Action<int, int> hpChangedCallBack, Action<int, int> mpChangedCallBack)
+    {
+        _hpChanged += hpChangedCallBack;
+        _mpChanged += mpChangedCallBack;
+    }
+
+    public void ResetStatChangedEvent()
+    {
+        _hpChanged = null;
+        _mpChanged = null;
+    }
+
+    private void InvokeStatChangedEvent()
+    {
+        _hpChanged?.Invoke(_baseHp, _maxHp);
+        _mpChanged?.Invoke(_baseMp, _maxMp);
     }
 }
