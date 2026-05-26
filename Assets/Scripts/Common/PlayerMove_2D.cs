@@ -233,6 +233,7 @@ public class PlayerMove_2D : MonoBehaviour
         monsterComponent.TakeDamage(skillDamage);
     }
 
+    // Hud 부분
     public void BindeOnStatChangedEvent(Action<int, int> hpChangedCallBack, Action<int, int> mpChangedCallBack)
     {
         _hpChanged += hpChangedCallBack;

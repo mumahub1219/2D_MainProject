@@ -78,16 +78,10 @@ public class DictionaryUI : UIBase
     private void CreateDictionarySlot(string dataId)
     {
         var gObj = Instantiate(Prefab_Slot, Transform_SlotRoot);
-        if (gObj == null)
-        {
-            return;
-        }
+        if (gObj == null) return;
 
         var slotComponent = gObj.GetComponent<DictionarySlotUI>();
-        if (slotComponent == null)
-        {
-            return;
-        }
+        if (slotComponent == null) return;
 
         slotComponent.InitSlot(dataId, OnclickChildSlotSelected);
         _slotList.Add(dataId, slotComponent);
@@ -96,10 +90,7 @@ public class DictionaryUI : UIBase
     private void OnclickChildSlotSelected(string slotDataId)
     {
         var currentSelectedData = GameDataManager.Instance.GetItemData(slotDataId);
-        if (currentSelectedData == null) 
-        {
-            return;
-        }
+        if (currentSelectedData == null) return;
 
         Text_Name.text = currentSelectedData.Name;
         Text_Description.text = currentSelectedData.Description;

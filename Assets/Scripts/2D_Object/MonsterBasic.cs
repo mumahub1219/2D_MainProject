@@ -124,9 +124,11 @@ public class MonsterBasic : MonsterBase
         {
             GameObjectManager.Inst.RequestDestroyMonsterObject(_instanceId);
             UIManager.Instance.RemoveHudSlot(_instanceId);
+            ResetStatChangedEvent();
         }
     }
 
+    // Hud 부분
     public void BindeOnStatChangedEvent(Action<int, int> hpChangedCallBack, Action<int, int> mpChangedCallBack)
     {
         _hpChanged += hpChangedCallBack;

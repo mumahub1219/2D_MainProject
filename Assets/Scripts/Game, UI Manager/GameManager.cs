@@ -128,6 +128,10 @@ public class GameManager : MonoBehaviour
 
     private void InitializationHud(int instanceId, Transform transform)
     {
+        var localPlayer = GetPlayerInfo();
+        if (localPlayer == null) return;
+
+        localPlayer.ResetStatChangedEvent();
         UIManager.Instance.RemoveHudSlot(instanceId);
 
         UIManager.Instance.AddHudSlot(instanceId, transform);
