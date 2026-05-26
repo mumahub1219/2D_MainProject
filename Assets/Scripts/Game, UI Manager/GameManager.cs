@@ -97,8 +97,6 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        UIManager.Instance.RemoveHudSlot(0);
-
         var localPlayer = GetPlayerInfo();
         if (localPlayer == null) return;
 
@@ -107,10 +105,11 @@ public class GameManager : MonoBehaviour
             rigidbody2D.linearVelocity = Vector2.zero;
             rigidbody2D.angularVelocity = 0.0f;
         }
+        var localPlayerInstanceId = localPlayer.GetPlayerInstanceId();
+        InitializationHud(localPlayerInstanceId, localPlayer.transform);
 
         localPlayer.transform.position = _respawnPosition;
         localPlayer.SetPlayerHp();
-        UIManager.Instance.AddHudSlot(0, this.gameObject.transform);
     }
 
     public void SetRespawnPosition(Vector3 newPosition)
@@ -118,13 +117,20 @@ public class GameManager : MonoBehaviour
         _respawnPosition = newPosition;
     }
 
-    public void InitializaionRespawnSpot()
+    public void InitializationRespawnSpot()
     {
         var localPlayer = GetPlayerInfo();
         if (localPlayer == null) return;
 
         localPlayer.transform.position = _startRespawnPosition;
         _respawnPosition = _startRespawnPosition;
+    }
+
+    private void InitializationHud(int instanceId, Transform transform)
+    {
+        UIManager.Instance.RemoveHudSlot(instanceId);
+
+        UIManager.Instance.AddHudSlot(instanceId, transform);
     }
 
     // 아이템 추가

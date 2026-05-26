@@ -57,7 +57,7 @@ public class PlayerMove_2D : MonoBehaviour
     private void Start()
     {
         GameObjectManager.Inst.RegisterLocalPlayer(this);
-        UIManager.Instance.AddHudSlot(0, this.gameObject.transform);
+        UIManager.Instance.AddHudSlot(_playerInstancId, this.gameObject.transform);
         StartCoroutine(CoSetInitialRespawn());
     }
 
@@ -206,7 +206,6 @@ public class PlayerMove_2D : MonoBehaviour
         {
             _playerHp = 0;
             Debug.Log(_playerHp);
-            UIManager.Instance.RemoveHudSlot(0);
             PlayerDie();
         }
     }
@@ -219,6 +218,11 @@ public class PlayerMove_2D : MonoBehaviour
     public void SetPlayerHp()
     {
         _playerHp = _playerMaxHp;
+    }
+
+    public int GetPlayerInstanceId()
+    {
+        return _playerInstancId;
     }
 
     private void OnMonsterCollied(int monsterInstanceId, int skillDamage)

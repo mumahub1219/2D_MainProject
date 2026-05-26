@@ -41,6 +41,8 @@ public class MonsterBasic : MonsterBase
             _monsterData = monsterData;
             _baseHp = _monsterData.BaseHp;
             _maxHp = _baseHp;
+            _baseMp = 100;
+            _maxMp = _baseMp;
             _baseAtk = _monsterData.BaseAtk;
         }
 

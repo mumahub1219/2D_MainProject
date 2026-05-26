@@ -13,7 +13,7 @@ public class QuitUI : MonoBehaviour
 
     public void Onclick_OpenLobbyUI()
     {
-        GameManager.Inst.InitializaionRespawnSpot();
+        GameManager.Inst.InitializationRespawnSpot();
 
         UIManager.Instance.OpenContentUI(UIType.LobbyUI);
         UIManager.Instance.ClosePopupUI(UIType.QuitUI);
