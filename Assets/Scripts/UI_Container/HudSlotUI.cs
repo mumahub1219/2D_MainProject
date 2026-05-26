@@ -14,7 +14,7 @@ public class HudSlotUI : MonoBehaviour
     {
         _instanceId = instanceId;
         _targetTransform = targetTransform;
-        slotOffsetY = 100;
+        slotOffsetY = 10;
 
         TryBingStatChangedEvent(targetTransform.gameObject);
     }
