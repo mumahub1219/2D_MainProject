@@ -121,14 +121,14 @@ public static class UIManagerExtension
         }
     }
 
-    public static void AddHudSlot(this UIManager uIManager)
+    public static void AddHudSlot(this UIManager uIManager, int instanceId, Transform targetTransform)
     {
         var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
         if (uiBase == null) return;
 
         if (uiBase is HudMainUI hudMainUI)
         {
-            hudMainUI.AddHudSlot();
+            hudMainUI.AddHudSlot(instanceId, targetTransform);
         }
     }
 
@@ -141,6 +141,16 @@ public static class UIManagerExtension
         {
             hudMainUI.RemoveHudSlot();
         }
+    }
+
+    public static void AddInventorySlot()
+    {
+
+    }
+
+    public static void RemoveInventorySlot()
+    { 
+
     }
 }
 
