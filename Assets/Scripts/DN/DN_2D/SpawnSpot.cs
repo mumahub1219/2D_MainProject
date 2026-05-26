@@ -85,7 +85,7 @@ public class SpawnSpot : MonoBehaviour
                 this.gameObject.SetActive(false);
                 break;
             case SpawnSpotType.Skill:
-                GameObjectManager.Inst.CreateSkillObject(_spawnObjectDataId, this.transform).Forget();
+                //GameObjectManager.Inst.CreateSkillObject(_spawnObjectDataId, this.transform).Forget();
                 break;
         }
     }

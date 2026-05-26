@@ -22,7 +22,8 @@ public enum UIType
     ScoreUI,
     LobbyUI,
     DictionaryUI,
-    QuitUI
+    QuitUI,
+    HudMainUI
 }
 
 public static class UIManagerExtension
@@ -43,6 +44,8 @@ public static class UIManagerExtension
         uiManager.OpenContentUI(UIType.LobbyUI);
         // 게임 로비 UI를 여기서 오픈해주자 -> uiManager.
         // MainUI도
+        uiManager.OpenUI(UIRootType.MainUI, UIType.HudMainUI);
+        uiManager.OpenUI(UIRootType.MainUI, UIType.MainUI);
     }
 
     public static void OpenSimplePopup(this UIManager uiManager, string msg)
@@ -115,6 +118,28 @@ public static class UIManagerExtension
         {
             Debug.LogWarning($"UI가 생성되지 않았습니다");
             return;
+        }
+    }
+
+    public static void AddHudSlot(this UIManager uIManager)
+    {
+        var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
+        if (uiBase == null) return;
+
+        if (uiBase is HudMainUI hudMainUI)
+        {
+            hudMainUI.AddHudSlot();
+        }
+    }
+
+    public static void RemoveHudSlot(this UIManager uIManager)
+    {
+        var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
+        if (uiBase == null) return;
+
+        if (uiBase is HudMainUI hudMainUI)
+        {
+            hudMainUI.RemoveHudSlot();
         }
     }
 }

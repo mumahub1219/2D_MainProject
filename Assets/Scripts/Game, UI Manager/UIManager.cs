@@ -104,6 +104,10 @@ public class UIManager : UIBase
         return _createdUIDic[uiType];
     }
 
+    public UIBase GetOpenUI(UIRootType uiRootType, UIType uIType)
+    {
+        return GetCreatedUI(uiRootType, uIType);
+    }
 
     public UIBase OpenContentUI(UIType uiType)
     {

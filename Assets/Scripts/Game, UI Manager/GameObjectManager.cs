@@ -201,54 +201,54 @@ public class GameObjectManager : MonoBehaviour
     IEnumerator DestroySkillObject(int instanceId)
     {
         yield return new WaitForSeconds(2.0f);
-        RequestDestroySkillObject(instanceId);
+        RequestDestroySkillObjectFirstAndSecond(instanceId);
     }
 
     // [스킬 오브젝트] ===================================================================================================
-    public async UniTaskVoid CreateSkillObject(string skillDataId, Transform spawnSpot)
-    {
-        var skillData = GameDataManager.Instance.GetSkillData(skillDataId);
-        if (skillData == null) return;
+    //public async UniTaskVoid CreateSkillObject(string skillDataId, Transform spawnSpot)
+    //{
+    //    var skillData = GameDataManager.Instance.GetSkillData(skillDataId);
+    //    if (skillData == null) return;
 
-        var createdObj = await ResourceManager.Inst.InstantiateAsync(skillData.PrefabPath, Root_SkillObject, true);
-        createdObj.transform.position = spawnSpot.position;
+    //    var createdObj = await ResourceManager.Inst.InstantiateAsync(skillData.PrefabPath, Root_SkillObject, true);
+    //    createdObj.transform.position = spawnSpot.position;
 
         
-        AddSkillObjectOncreate(createdObj, skillDataId);
-    }
+    //    AddSkillObjectOncreate(createdObj, skillDataId);
+    //}
 
-    private void AddSkillObjectOncreate(GameObject createdObject, string skillDataId)
-    {
-        _objectInstanceKeyGenerator++;
-        var generatedInstanceId = _objectInstanceKeyGenerator;
+    //private void AddSkillObjectOncreate(GameObject createdObject, string skillDataId)
+    //{
+    //    _objectInstanceKeyGenerator++;
+    //    var generatedInstanceId = _objectInstanceKeyGenerator;
 
-        var skillComponent = createdObject.GetComponent<SkillProjectile>();
-        if (skillComponent == null) return;
+    //    var skillComponent = createdObject.GetComponent<SkillProjectile>();
+    //    if (skillComponent == null) return;
 
-        _createdSkillProjectileContainer.Add(generatedInstanceId, skillComponent);
-        skillComponent.InitSkillObjectInfo(generatedInstanceId);
-    }
+    //    _createdSkillProjectileContainer.Add(generatedInstanceId, skillComponent);
+    //    skillComponent.InitSkillObjectInfo(generatedInstanceId);
+    //}
 
-    private void RequestDestroySkillObject(int instanceId)
-    {
-        var skillComponent = GetSkillObjectInstanceId(instanceId);
-        if (skillComponent == null) return;
+    //private void RequestDestroySkillObject(int instanceId)
+    //{
+    //    var skillComponent = GetSkillObjectInstanceId(instanceId);
+    //    if (skillComponent == null) return;
 
-        _createdSkillProjectileContainer.Remove(instanceId);
-        Destroy(skillComponent.gameObject);
-    }
+    //    _createdSkillProjectileContainer.Remove(instanceId);
+    //    Destroy(skillComponent.gameObject);
+    //}
 
-    public SkillProjectile GetSkillObjectInstanceId(int skillInstanceId)
-    {
-        if (_createdSkillProjectileContainer.ContainsKey(skillInstanceId) == false)
-        {
-            Debug.LogError($"{skillInstanceId} 찾으려는 스킬 오브젝트가 유효하지 않습니다");
+    //public SkillProjectile GetSkillObjectInstanceId(int skillInstanceId)
+    //{
+    //    if (_createdSkillProjectileContainer.ContainsKey(skillInstanceId) == false)
+    //    {
+    //        Debug.LogError($"{skillInstanceId} 찾으려는 스킬 오브젝트가 유효하지 않습니다");
 
-            return null;
-        }
+    //        return null;
+    //    }
 
-        return _createdSkillProjectileContainer[skillInstanceId];
-    }
+    //    return _createdSkillProjectileContainer[skillInstanceId];
+    //}
 
     //[몬스터 오브젝트] ====================================================================================================
     public async UniTaskVoid CreateMonsterObject(string monsterDataId, Transform spawnSpot)
