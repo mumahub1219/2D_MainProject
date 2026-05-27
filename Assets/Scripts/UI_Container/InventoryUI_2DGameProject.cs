@@ -5,6 +5,8 @@ public class InventoryUI_2DGameProject : UIBase
 {
     [Header("버튼")]
     [SerializeField] private UIButton Button_Close;
+    [SerializeField] private UIButton Button_UseSelectItem;
+
 
     [Header("프리팹")]
     [SerializeField] private GameObject Prefab_Slot;
@@ -16,10 +18,10 @@ public class InventoryUI_2DGameProject : UIBase
 
     private void OnEnable()
     {
-        Button_Close.BindOnClickButtonEvent(Onclick_CloseInventory);
+        Button_Close.BindOnClickButtonEvent(Onclick_CloseInventoryUI);
     }
 
-    public void Onclick_CloseInventory()
+    public void Onclick_CloseInventoryUI()
     {
         UIManager.Instance.CloseContentUI(UIType.InventoryUI);
     }
@@ -37,6 +39,11 @@ public class InventoryUI_2DGameProject : UIBase
     }
 
     private void OnclickChildSlotSelected(string slotDataId)
+    {
+        
+    }
+
+    public void OnclickUseSelectItem(int selectedSlotInstanceId)
     {
         
     }
