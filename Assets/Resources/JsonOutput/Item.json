@@ -8,7 +8,11 @@
     "MaxStackCount": 100,
     "SellingPrice": 100,
     "IconPath": "Icon/Icon_Item_Kiwi_1",
-    "PrefabPath": "2DPrefab/FieldItem_Kiwi"
+    "PrefabPath": "2DPrefab/FieldItem_Kiwi",
+    "UseItemType": "StatChangeHp",
+    "UseItemParameterList": [
+      "50"
+    ]
   },
   {
     "Id": "Item_Melon_1",
@@ -19,7 +23,11 @@
     "MaxStackCount": 50,
     "SellingPrice": 200,
     "IconPath": "Icon/Icon_Item_Melon_1",
-    "PrefabPath": "2DPrefab/FieldItem_Melon"
+    "PrefabPath": "2DPrefab/FieldItem_Melon",
+    "UseItemType": "StatChangeAtk",
+    "UseItemParameterList": [
+      "700"
+    ]
   },
   {
     "Id": "Item_Orange_1",
@@ -30,7 +38,12 @@
     "MaxStackCount": 100,
     "SellingPrice": 150,
     "IconPath": "Icon/Icon_Item_Orange_1",
-    "PrefabPath": "2DPrefab/FieldItem_Orange"
+    "PrefabPath": "2DPrefab/FieldItem_Orange",
+    "UseItemType": "RandomItem",
+    "UseItemParameterList": [
+      "Item_Pineapple_1:2",
+      "Item_Strawberry_1:20"
+    ]
   },
   {
     "Id": "Item_Cherry_1",
@@ -41,7 +54,11 @@
     "MaxStackCount": 200,
     "SellingPrice": 20,
     "IconPath": "Icon/Icon_Item_Cherry_1",
-    "PrefabPath": "2DPrefab/FieldItem_Cherry"
+    "PrefabPath": "2DPrefab/FieldItem_Cherry",
+    "UseItemType": "SummonMonster",
+    "UseItemParameterList": [
+      "mob_stand_1:2"
+    ]
   },
   {
     "Id": "Item_Pineapple_1",
@@ -52,7 +69,9 @@
     "MaxStackCount": 50,
     "SellingPrice": 150,
     "IconPath": "Icon/Icon_Item_Pineapple_1",
-    "PrefabPath": "2DPrefab/FieldItem_Pineapple"
+    "PrefabPath": "2DPrefab/FieldItem_Pineapple",
+    "UseItemType": null,
+    "UseItemParameterList": null
   },
   {
     "Id": "Item_Strawberry_1",
@@ -63,6 +82,8 @@
     "MaxStackCount": 200,
     "SellingPrice": 50,
     "IconPath": "Icon/Icon_Item_Strawberry_1",
-    "PrefabPath": "2DPrefab/FieldItem_Strawberry"
+    "PrefabPath": "2DPrefab/FieldItem_Strawberry",
+    "UseItemType": null,
+    "UseItemParameterList": null
   }
 ]
