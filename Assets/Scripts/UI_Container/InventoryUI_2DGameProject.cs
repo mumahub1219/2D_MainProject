@@ -7,23 +7,35 @@ public class InventoryUI_2DGameProject : UIBase
     [SerializeField] private UIButton Button_Close;
     [SerializeField] private UIButton Button_UseSelectItem;
 
-
     [Header("프리팹")]
     [SerializeField] private GameObject Prefab_Slot;
 
     [Header("슬롯 리스트 영역")]
     [SerializeField] private Transform Transform_SlotRoot;
 
-    private Dictionary<string, InventorySlotUI> _slotList = new Dictionary<string, InventorySlotUI>();
+    private Dictionary<string, InventorySlotUI> _itemSlotList = new Dictionary<string, InventorySlotUI>();
 
     private void OnEnable()
     {
         Button_Close.BindOnClickButtonEvent(Onclick_CloseInventoryUI);
+        SetInventoryItemSlotOnEnable();
     }
 
     public void Onclick_CloseInventoryUI()
     {
         UIManager.Instance.CloseContentUI(UIType.InventoryUI);
+    }
+
+    private void SetInventoryItemSlotOnEnable()
+    {
+        if (_itemSlotList.Count > 0)
+        {
+            foreach (var slot in _itemSlotList)
+            {
+                DestroyImmediate(slot.Value.gameObject);
+            }
+            _itemSlotList.Clear();
+        }
     }
 
     private void CreateInventorySlot(string dataId)
@@ -35,7 +47,17 @@ public class InventoryUI_2DGameProject : UIBase
         if (slotComponent == null) return;
 
         slotComponent.InitSlot(dataId, OnclickChildSlotSelected);
-        _slotList.Add(dataId, slotComponent);
+        _itemSlotList.Add(dataId, slotComponent);
+    }
+
+    private void OnChideSlotSelected(int selectedSlotInstanceId)
+    {
+        foreach (var slotKv in _itemSlotList)
+        {
+            var slot = slotKv.Value;
+            bool isSlotSelected = (selectedSlotInstanceId == slot.SlotInstanceId);
+            slot.ChangeSelectedState(isSlotSelected);
+        }
     }
 
     private void OnclickChildSlotSelected(string slotDataId)
