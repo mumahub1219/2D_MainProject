@@ -16,7 +16,7 @@ public class InventorySlotUI : MonoBehaviour
 
     private void OnEnable()
     {
-       
+        
     }
 
     private void OnDisable()

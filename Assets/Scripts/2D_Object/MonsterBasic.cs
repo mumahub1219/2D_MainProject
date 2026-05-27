@@ -28,6 +28,7 @@ public class MonsterBasic : MonsterBase
     private void OnDisable()
     {
         _isAlive = false;
+        ResetStatChangedEvent();
     }
 
     public void InitMonster(int instanceId, string dataId)
@@ -122,10 +123,15 @@ public class MonsterBasic : MonsterBase
 
         if (_baseHp <= 0)
         {
-            GameObjectManager.Inst.RequestDestroyMonsterObject(_instanceId);
-            UIManager.Instance.RemoveHudSlot(_instanceId);
-            ResetStatChangedEvent();
+            OnBattleUnitDie();
         }
+    }
+
+    private void OnBattleUnitDie()
+    {
+        ResetStatChangedEvent();
+        UIManager.Instance.RemoveHudSlot(_instanceId);
+        GameObjectManager.Inst.RequestDestroyMonsterObject(_instanceId);
     }
 
     // Hud 부분
