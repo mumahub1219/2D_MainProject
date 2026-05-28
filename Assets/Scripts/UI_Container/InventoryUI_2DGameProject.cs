@@ -76,18 +76,29 @@ public class InventoryUI_2DGameProject : UIBase
 
     private void OnclickChildSlotSelected(long selectedSlotUniqueId)
     {
+        bool isCurrentSelectedUsable = false;
+
         foreach (var slotKv in _itemSlotList)
         {
             var slot = slotKv.Value;
             bool isSlotSelected = (selectedSlotUniqueId == slot.SlotItemUniqueId);
             slot.ChangeSelectedState(isSlotSelected);
 
-            if(slot.IsUsableItem == true)
+            if(isSlotSelected == true)
             {
-                _currentSelectedUniqueId = slot.SlotItemUniqueId;
-                Button_UseSelectItem.gameObject.SetActive(slot.IsUsableItem);
+                isCurrentSelectedUsable = slot.IsUsableItem;
+                if (slot.IsUsableItem == true)
+                {
+                    _currentSelectedUniqueId = slot.SlotItemUniqueId;
+                }
+                else
+                {
+                    _currentSelectedUniqueId = 0;
+                }
             }
         }
+
+        Button_UseSelectItem.gameObject.SetActive(isCurrentSelectedUsable);
     }
 
     public void OnclickUseSelectItem()
