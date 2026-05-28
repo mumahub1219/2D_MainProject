@@ -19,7 +19,7 @@ public class NetworkManager : MonoBehaviour
     } 
 
     // 세이브 기능 구현
-    public void RequstSaveData(DaniTechPlayerModel data)
+    public void RequstSaveData(PlayerModel data)
     {
         // prettyPrint = true는 JSON을 보기 좋게 정렬
         string json = JsonUtility.ToJson(data, true);
@@ -28,13 +28,13 @@ public class NetworkManager : MonoBehaviour
     }
 
     // 로드 기능
-    public DaniTechPlayerModel RequstLoadSaveData()
+    public PlayerModel RequstLoadSaveData()
     {
         string path = GetPath();
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            DaniTechPlayerModel data = JsonUtility.FromJson<DaniTechPlayerModel>(json);
+            PlayerModel data = JsonUtility.FromJson<PlayerModel>(json);
             Debug.Log("데이터를 불러왔습니다.");
             return data;
         }
@@ -47,9 +47,9 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public DaniTechPlayerModel GetDefaultPlayerData()
+    public PlayerModel GetDefaultPlayerData()
     {
-        var newPlayerData = new DaniTechPlayerModel();
+        var newPlayerData = new PlayerModel();
         newPlayerData.PlayerName = "NoName";
         newPlayerData.PlayerTotalExp = 0;
         return newPlayerData;

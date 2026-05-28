@@ -20,6 +20,7 @@ public class ItemObject : ItemBase
         }
         else if (collision.CompareTag("Player"))
         {
+            GameManager.Inst.AddItem(_itemObjectDataId, 1);
             GameObjectManager.Inst.RequestDestroyItemObject(this._itemObjectInstanceId);
         }
     }
