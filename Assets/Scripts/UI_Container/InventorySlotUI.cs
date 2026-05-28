@@ -12,9 +12,10 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] private Text Text_StackCount;
     [SerializeField] private UIButton Button_Slot;
 
-    private event Action<int> OnSelectEvent;
+    private event Action<long> OnSelectEvent;
 
-    public int SlotInstanceId { get; private set; }
+    public long SlotItemUniqueId { get; private set; }
+    public bool IsUsableItem { get; private set; }
 
     private string _slotDataId;
 
@@ -33,7 +34,9 @@ public class InventorySlotUI : MonoBehaviour
     {
         var itemData = GameDataManager.Instance.GetItemData(itemDataId);
         if (itemData == null) return;
-        
+
+        IsUsableItem = string.IsNullOrEmpty(itemData.UseItemType) == false;
+
         string iconPath = itemData.IconPath;
         if (string.IsNullOrEmpty(iconPath) == true) return;
 
@@ -47,20 +50,20 @@ public class InventorySlotUI : MonoBehaviour
         return _slotDataId;
     }
 
-    public void InitSlot(int slotInstanceId, string itemDataId, int itemStackCount)
+    public void InitSlot(long slotUniqueId, string itemDataId, int itemStackCount)
     {
-        SlotInstanceId = slotInstanceId;
+        SlotItemUniqueId = slotUniqueId;
         SetIcon(itemDataId, itemStackCount);
     }
 
     public void OncClick_SelectItem()
     {
-        OnSelectEvent?.Invoke(SlotInstanceId);
+        OnSelectEvent?.Invoke(SlotItemUniqueId);
 
         // 툴팁, 팝업도 여기서 띄워주기
     }
 
-    public void BindSlotSelectEvent(Action<int> onSelectEvent)
+    public void BindSlotSelectEvent(Action<long> onSelectEvent)
     {
         OnSelectEvent = onSelectEvent;
     }

@@ -5,6 +5,7 @@ public class InventoryUI_2DGameProject : UIBase
 {
     [Header("버튼")]
     [SerializeField] private UIButton Button_Close;
+    [SerializeField] private UIButton Button_CloseBG;
     [SerializeField] private UIButton Button_UseSelectItem;
 
     [Header("프리팹")]
@@ -13,13 +14,16 @@ public class InventoryUI_2DGameProject : UIBase
     [Header("슬롯 리스트 영역")]
     [SerializeField] private Transform Transform_SlotRoot;
 
-    private Dictionary<int, InventorySlotUI> _itemSlotList = new Dictionary<int, InventorySlotUI>();
-    private int _generatedKey = 0;
+    private Dictionary<long, InventorySlotUI> _itemSlotList = new Dictionary<long, InventorySlotUI>();
         
     private void OnEnable()
     {
         Button_Close.BindOnClickButtonEvent(Onclick_CloseInventoryUI);
+        Button_CloseBG.BindOnClickButtonEvent(Onclick_CloseInventoryUI);
+        Button_UseSelectItem.BindOnClickButtonEvent(OnclickUseSelectItem);
         SetInventoryItemSlotOnEnable();
+
+        Button_UseSelectItem.gameObject.SetActive(false);
     }
 
     public void Onclick_CloseInventoryUI()
@@ -43,11 +47,11 @@ public class InventoryUI_2DGameProject : UIBase
 
         foreach (var itemModel in itemList)
         {
-            CreateInventorySlot(itemModel.ItemDataId, itemModel.ItemStackCount);
+            CreateInventorySlot(itemModel.ItemUniqueId,itemModel.ItemDataId, itemModel.ItemStackCount);
         }
     }
 
-    private void CreateInventorySlot(string dataId, int itemStackCount)
+    private void CreateInventorySlot(long itemUniqueId,string dataId, int itemStackCount)
     {
         var gObj = Instantiate(Prefab_Slot, Transform_SlotRoot);
         if (gObj == null) return;
@@ -55,37 +59,32 @@ public class InventoryUI_2DGameProject : UIBase
         var slotComponent = gObj.GetComponent<InventorySlotUI>();
         if (slotComponent == null) return;
 
-        _generatedKey++;
+        slotComponent.InitSlot(itemUniqueId, dataId, itemStackCount);
+        slotComponent.gameObject.name = $"itemslot : {slotComponent.SlotItemUniqueId}";
 
-        slotComponent.InitSlot(_generatedKey, dataId, itemStackCount);
-        slotComponent.gameObject.name = $"itemslot : {slotComponent.SlotInstanceId}";
-
-        _itemSlotList.Add(slotComponent.SlotInstanceId, slotComponent);
+        _itemSlotList.Add(slotComponent.SlotItemUniqueId, slotComponent);
 
         slotComponent.BindSlotSelectEvent(OnclickChildSlotSelected);
     }
 
-    private void OnChildSlotSelected(int selectedSlotInstanceId)
+
+
+    private void OnclickChildSlotSelected(long selectedSlotUniqueId)
     {
         foreach (var slotKv in _itemSlotList)
         {
             var slot = slotKv.Value;
-            bool isSlotSelected = (selectedSlotInstanceId == slot.SlotInstanceId);
+            bool isSlotSelected = (selectedSlotUniqueId == slot.SlotItemUniqueId);
             slot.ChangeSelectedState(isSlotSelected);
+
+            if(slot.IsUsableItem == true)
+            {
+                Button_UseSelectItem.gameObject.SetActive(slot.IsUsableItem);
+            }
         }
     }
 
-    private void OnclickChildSlotSelected(int selectedSlotInstanceId)
-    {
-        foreach (var slotKv in _itemSlotList)
-        {
-            var slot = slotKv.Value;
-            bool isSlotSelected = (selectedSlotInstanceId == slot.SlotInstanceId);
-            slot.ChangeSelectedState(isSlotSelected);
-        }
-    }
-
-    public void OnclickUseSelectItem(int selectedSlotInstanceId)
+    public void OnclickUseSelectItem()
     {
         
     }
