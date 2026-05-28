@@ -70,7 +70,6 @@ public class InventorySlotUI : MonoBehaviour
     public void OncClick_SelectItem()
     {
         OnSelectEvent?.Invoke(SlotItemUniqueId);
-
     }
 
     public void BindSlotSelectEvent(Action<long> onSelectEvent)
