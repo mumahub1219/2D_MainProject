@@ -13,8 +13,9 @@ public class InventoryUI_2DGameProject : UIBase
     [Header("슬롯 리스트 영역")]
     [SerializeField] private Transform Transform_SlotRoot;
 
-    private Dictionary<string, InventorySlotUI> _itemSlotList = new Dictionary<string, InventorySlotUI>();
-
+    private Dictionary<int, InventorySlotUI> _itemSlotList = new Dictionary<int, InventorySlotUI>();
+    private int _generatedKey = 0;
+        
     private void OnEnable()
     {
         Button_Close.BindOnClickButtonEvent(Onclick_CloseInventoryUI);
@@ -36,9 +37,17 @@ public class InventoryUI_2DGameProject : UIBase
             }
             _itemSlotList.Clear();
         }
+
+        var itemList = GameManager.Inst.GetPlayerItemList();
+        if (itemList == null || itemList.Count == 0) return;
+
+        foreach (var itemModel in itemList)
+        {
+            CreateInventorySlot(itemModel.ItemDataId, itemModel.ItemStackCount);
+        }
     }
 
-    private void CreateInventorySlot(string dataId)
+    private void CreateInventorySlot(string dataId, int itemStackCount)
     {
         var gObj = Instantiate(Prefab_Slot, Transform_SlotRoot);
         if (gObj == null) return;
@@ -46,11 +55,17 @@ public class InventoryUI_2DGameProject : UIBase
         var slotComponent = gObj.GetComponent<InventorySlotUI>();
         if (slotComponent == null) return;
 
-        slotComponent.InitSlot(dataId, OnclickChildSlotSelected);
-        _itemSlotList.Add(dataId, slotComponent);
+        _generatedKey++;
+
+        slotComponent.InitSlot(_generatedKey, dataId, itemStackCount);
+        slotComponent.gameObject.name = $"itemslot : {slotComponent.SlotInstanceId}";
+
+        _itemSlotList.Add(slotComponent.SlotInstanceId, slotComponent);
+
+        slotComponent.BindSlotSelectEvent(OnclickChildSlotSelected);
     }
 
-    private void OnChideSlotSelected(int selectedSlotInstanceId)
+    private void OnChildSlotSelected(int selectedSlotInstanceId)
     {
         foreach (var slotKv in _itemSlotList)
         {
@@ -60,9 +75,14 @@ public class InventoryUI_2DGameProject : UIBase
         }
     }
 
-    private void OnclickChildSlotSelected(string slotDataId)
+    private void OnclickChildSlotSelected(int selectedSlotInstanceId)
     {
-        
+        foreach (var slotKv in _itemSlotList)
+        {
+            var slot = slotKv.Value;
+            bool isSlotSelected = (selectedSlotInstanceId == slot.SlotInstanceId);
+            slot.ChangeSelectedState(isSlotSelected);
+        }
     }
 
     public void OnclickUseSelectItem(int selectedSlotInstanceId)

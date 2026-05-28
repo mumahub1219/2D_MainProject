@@ -507,8 +507,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LoadingUI_2DGameProject
   Button_Close: {fileID: 2910544005338928393}
   Button_UseSelectItem: {fileID: 0}
-  Prefab_Slot: {fileID: 0}
-  Transform_SlotRoot: {fileID: 0}
+  Prefab_Slot: {fileID: 3347826845903962747, guid: 5e357550fd3dcb145a333bf0c991dab0, type: 3}
+  Transform_SlotRoot: {fileID: 86889800365901671}
 --- !u!1 &7747523626869445729
 GameObject:
   m_ObjectHideFlags: 0
