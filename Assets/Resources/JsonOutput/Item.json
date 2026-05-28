@@ -34,7 +34,7 @@
   {
     "Id": "Item_Orange_1",
     "Name": "오렌지",
-    "Description": "오렌지, 껍질을 까는 것만 아니면 맛있게 먹을 것이다.",
+    "Description": "오렌지, 껍질을 까는 게 귀찮다.",
     "ItemType": "Normal",
     "Grade": "Epic",
     "MaxStackCount": 100,
@@ -67,7 +67,7 @@
   {
     "Id": "Item_Pineapple_1",
     "Name": "파인애플",
-    "Description": "파인애플, 통으로 보다는 잘라진 것을 사먹는 것이 좋다.",
+    "Description": "파인애플, 잘라진 것을 먹는 게 편하다.",
     "ItemType": "Normal",
     "Grade": "Normal",
     "MaxStackCount": 50,
