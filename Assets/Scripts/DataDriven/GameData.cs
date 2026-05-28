@@ -56,6 +56,7 @@ public class ItemData : GameDataBase
     public string PrefabPath;
     public string UseItemType;
     public List<string> UseItemParameterList;
+    public string UseItemDescription;
 }
 
 [System.Serializable]

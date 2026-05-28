@@ -12,7 +12,8 @@
     "UseItemType": "StatChangeHp",
     "UseItemParameterList": [
       "50"
-    ]
+    ],
+    "UseItemDescription": "체력을 50 회복한다"
   },
   {
     "Id": "Item_Melon_1",
@@ -27,7 +28,8 @@
     "UseItemType": "StatChangeAtk",
     "UseItemParameterList": [
       "700"
-    ]
+    ],
+    "UseItemDescription": "공격력 700 증가"
   },
   {
     "Id": "Item_Orange_1",
@@ -43,7 +45,8 @@
     "UseItemParameterList": [
       "Item_Pineapple_1:2",
       "Item_Strawberry_1:20"
-    ]
+    ],
+    "UseItemDescription": "랜덤 아이템"
   },
   {
     "Id": "Item_Cherry_1",
@@ -58,7 +61,8 @@
     "UseItemType": "SummonMonster",
     "UseItemParameterList": [
       "mob_stand_1:2"
-    ]
+    ],
+    "UseItemDescription": "몬스터 소환"
   },
   {
     "Id": "Item_Pineapple_1",
@@ -71,7 +75,8 @@
     "IconPath": "Icon/Icon_Item_Pineapple_1",
     "PrefabPath": "2DPrefab/FieldItem_Pineapple",
     "UseItemType": null,
-    "UseItemParameterList": null
+    "UseItemParameterList": null,
+    "UseItemDescription": "효과 없음"
   },
   {
     "Id": "Item_Strawberry_1",
@@ -84,6 +89,7 @@
     "IconPath": "Icon/Icon_Item_Strawberry_1",
     "PrefabPath": "2DPrefab/FieldItem_Strawberry",
     "UseItemType": null,
-    "UseItemParameterList": null
+    "UseItemParameterList": null,
+    "UseItemDescription": "효과 없음"
   }
 ]

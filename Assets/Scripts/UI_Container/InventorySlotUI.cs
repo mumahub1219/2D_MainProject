@@ -12,6 +12,10 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] private Text Text_StackCount;
     [SerializeField] private UIButton Button_Slot;
 
+    [Header("설명 영역")]
+    [SerializeField] private GameObject GameObject_Info;
+    [SerializeField] private Text Text_Description;
+
     private event Action<long> OnSelectEvent;
 
     public long SlotItemUniqueId { get; private set; }
@@ -22,6 +26,7 @@ public class InventorySlotUI : MonoBehaviour
     private void OnEnable()
     {
         Image_Selected.gameObject.SetActive(false);
+        GameObject_Info.SetActive(false);
         Button_Slot.BindOnClickButtonEvent(OncClick_SelectItem);
     }
 
@@ -53,14 +58,19 @@ public class InventorySlotUI : MonoBehaviour
     public void InitSlot(long slotUniqueId, string itemDataId, int itemStackCount)
     {
         SlotItemUniqueId = slotUniqueId;
+        _slotDataId = itemDataId;
         SetIcon(itemDataId, itemStackCount);
+
+        var currentSelectedItem = GameDataManager.Instance.GetItemData(itemDataId);
+        if (currentSelectedItem == null) return;
+
+        Text_Description.text = currentSelectedItem.UseItemDescription;
     }
 
     public void OncClick_SelectItem()
     {
         OnSelectEvent?.Invoke(SlotItemUniqueId);
 
-        // 툴팁, 팝업도 여기서 띄워주기
     }
 
     public void BindSlotSelectEvent(Action<long> onSelectEvent)
@@ -71,5 +81,10 @@ public class InventorySlotUI : MonoBehaviour
     public void ChangeSelectedState(bool isSelected)
     {
         Image_Selected.gameObject.SetActive(isSelected);
+
+        if (GameObject_Info != null)
+        {
+            GameObject_Info.SetActive(isSelected);
+        }
     }
 }

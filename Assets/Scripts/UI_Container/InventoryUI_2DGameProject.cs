@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SubsystemsImplementation;
+using UnityEngine.UI;
 
 public class InventoryUI_2DGameProject : UIBase
 {
@@ -58,7 +59,7 @@ public class InventoryUI_2DGameProject : UIBase
         }
     }
 
-    private void CreateInventorySlot(long itemUniqueId,string dataId, int itemStackCount)
+    private void CreateInventorySlot(long itemUniqueId, string dataId, int itemStackCount)
     {
         var gObj = Instantiate(Prefab_Slot, Transform_SlotRoot);
         if (gObj == null) return;
@@ -77,7 +78,6 @@ public class InventoryUI_2DGameProject : UIBase
     private void OnclickChildSlotSelected(long selectedSlotUniqueId)
     {
         bool isCurrentSelectedUsable = false;
-
         foreach (var slotKv in _itemSlotList)
         {
             var slot = slotKv.Value;
@@ -87,6 +87,7 @@ public class InventoryUI_2DGameProject : UIBase
             if(isSlotSelected == true)
             {
                 isCurrentSelectedUsable = slot.IsUsableItem;
+
                 if (slot.IsUsableItem == true)
                 {
                     _currentSelectedUniqueId = slot.SlotItemUniqueId;
