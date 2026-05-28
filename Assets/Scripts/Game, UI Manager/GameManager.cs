@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        CreateNewPlayerData();
         LoadSaveData();
     }
 
@@ -38,9 +39,17 @@ public class GameManager : MonoBehaviour
     private void LoadSaveData()
     {
         _playerModel = NetworkManager.Inst.RequstLoadSaveData();
+        
     }
 
-    // 플레이어 정보 받기
+    private void CreateNewPlayerData()
+    {
+        _playerModel = new PlayerModel();
+
+        SaveData();
+    }
+
+    // 플레이어 정보
     private PlayerMove_2D GetPlayerInfo()
     {
         return GameObjectManager.Inst.GetLocalPlayer();
@@ -151,6 +160,8 @@ public class GameManager : MonoBehaviour
         newItem.ItemStackCount = addItemCount;
 
         _playerModel.ItemList.Add(newItem);
+
+        SaveData();
     }
 
     public bool RequestUseItem(long requestUseTargetItemUniqueId)
@@ -174,8 +185,7 @@ public class GameManager : MonoBehaviour
             removeTargetIdx++;
         }
 
-        RequestRemoveItem(isRemoveItemExist, removeTargetIdx);
-        return true;
+        return RequestRemoveItem(isRemoveItemExist, removeTargetIdx);
     }
 
     private void UseItemFunction(string itemUseType, List<string> useItemParameterList)

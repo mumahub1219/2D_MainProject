@@ -35,7 +35,7 @@ public class InventorySlotUI : MonoBehaviour
         var itemData = GameDataManager.Instance.GetItemData(itemDataId);
         if (itemData == null) return;
 
-        IsUsableItem = string.IsNullOrEmpty(itemData.UseItemType) == false;
+        IsUsableItem = (string.IsNullOrEmpty(itemData.UseItemType) == false);
 
         string iconPath = itemData.IconPath;
         if (string.IsNullOrEmpty(iconPath) == true) return;

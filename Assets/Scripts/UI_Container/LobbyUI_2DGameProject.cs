@@ -14,8 +14,6 @@ public class LobbyUI_2DGameProject : UIBase
     public void OnClick_GameStart()
     {
         UIManager.Instance.CloseContentUI(UIType.LobbyUI);
-
-       
     }
     
     public void OnClick_GameEnd()

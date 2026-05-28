@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SubsystemsImplementation;
 
 public class InventoryUI_2DGameProject : UIBase
 {
@@ -16,15 +17,14 @@ public class InventoryUI_2DGameProject : UIBase
 
     private Dictionary<long, InventorySlotUI> _itemSlotList = new Dictionary<long, InventorySlotUI>();
     private long _currentSelectedUniqueId;
-        
+
     private void OnEnable()
     {
+        SetInventoryItemSlotOnEnable();
+
         Button_Close.BindOnClickButtonEvent(Onclick_CloseInventoryUI);
         Button_CloseBG.BindOnClickButtonEvent(Onclick_CloseInventoryUI);
         Button_UseSelectItem.BindOnClickButtonEvent(OnclickUseSelectItem);
-        SetInventoryItemSlotOnEnable();
-
-        Button_UseSelectItem.gameObject.SetActive(false);
     }
 
     public void Onclick_CloseInventoryUI()
@@ -38,10 +38,16 @@ public class InventoryUI_2DGameProject : UIBase
         {
             foreach (var slot in _itemSlotList)
             {
-                DestroyImmediate(slot.Value.gameObject);
+                if (slot.Value != null && slot.Value.gameObject != null)
+                {
+                    Destroy(slot.Value.gameObject);
+                }
             }
             _itemSlotList.Clear();
         }
+
+        _currentSelectedUniqueId = 0;
+        Button_UseSelectItem.gameObject.SetActive(false);
 
         var itemList = GameManager.Inst.GetPlayerItemList();
         if (itemList == null || itemList.Count == 0) return;
