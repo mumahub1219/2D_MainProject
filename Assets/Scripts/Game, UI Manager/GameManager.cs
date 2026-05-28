@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.AddHudSlot(instanceId, transform);
     }
 
-    // 아이템 추가
+    // 아이템 관련
     public void AddItem(string itemDataId, int addItemCount)
     {
         // 저장할때 고유값 ID를 부여하기 위해 사용
@@ -151,6 +151,94 @@ public class GameManager : MonoBehaviour
         newItem.ItemStackCount = addItemCount;
 
         _playerModel.ItemList.Add(newItem);
+    }
+
+    public bool RequestUseItem(long requestUseTargetItemUniqueId)
+    {
+        int removeTargetIdx = 0;
+        bool isRemoveItemExist = false;
+        foreach (var itemModel in _playerModel.ItemList)
+        {
+            if (itemModel.ItemUniqueId == requestUseTargetItemUniqueId)
+            {
+                isRemoveItemExist = true;
+
+                string itemDataId = itemModel.ItemDataId;
+                var itemData = GameDataManager.Instance.GetItemData(itemDataId);
+                if(string.IsNullOrEmpty(itemData.UseItemType) == false)
+                {
+                    UseItemFunction(itemData.UseItemType, itemData.UseItemParameterList);
+                }
+                break;
+            }
+            removeTargetIdx++;
+        }
+
+        RequestRemoveItem(isRemoveItemExist, removeTargetIdx);
+        return true;
+    }
+
+    private void UseItemFunction(string itemUseType, List<string> useItemParameterList)
+    {
+        if (useItemParameterList == null || useItemParameterList.Count == 0) return;
+
+        if (itemUseType == "StatChangeHp")
+        {
+            if (useItemParameterList.Count > 0)
+            {
+                string str = useItemParameterList[0];
+                int statChangeVal = int.Parse(str);
+
+                var playerComponent = GetPlayerInfo();
+                playerComponent.AddHp(statChangeVal);
+            }
+        }
+        else if (itemUseType == "StatChangeAtk")
+        {
+            if(useItemParameterList.Count > 0)
+            {
+                string str = useItemParameterList[0];
+                int statChangeVal = int.Parse(str);
+
+                var playerComponent = GetPlayerInfo();
+                playerComponent.AddAtk(statChangeVal);
+            }
+        }
+        else if (itemUseType == "RandomItem")
+        {
+            
+        }
+        else if (itemUseType == "SummonMonster")
+        {
+            if (useItemParameterList.Count > 0)
+            {
+                string str = useItemParameterList[0];
+                var strArr = str.Split(':');
+                if (strArr.Length > 1)
+                {
+                    string monsterDataId = strArr[0];
+                    int monsterSummonCount = int.Parse(strArr[1]);
+
+                    for (int i = 0; i < monsterSummonCount; i++)
+                    {
+                        var playerComponent = GetPlayerInfo();
+                        GameObjectManager.Inst.CreateMonsterObject(monsterDataId, playerComponent.transform).Forget();
+                    }
+                }
+            }
+        }
+    }
+
+    private bool RequestRemoveItem(bool isRemoveItemExist,int removeTargetIdx)
+    {
+        if(isRemoveItemExist == true)
+        {
+            _playerModel.ItemList.RemoveAt(removeTargetIdx);
+            SaveData();
+            return true;
+        }
+
+        return false;
     }
 
     public List<ItemModel> GetPlayerItemList()

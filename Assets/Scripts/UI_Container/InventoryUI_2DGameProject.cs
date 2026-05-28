@@ -15,6 +15,7 @@ public class InventoryUI_2DGameProject : UIBase
     [SerializeField] private Transform Transform_SlotRoot;
 
     private Dictionary<long, InventorySlotUI> _itemSlotList = new Dictionary<long, InventorySlotUI>();
+    private long _currentSelectedUniqueId;
         
     private void OnEnable()
     {
@@ -67,8 +68,6 @@ public class InventoryUI_2DGameProject : UIBase
         slotComponent.BindSlotSelectEvent(OnclickChildSlotSelected);
     }
 
-
-
     private void OnclickChildSlotSelected(long selectedSlotUniqueId)
     {
         foreach (var slotKv in _itemSlotList)
@@ -79,6 +78,7 @@ public class InventoryUI_2DGameProject : UIBase
 
             if(slot.IsUsableItem == true)
             {
+                _currentSelectedUniqueId = slot.SlotItemUniqueId;
                 Button_UseSelectItem.gameObject.SetActive(slot.IsUsableItem);
             }
         }
@@ -86,6 +86,30 @@ public class InventoryUI_2DGameProject : UIBase
 
     public void OnclickUseSelectItem()
     {
-        
+        RequestSelecUseItem();
+    }
+
+    private void RequestSelecUseItem()
+    {
+        bool isItemRemoved = GameManager.Inst.RequestUseItem(_currentSelectedUniqueId);
+        if (isItemRemoved == true)
+        {
+            RemoveItemSlot(_currentSelectedUniqueId);
+            _currentSelectedUniqueId = 0;
+            Button_UseSelectItem.gameObject.SetActive(false);
+        }
+    }
+
+    private void RemoveItemSlot(long removedItemUniqueId)
+    {
+        if (_itemSlotList.ContainsKey(removedItemUniqueId) == false)
+        {
+            Debug.LogError("제거된 아이템 슬롯을 찾을 수 없음!!");
+            return;
+        }
+
+        var slotComponent = _itemSlotList[removedItemUniqueId];
+        _itemSlotList.Remove(removedItemUniqueId);
+        Destroy(slotComponent.gameObject);
     }
 }

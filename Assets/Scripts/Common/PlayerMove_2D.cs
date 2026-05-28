@@ -233,6 +233,18 @@ public class PlayerMove_2D : MonoBehaviour
         monsterComponent.TakeDamage(skillDamage);
     }
 
+    public void AddHp(int hp)
+    {
+        _playerHp += hp;
+        if (_playerHp > _playerMaxHp) { _playerHp = _playerMaxHp; }
+        InvokeStatChangedEvent();
+    }
+
+    public void AddAtk(int atk)
+    {
+        _playerBaseAtk += atk;
+    }
+
     // Hud 부분
     public void BindeOnStatChangedEvent(Action<int, int> hpChangedCallBack, Action<int, int> mpChangedCallBack)
     {
