@@ -8,12 +8,16 @@ public enum EntityAnimState
     Run,
     Attack,
     Jump,
-    Dead
+    DoublsJump,
+    Dead,
+    Positive,
+    Negative,
+    InteractionStart
 }
 public class AnimatorController_2D : MonoBehaviour
 {
 
-    [SerializeField] private Animator Animator_Player;
+    [SerializeField] private Animator Animator_Entity;
 
     private EntityAnimState _currentState;
 
@@ -32,26 +36,35 @@ public class AnimatorController_2D : MonoBehaviour
             case EntityAnimState.Idle:
                 break;
             case EntityAnimState.Walk:
-                Animator_Player.SetBool("IsWalk", true);
+                Animator_Entity.SetBool("IsWalk", true);
                 break;
             case EntityAnimState.Run:
-                Animator_Player.SetBool("IsRun", true);
+                Animator_Entity.SetBool("IsRun", true);
                 break;
             case EntityAnimState.Attack:
-                Animator_Player.SetTrigger("IsAttack");
+                Animator_Entity.SetTrigger("IsAttack");
                 break;
             case EntityAnimState.Jump:
-                Animator_Player.SetBool("IsJump", true);
+                Animator_Entity.SetBool("IsJump", true);
                 break;
             case EntityAnimState.Dead:
-                Animator_Player.SetBool("IsDead", true);
+                Animator_Entity.SetBool("IsDead", true);
+                break;
+            case EntityAnimState.Positive:
+                Animator_Entity.SetTrigger("IsPositive");
+                break;
+            case EntityAnimState.Negative:
+                Animator_Entity.SetTrigger("IsNegative");
+                break;
+            case EntityAnimState.InteractionStart:
+                Animator_Entity.SetTrigger("IsInteractionStart");
                 break;
         }
     }
 
     private void ResetAllParameters()
     {
-        Animator_Player.SetBool("IsRun", false);
-        Animator_Player.SetBool("IsJump", false);
+        Animator_Entity.SetBool("IsRun", false);
+        Animator_Entity.SetBool("IsJump", false);
     }
 }
