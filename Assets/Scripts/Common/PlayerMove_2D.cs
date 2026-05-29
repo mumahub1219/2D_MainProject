@@ -84,13 +84,28 @@ public class PlayerMove_2D : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.W))
         {
-            UIManager.Instance.OpenContentUI(UIType.DictionaryUI);
+
+            if (UIManager.Instance.IsOpenUI(UIType.DictionaryUI))
+            {
+                UIManager.Instance.CloseContentUI(UIType.DictionaryUI);
+            }
+            else
+            {
+                UIManager.Instance.OpenContentUI(UIType.DictionaryUI);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            UIManager.Instance.OpenContentUI(UIType.InventoryUI);
-        }
 
+            if (UIManager.Instance.IsOpenUI(UIType.InventoryUI))
+            {
+                UIManager.Instance.CloseContentUI(UIType.InventoryUI);
+            }
+            else
+            {
+                UIManager.Instance.OpenContentUI(UIType.InventoryUI);
+            }
+        }
 
         UpdateAnimationState();
     }

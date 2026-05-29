@@ -1203,7 +1203,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uC774\uB3D9 : A, S || <-, -> / \uC810\uD504 : Space \n\uACF5\uACA9 :
-    Q / \uC778\uBCA4\uD1A0\uB9AC : E / \uB3C4\uAC10 : W   "
+    Q / \uB3C4\uAC10 : W / \uC778\uBCA4\uD1A0\uB9AC : E"
 --- !u!1 &5855980193257504876
 GameObject:
   m_ObjectHideFlags: 0

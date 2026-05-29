@@ -133,4 +133,9 @@ public class UIManager : UIBase
     {
         return OpenUI(UIRootType.ContentUI, uiType);
     }
+
+    public bool IsOpenUI(UIType uiType)
+    {
+        return _openedUIDic.Contains(uiType);
+    }
 }
