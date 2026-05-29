@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public enum UIRootType
 {
@@ -121,6 +122,7 @@ public static class UIManagerExtension
         }
     }
 
+    // ===================== HUD 슬롯
     public static void AddHudSlot(this UIManager uIManager, int instanceId, Transform targetTransform)
     {
         var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
@@ -140,6 +142,30 @@ public static class UIManagerExtension
         if (uiBase is HudMainUI hudMainUI)
         {
             hudMainUI.RemoveHudSlot(instanceId);
+        }
+    }
+
+    // ===================== INTERACTION 슬롯
+    public static void AddInteractionSlot(this UIManager uIManager, int instanceId, string interactionTitle, string interactionKey,
+        Transform targetTransform, Action<string> onClickCallback)
+    {
+        var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
+        if (uiBase == null) return;
+
+        if (uiBase is HudMainUI hudMainUI)
+        {
+            hudMainUI.AddInteractionSlot(instanceId, interactionTitle, interactionKey, targetTransform, onClickCallback);
+        }
+    }
+
+    public static void RemoveInteractionSlot(this UIManager uIManager, int instanceId)
+    {
+        var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
+        if (uiBase == null) return;
+
+        if (uiBase is HudMainUI hudMainUI)
+        {
+            hudMainUI.RemoveInteractionSlot(instanceId);
         }
     }
 
