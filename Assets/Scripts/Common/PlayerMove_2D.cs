@@ -78,6 +78,20 @@ public class PlayerMove_2D : MonoBehaviour
             Flip();
         }
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            UseProjectileSkill();
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            UIManager.Instance.OpenContentUI(UIType.InventoryUI);
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            UIManager.Instance.OpenContentUI(UIType.DictionaryUI);
+        }
+
+
         UpdateAnimationState();
     }
 
@@ -180,7 +194,7 @@ public class PlayerMove_2D : MonoBehaviour
         if (CheckSKillUseable() == false) return;
     }
 
-    public void ProjectileSkill()
+    public void UseProjectileSkill()
     {
         if (CheckSKillUseable() == false) return;
         GameObjectManager.Inst.RequestSpawnSkillObjectFirst(_playerInstancId, _lookRight, transform.position, _playerBaseAtk, this.gameObject.tag, OnMonsterCollied);

@@ -53,6 +53,6 @@ public class MainUI_2DMainProject : UIBase
     public void Onclick_ProjectileSkill()
     {
         var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
-        localPlayer.ProjectileSkill();
+        localPlayer.UseProjectileSkill();
     }
 }

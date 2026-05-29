@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class HudSlotUI : MonoBehaviour
 {
+    [SerializeField] private int slotOffsetX;
     [SerializeField] private int slotOffsetY;
     [SerializeField] private Slider Slider_Hp;
     [SerializeField] private Slider Slider_Mp;
@@ -14,6 +15,7 @@ public class HudSlotUI : MonoBehaviour
     {
         _instanceId = instanceId;
         _targetTransform = targetTransform;
+        slotOffsetX = -45;
         slotOffsetY = 10;
 
         TryBingStatChangedEvent(targetTransform.gameObject);
@@ -50,14 +52,12 @@ public class HudSlotUI : MonoBehaviour
     {
         if(_targetTransform != null)
         {
-            // this.gameObject.transform.position = _targetTransform.position;
-
             Vector2 screenPos = Camera.main.WorldToScreenPoint(_targetTransform.position);
 
             var rectTransform = this.GetComponent<RectTransform>();
             if (rectTransform != null)
             {
-                Vector2 finalScreenPos = new Vector2(screenPos.x, screenPos.y + slotOffsetY);
+                Vector2 finalScreenPos = new Vector2(screenPos.x + slotOffsetX, screenPos.y + slotOffsetY);
                 rectTransform.anchoredPosition = finalScreenPos;
             }
         }

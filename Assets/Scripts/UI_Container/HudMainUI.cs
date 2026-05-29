@@ -43,7 +43,7 @@ public class HudMainUI : UIBase
         }
     }
 
-    public void AddInteractionSlot(int instanceId, string interactionTitle, string interactionKey, 
+    public void AddInteractionSlot(int instanceId, string interactionTitle, string interactionKey,
         Transform targetTransform, Action<string> onClickCallback)
     {
         CreateInteractionSlot(instanceId, interactionTitle, interactionKey, targetTransform, onClickCallback);

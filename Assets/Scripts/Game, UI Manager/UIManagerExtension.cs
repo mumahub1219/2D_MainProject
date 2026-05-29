@@ -147,7 +147,7 @@ public static class UIManagerExtension
 
     // ===================== INTERACTION 슬롯
     public static void AddInteractionSlot(this UIManager uIManager, int instanceId, string interactionTitle, string interactionKey,
-        Transform targetTransform, Action<string> onClickCallback)
+        Transform targetTransform, Action<string> onClickCallback = null)
     {
         var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
         if (uiBase == null) return;
@@ -167,16 +167,6 @@ public static class UIManagerExtension
         {
             hudMainUI.RemoveInteractionSlot(instanceId);
         }
-    }
-
-    public static void AddInventorySlot()
-    {
-
-    }
-
-    public static void RemoveInventorySlot()
-    { 
-
     }
 }
 
