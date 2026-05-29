@@ -78,17 +78,17 @@ public class PlayerMove_2D : MonoBehaviour
             Flip();
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             UseProjectileSkill();
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            UIManager.Instance.OpenContentUI(UIType.DictionaryUI);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
             UIManager.Instance.OpenContentUI(UIType.InventoryUI);
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            UIManager.Instance.OpenContentUI(UIType.DictionaryUI);
         }
 
 

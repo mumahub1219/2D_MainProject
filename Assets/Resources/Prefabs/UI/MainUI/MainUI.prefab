@@ -115,7 +115,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 820, y: 100}
+  m_SizeDelta: {x: 595.1846, y: 175.71}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1528032669374859244
 CanvasRenderer:
@@ -233,7 +233,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uC0AC\uC6A9 : X"
+  m_Text: "\uC0AC\uC6A9 : Q"
 --- !u!1 &1257958160983611337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1122,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 175.7137}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &5349658629584412237
 GameObject:
@@ -1191,7 +1191,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 35
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -1202,8 +1202,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC774\uB3D9 : A, S / \uC810\uD504 : Space / \uACF5\uACA9 : X / \uC778\uBCA4\uD1A0\uB9AC
-    : E / \uB3C4\uAC10 : Q"
+  m_Text: "\uC774\uB3D9 : A, S || <-, -> / \uC810\uD504 : Space \n\uACF5\uACA9 :
+    Q / \uC778\uBCA4\uD1A0\uB9AC : E / \uB3C4\uAC10 : W   "
 --- !u!1 &5855980193257504876
 GameObject:
   m_ObjectHideFlags: 0
