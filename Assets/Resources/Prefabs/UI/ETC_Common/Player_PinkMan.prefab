@@ -205,8 +205,11 @@ MonoBehaviour:
     m_Bits: 8
   AnimatiorController_Entitiy: {fileID: 6834993955404794198}
   Collider_PlayerNormalAttack: {fileID: 2464509200138298617}
+  _playerMaxHp: 0
   _playerHp: 0
   _playerBaseAtk: 0
+  _playerMp: 100
+  _playerMaxMp: 0
 --- !u!114 &6834993955404794198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01267e69ff7fa24eb6bb0c2ea466bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimatorController_2D
-  Animator_Player: {fileID: 5388417995726231409}
+  Animator_Entity: {fileID: 0}
 --- !u!61 &910071920813595036
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -424,6 +427,10 @@ PrefabInstance:
     - target: {fileID: 6842466901107213727, guid: 7c4be2634e6090e4da778a8870d5a602, type: 3}
       propertyPath: m_Name
       value: SpawnSpot_Skill
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842466901107213727, guid: 7c4be2634e6090e4da778a8870d5a602, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

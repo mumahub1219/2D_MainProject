@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class RockHead : MonoBehaviour
+public class RockHead : ObjectBase_2D
 {
     [Header("움직임 설정")]
     [SerializeField] private float _moveDistance = 5.0f;
@@ -32,11 +32,6 @@ public class RockHead : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") == false) return;
-
-        var objectComponent = collision.gameObject.GetComponent<PlayerMove_2D>();
-        if (objectComponent == null) return;
-
-        GameManager.Inst.RespawnPlayer();
+        OnTriggerPlayerRespawn(collision);
     }
 }

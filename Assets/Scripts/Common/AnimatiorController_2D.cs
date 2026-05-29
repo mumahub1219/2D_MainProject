@@ -9,6 +9,7 @@ public enum EntityAnimState
     Attack,
     Jump,
     DoublsJump,
+    Hit,
     Dead,
     Positive,
     Negative,
@@ -46,6 +47,9 @@ public class AnimatorController_2D : MonoBehaviour
                 break;
             case EntityAnimState.Jump:
                 Animator_Entity.SetBool("IsJump", true);
+                break;
+            case EntityAnimState.Hit:
+                Animator_Entity.SetTrigger("IsHit");
                 break;
             case EntityAnimState.Dead:
                 Animator_Entity.SetBool("IsDead", true);

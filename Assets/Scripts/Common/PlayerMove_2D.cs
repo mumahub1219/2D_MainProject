@@ -119,7 +119,7 @@ public class PlayerMove_2D : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    private void ChangePlayerState(EntityAnimState newState)
+    public void ChangePlayerState(EntityAnimState newState)
     {
         AnimatiorController_Entitiy.SetState(newState);
     }
