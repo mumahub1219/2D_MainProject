@@ -64,9 +64,6 @@ public class SkillProjectile : SkillBase
         {
             _onSkillCollision?.Invoke(0, _damage);
 
-            var localPlayer = GameObjectManager.Inst.GetLocalPlayer();
-            localPlayer.ChangePlayerState(EntityAnimState.Hit);
-
             GameObjectManager.Inst.RequestDestroySkillObjectFirstAndSecond(this.SkillObjectInstancId);
         }
         else if (collision.CompareTag("Enemy") && (isOwnerPlayer == true))

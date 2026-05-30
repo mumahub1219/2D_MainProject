@@ -108,7 +108,6 @@ public class GameManager : MonoBehaviour
     {
         var localPlayer = GetPlayerInfo();
         if (localPlayer == null) return;
-        localPlayer.ChangePlayerState(EntityAnimState.Hit);
 
         if (localPlayer.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
         {

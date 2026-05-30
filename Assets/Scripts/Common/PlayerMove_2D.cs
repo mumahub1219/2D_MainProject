@@ -36,6 +36,7 @@ public class PlayerMove_2D : MonoBehaviour
     private bool _lookRight = true;
     private bool _isSkillUsing = false;
     private int _playerInstancId = 0;
+    private float _externalVelocityX;
 
     public enum ViewType { sideView, TopView, }
     private Vector2 _lookDirection;
@@ -112,13 +113,21 @@ public class PlayerMove_2D : MonoBehaviour
 
     void FixedUpdate()
     {
+        bool wasGrounded = _isGrounded;
         _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _groundLayer);
+
+        if (wasGrounded == false && _isGrounded)
+        {
+            _externalVelocityX = 0f;
+        }
+
         Move();
     }
 
     void Move()
     {
-        _rigidBody.linearVelocity = new Vector2(_horizontalInput * _moveSpeed, _rigidBody.linearVelocity.y);
+        float finalXVelocity = (_horizontalInput * _moveSpeed) + _externalVelocityX;
+        _rigidBody.linearVelocity = new Vector2(finalXVelocity, _rigidBody.linearVelocity.y);
     }
 
     void Jump()
@@ -134,7 +143,12 @@ public class PlayerMove_2D : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    public void ChangePlayerState(EntityAnimState newState)
+    public void SetExternalVelocityX(float value)
+    {
+        _externalVelocityX = value;
+    }
+
+    private void ChangePlayerState(EntityAnimState newState)
     {
         AnimatiorController_Entitiy.SetState(newState);
     }
@@ -230,6 +244,7 @@ public class PlayerMove_2D : MonoBehaviour
         Debug.Log(_playerHp);
 
         InvokeStatChangedEvent();
+        ChangePlayerState(EntityAnimState.Hit);
 
         if (_playerHp - damage <= 0)
         {
