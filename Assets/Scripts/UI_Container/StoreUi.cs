@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class StoreUi : MonoBehaviour
+public class StoreUi : UIBase
 {
     [Header("버튼 영역")]
     [SerializeField] private UIButton Button_CloseBG;

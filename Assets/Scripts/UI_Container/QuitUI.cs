@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class QuitUI : MonoBehaviour
+public class QuitUI : UIBase
 {
     [SerializeField] private UIButton Button_Lobby;
     [SerializeField] private UIButton Button_Quit;
