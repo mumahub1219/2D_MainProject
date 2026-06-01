@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: New Animated Tile
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
   m_AnimatedSprites:
-  - {fileID: 4373040517201769238, guid: fc584d329b77b9545b9c9c8bb829e553, type: 3}
-  - {fileID: -6530495296205248430, guid: fc584d329b77b9545b9c9c8bb829e553, type: 3}
-  - {fileID: 2248595124770686365, guid: fc584d329b77b9545b9c9c8bb829e553, type: 3}
+  - {fileID: 21300000, guid: 7ad92bc1576bc194fb467a195639f385, type: 2}
+  - {fileID: 21300000, guid: 3579e1284889f1e4a85556a612090bae, type: 2}
+  - {fileID: 21300000, guid: 0e3c5d5c4094e7c49b0d1061ce360bb8, type: 2}
+  - {fileID: 21300000, guid: 2f21de6b7d21bee4fbaa5455716465f7, type: 2}
+  - {fileID: 21300000, guid: b521fb18a44cf82499cf36cad924d4b9, type: 2}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0
