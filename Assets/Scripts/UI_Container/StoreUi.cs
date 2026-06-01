@@ -135,10 +135,7 @@ public class StoreUi : UIBase
             LockAllStoreSlot();
 
             var inventoryUI = UIManager.Instance.GetComponentInChildren<InventoryUI_2DGameProject>();
-            if(inventoryUI != null)
-            {
-                inventoryUI.RefreshInventorySlots();
-            }
+            inventoryUI.RefreshInventorySlots();
         }
     }
 

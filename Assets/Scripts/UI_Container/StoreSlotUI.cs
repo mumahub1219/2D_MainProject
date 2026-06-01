@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StoreSlotUI : UIBase
+public class StoreSlotUI : MonoBehaviour
 {
     [Header("슬롯 기본 정보")]
     [SerializeField] private Image Image_MainIcon;

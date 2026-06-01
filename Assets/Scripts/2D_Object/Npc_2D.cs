@@ -54,8 +54,8 @@ public class Npc_2D : MonoBehaviour
         {
             UIManager.Instance.RemoveInteractionSlot(_instanceId);
 
-            UIManager.Instance.CloseContentUI(UIType.InventoryUI);
             UIManager.Instance.CloseContentUI(UIType.StoreUI);
+            UIManager.Instance.CloseContentUI(UIType.InventoryUI);
         }
     }
 }
