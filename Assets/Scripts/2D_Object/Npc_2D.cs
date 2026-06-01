@@ -44,6 +44,7 @@ public class Npc_2D : MonoBehaviour
         if (interactionKey == "G")
         {
             UIManager.Instance.OpenContentUI(UIType.InventoryUI);
+            UIManager.Instance.OpenContentUI(UIType.StoreUI);
         }
     }
 

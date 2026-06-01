@@ -24,7 +24,8 @@ public enum UIType
     LobbyUI,
     DictionaryUI,
     QuitUI,
-    HudMainUI
+    HudMainUI,
+    StoreUI
 }
 
 public static class UIManagerExtension
