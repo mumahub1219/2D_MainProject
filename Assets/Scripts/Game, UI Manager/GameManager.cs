@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 
     // 플레이 중에 저장되어야 하는 정보들이 있는 위치
     private PlayerModel _playerModel = new PlayerModel();
-
     private int _CoinScore;
 
     [SerializeField] private Vector3 _respawnPosition;
@@ -249,6 +248,12 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool RequestBuyItem(string itemDataId)
+    {
+        AddItem(itemDataId, 1);
+        return true;
     }
 
     public List<ItemModel> GetPlayerItemList()

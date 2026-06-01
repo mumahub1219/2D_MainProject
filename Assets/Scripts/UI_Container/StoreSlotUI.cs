@@ -1,7 +1,83 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreSlotUI : MonoBehaviour
 {
-    
+    [Header("슬롯 기본 정보")]
+    [SerializeField] private Image Image_MainIcon;
+    [SerializeField] private Image Image_Frame;
+    [SerializeField] private Image Image_Selected;
+    [SerializeField] private UIButton Button_Slot;
 
+    [Header("설명 영역")]
+    [SerializeField] private GameObject GameObject_Info;
+    [SerializeField] private Text Text_Description;
+
+    private event Action<string> OnSelectEvent;
+    public bool IsUsableItem { get; private set; }
+    private string _slotDataId;
+
+    private void OnEnable()
+    {
+        Image_Selected.gameObject.SetActive(false);
+        GameObject_Info.SetActive(false);
+        Button_Slot.BindOnClickButtonEvent(OnClick_SelectItem);
+    }
+
+    private void OnDisable()
+    {
+        OnSelectEvent = null;
+    }
+
+    public void SetIcon(string itemDataId)
+    {
+        var itemData = GameDataManager.Instance.GetItemData(itemDataId);
+        if (itemData == null) return;
+
+        IsUsableItem = (string.IsNullOrEmpty(itemData.UseItemType) == false);
+
+        string iconPath = itemData.IconPath;
+        if (string.IsNullOrEmpty(iconPath) == true) return;
+
+        GameUtil.LoadAndSetSpriteImage(Image_MainIcon, iconPath).Forget();
+    }
+
+    public string GetSlotDataId()
+    {
+        return _slotDataId;
+    }
+
+    public void InitSlot(string itemDataId, Action<string> onSelectEvent)
+    {
+        OnSelectEvent = onSelectEvent;
+        _slotDataId = itemDataId;
+        SetIcon(itemDataId);
+
+        var currentSelectedItem = GameDataManager.Instance.GetItemData(itemDataId);
+        if (currentSelectedItem == null) return;
+
+        Text_Description.text = currentSelectedItem.UseItemDescription;
+    }
+
+    private void OnClick_SelectItem()
+    {
+        OnSelectEvent?.Invoke(_slotDataId);
+    }
+
+    public void BindSlotSelectEvent(Action<string> onSelectEvent)
+    {
+        OnSelectEvent = onSelectEvent;
+    }
+
+    public void ChangeSelectedState(bool isSelected)
+    {
+        Image_Selected.gameObject.SetActive(isSelected);
+
+        if (GameObject_Info != null)
+        {
+            GameObject_Info.SetActive(isSelected);
+        }
+    }
 }
