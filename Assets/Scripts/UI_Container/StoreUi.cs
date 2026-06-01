@@ -18,13 +18,15 @@ public class StoreUi : MonoBehaviour
 
     private void OnEnable()
     {
+        ClearStoreSlotList();
+        _isPurchase = false;
+        _currentSelectedDataId = string.Empty;
+
         Button_CloseBG.BindOnClickButtonEvent(OnClick_CloseStoreUI);
         Button_Close.BindOnClickButtonEvent(OnClick_CloseStoreUI);
         Button_BuyItem.BindOnClickButtonEvent(OnClick_BuyItem);
 
-        ClearStoreSlotList();
-
-        _isPurchase = false;
+        Button_BuyItem.gameObject.SetActive(false);
 
         ReadItemListAndCreateSlot();
     }
@@ -104,11 +106,17 @@ public class StoreUi : MonoBehaviour
             foreach (var slotKv in _storeItemSlotList)
             {
                 var slot = slotKv.Value;
-                Destroy(slot.gameObject);
-            }
 
+                if (slot != null && slot.gameObject != null)
+                {
+                    Destroy(slot.gameObject);
+                }
+            }
             _storeItemSlotList.Clear();
         }
+
+        if (Button_CloseBG != null) Button_CloseBG.gameObject.SetActive(true);
+        if (Button_Close != null) Button_Close.gameObject.SetActive(true);
     }
 
     private void OnClick_BuyItem()
@@ -116,14 +124,21 @@ public class StoreUi : MonoBehaviour
         if (string.IsNullOrEmpty(_currentSelectedDataId) == true) return;
         if (_isPurchase == true) return;
 
-        bool isBuyItem = GameManager.Inst.RequestBuyItem(_currentSelectedDataId);
+        bool isBuySuccess = GameManager.Inst.RequestBuyItem(_currentSelectedDataId);
 
-        if (isBuyItem == true) 
+        if (isBuySuccess == true) 
         {
             _isPurchase = true;
+
             Button_BuyItem.gameObject.SetActive(false);
 
             LockAllStoreSlot();
+
+            var inventoryUI = UIManager.Instance.GetComponentInChildren<InventoryUI_2DGameProject>();
+            if(inventoryUI != null)
+            {
+                inventoryUI.RefreshInventorySlots();
+            }
         }
     }
 
@@ -131,8 +146,11 @@ public class StoreUi : MonoBehaviour
     {
         foreach (var slotKv in _storeItemSlotList)
         {
-            slotKv.Value.ChangeSelectedState(false);
-            slotKv.Value.SetDisableSlot();
+            var slot = slotKv.Value;
+            if (slot == null) continue;
+
+            slot.ChangeSelectedState(false);
+            slot.SetDisableSlot();
         }
     }
 }

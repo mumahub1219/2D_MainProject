@@ -98,11 +98,15 @@ public class StoreSlotUI : MonoBehaviour
     {
         if (Button_Slot != null)
         {
-            Button_Slot.GetComponent<UnityEngine.UI.Button>().interactable = false;
+            Button_Slot.gameObject.SetActive(false);
         }
 
-        Color color = Image_MainIcon.color;
-        color.a = 0.4f;
-        Image_MainIcon.color = color;
+        Color iconColor = Image_MainIcon.color;
+        iconColor.a = 0.3f;
+        Image_MainIcon.color = iconColor;
+
+        Color frameColor = Image_Frame.color;
+        frameColor.a = 0.3f;
+        Image_Frame.color = frameColor;
     }
 }

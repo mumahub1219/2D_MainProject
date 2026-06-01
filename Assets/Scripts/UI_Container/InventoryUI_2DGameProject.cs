@@ -130,4 +130,9 @@ public class InventoryUI_2DGameProject : UIBase
         _itemSlotList.Remove(removedItemUniqueId);
         Destroy(slotComponent.gameObject);
     }
+
+    public void RefreshInventorySlots()
+    {
+        SetInventoryItemSlotOnEnable();
+    }
 }

@@ -53,6 +53,9 @@ public class Npc_2D : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             UIManager.Instance.RemoveInteractionSlot(_instanceId);
+
+            UIManager.Instance.CloseContentUI(UIType.InventoryUI);
+            UIManager.Instance.CloseContentUI(UIType.StoreUI);
         }
     }
 }
