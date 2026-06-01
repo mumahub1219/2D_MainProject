@@ -465,6 +465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d946152f30418a499226dea0ae4f177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoreSlotUI
+  Image_MainIcon: {fileID: 3631303208468773249}
+  Image_Frame: {fileID: 1085542276313488430}
+  Image_Selected: {fileID: 2837075402879048005}
+  Button_Slot: {fileID: 7975640266369300643}
+  GameObject_Info: {fileID: 5902016913702534964}
+  Text_Description: {fileID: 7454161123875775514}
 --- !u!1 &4486479980530384108
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class StoreSlotUI : MonoBehaviour
 
     private event Action<string> OnSelectEvent;
     public bool IsUsableItem { get; private set; }
+
     private string _slotDataId;
 
     private void OnEnable()
@@ -36,7 +37,7 @@ public class StoreSlotUI : MonoBehaviour
         var itemData = GameDataManager.Instance.GetItemData(itemDataId);
         if (itemData == null) return;
 
-        IsUsableItem = (string.IsNullOrEmpty(itemData.UseItemType) == false);
+        IsUsableItem = true;
 
         string iconPath = itemData.IconPath;
         if (string.IsNullOrEmpty(iconPath) == true) return;
@@ -49,16 +50,29 @@ public class StoreSlotUI : MonoBehaviour
         return _slotDataId;
     }
 
-    public void InitSlot(string itemDataId, Action<string> onSelectEvent)
+    public void InitSlot(string dataId, Action<string> OnclickCallback)
     {
-        OnSelectEvent = onSelectEvent;
-        _slotDataId = itemDataId;
-        SetIcon(itemDataId);
+        var itemData = GameDataManager.Instance.GetItemData(dataId);
+        if (itemData == null)
+        {
+            return;
+        }
 
-        var currentSelectedItem = GameDataManager.Instance.GetItemData(itemDataId);
-        if (currentSelectedItem == null) return;
+        SetIcon(dataId);
 
-        Text_Description.text = currentSelectedItem.UseItemDescription;
+        Text_Description.text = itemData.UseItemDescription;
+
+        string iconPath = itemData.IconPath;
+        if (string.IsNullOrEmpty(iconPath) == true)
+        {
+            return;
+        }
+        // 묻지마 사용 < image에 아이콘, sprite리소스 불러와 줄 때
+        GameUtil.LoadAndSetSpriteImage(Image_MainIcon, iconPath).Forget();
+
+        _slotDataId = dataId;
+
+        OnSelectEvent += OnclickCallback;
     }
 
     private void OnClick_SelectItem()
@@ -79,5 +93,16 @@ public class StoreSlotUI : MonoBehaviour
         {
             GameObject_Info.SetActive(isSelected);
         }
+    }
+    public void SetDisableSlot()
+    {
+        if (Button_Slot != null)
+        {
+            Button_Slot.GetComponent<UnityEngine.UI.Button>().interactable = false;
+        }
+
+        Color color = Image_MainIcon.color;
+        color.a = 0.4f;
+        Image_MainIcon.color = color;
     }
 }

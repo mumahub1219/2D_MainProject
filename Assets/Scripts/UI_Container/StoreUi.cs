@@ -18,15 +18,15 @@ public class StoreUi : MonoBehaviour
 
     private void OnEnable()
     {
+        Button_CloseBG.BindOnClickButtonEvent(OnClick_CloseStoreUI);
+        Button_Close.BindOnClickButtonEvent(OnClick_CloseStoreUI);
+        Button_BuyItem.BindOnClickButtonEvent(OnClick_BuyItem);
+
         ClearStoreSlotList();
 
         _isPurchase = false;
 
         ReadItemListAndCreateSlot();
-
-        Button_CloseBG.BindOnClickButtonEvent(OnClick_CloseStoreUI);
-        Button_Close.BindOnClickButtonEvent(OnClick_CloseStoreUI);
-        Button_BuyItem.BindOnClickButtonEvent(OnClick_BuyItem);
     }
 
     private void OnDisable()
@@ -132,7 +132,7 @@ public class StoreUi : MonoBehaviour
         foreach (var slotKv in _storeItemSlotList)
         {
             slotKv.Value.ChangeSelectedState(false);
+            slotKv.Value.SetDisableSlot();
         }
-        
     }
 }
