@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class StoreUi : UIBase
+public class StoreUI : UIBase
 {
     [Header("버튼 영역")]
     [SerializeField] private UIButton Button_CloseBG;
@@ -18,10 +18,6 @@ public class StoreUi : UIBase
 
     private void OnEnable()
     {
-        ClearStoreSlotList();
-        _isPurchase = false;
-        _currentSelectedDataId = string.Empty;
-
         Button_CloseBG.BindOnClickButtonEvent(OnClick_CloseStoreUI);
         Button_Close.BindOnClickButtonEvent(OnClick_CloseStoreUI);
         Button_BuyItem.BindOnClickButtonEvent(OnClick_BuyItem);

@@ -18,12 +18,19 @@ public class UIButton : MonoBehaviour
 
     private void OnEnable()
     {
-        BindOnClickButtonEvent(OnClickSetSelectUI);
+        // 잘못되면 지우기
+        Button_Base.onClick.RemoveListener(OnClickSetSelectUI);
+        Button_Base.onClick.AddListener(OnClickSetSelectUI);
+
+        // 풀기 BindOnClickButtonEvent(OnClickSetSelectUI);
     }
 
     private void OnDisable()
     {
-        Button_Base.onClick.RemoveAllListeners();
+        if (Button_Base != null)
+        {
+            Button_Base.onClick.RemoveListener(OnClickSetSelectUI);
+        }
     }
 
 
