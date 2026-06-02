@@ -117,13 +117,7 @@ public class PlayerMove_2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        bool wasGrounded = _isGrounded;
-        _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _groundLayer);
-
-        if (wasGrounded == false && _isGrounded)
-        {
-            _externalVelocityX = 0f;
-        }
+        CheckGrounded();
 
         Move();
     }
@@ -136,7 +130,10 @@ public class PlayerMove_2D : MonoBehaviour
 
     void Jump()
     {
+        float currentXVelocity = _rigidBody.linearVelocity.x;
         _rigidBody.linearVelocity = new Vector2(_rigidBody.linearVelocity.x, _jumpForce);
+
+        _externalVelocityX = 0f;
     }
 
     void Flip()
@@ -150,6 +147,17 @@ public class PlayerMove_2D : MonoBehaviour
     public void SetExternalVelocityX(float value)
     {
         _externalVelocityX = value;
+    }
+
+    private void CheckGrounded()
+    {
+        bool wasGrounded = _isGrounded;
+        _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _groundLayer);
+
+        if (wasGrounded == false && _isGrounded)
+        {
+            _externalVelocityX = 0f;
+        }
     }
 
     private void ChangePlayerState(EntityAnimState newState)
