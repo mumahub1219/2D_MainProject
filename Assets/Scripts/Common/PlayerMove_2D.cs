@@ -107,8 +107,12 @@ public class PlayerMove_2D : MonoBehaviour
                 UIManager.Instance.OpenContentUI(UIType.InventoryUI);
             }
         }
+        else
+        {
+            CheckNumericKeyInput();
+        }
 
-        UpdateAnimationState();
+            UpdateAnimationState();
     }
 
     void FixedUpdate()
@@ -187,6 +191,49 @@ public class PlayerMove_2D : MonoBehaviour
 
         GameManager.Inst.SetRespawnPosition(this.transform.position);
         GameManager.Inst.RespawnSpot();
+    }
+
+    private void CheckNumericKeyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) PlayerPositionTrasn(1);
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) PlayerPositionTrasn(2);
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) PlayerPositionTrasn(3);
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) PlayerPositionTrasn(4);
+        else if (Input.GetKeyDown(KeyCode.Alpha5)) PlayerPositionTrasn(5);
+        else if (Input.GetKeyDown(KeyCode.Alpha6)) PlayerPositionTrasn(6);
+        else if (Input.GetKeyDown(KeyCode.Alpha7)) PlayerPositionTrasn(7);
+    }
+
+    private void PlayerPositionTrasn(int locationIndex)
+    {
+        Vector2 pos = Vector2.zero;
+        switch (locationIndex)
+        {
+            case 1:
+                pos = new Vector2(24f, -2f);
+                break;
+            case 2:
+                pos = new Vector2(45f, 6f);
+                break;
+            case 3:
+                pos = new Vector2(57f, 7.5f);
+                break;
+            case 4:
+                pos = new Vector2(91f, 0.5f);
+                break;
+            case 5:
+                pos = new Vector2(120f, -1.5f);
+                break;
+            case 6:
+                pos = new Vector2(156f, 6.5f);
+                break;
+            case 7:
+                pos = new Vector2(176f, 0f);
+                break;
+            default:
+                return;
+        }
+        this.transform.position = pos;
     }
 
     // 스킬 부분
