@@ -13,7 +13,6 @@ public class HudMainUI : UIBase
     private Dictionary<int, HudSlotUI> _hudSlotList = new Dictionary<int, HudSlotUI>();
     private Dictionary<int, HudInteractionSlotUI> _interactionSlotList = new Dictionary<int, HudInteractionSlotUI>();
 
-
     public void AddHudSlot(int instanceId, Transform targetTransform)
     {
         CreateHudSlot(instanceId, targetTransform);
