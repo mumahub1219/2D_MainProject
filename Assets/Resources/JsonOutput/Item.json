@@ -46,7 +46,7 @@
       "Item_Pineapple_1:2",
       "Item_Strawberry_1:20"
     ],
-    "UseItemDescription": "랜덤 아이템"
+    "UseItemDescription": "랜덤 아이템(미구현)"
   },
   {
     "Id": "Item_Cherry_1",
@@ -76,7 +76,7 @@
     "PrefabPath": "2DPrefab/FieldItem_Pineapple",
     "UseItemType": null,
     "UseItemParameterList": null,
-    "UseItemDescription": "효과 없음"
+    "UseItemDescription": "맛있다.(효과없음)"
   },
   {
     "Id": "Item_Strawberry_1",
@@ -90,6 +90,6 @@
     "PrefabPath": "2DPrefab/FieldItem_Strawberry",
     "UseItemType": null,
     "UseItemParameterList": null,
-    "UseItemDescription": "효과 없음"
+    "UseItemDescription": "안 좋아한다.(효과 없음)"
   }
 ]
