@@ -79,9 +79,9 @@ public class StoreUI : UIBase
 
             if (isSlotSelected == true)
             {
-                isCurrentSelectedUsable = slot.IsUsableItem;
+                isCurrentSelectedUsable = slot.IsBuyableItem;
 
-                if (slot.IsUsableItem == true)
+                if (slot.IsBuyableItem == true)
                 {
                     _currentSelectedDataId = slot.GetSlotDataId();
                 }
@@ -126,12 +126,18 @@ public class StoreUI : UIBase
         {
             _isPurchase = true;
 
-            Button_BuyItem.gameObject.SetActive(false);
+            if (Button_BuyItem != null)
+            {
+                Button_BuyItem.gameObject.SetActive(false);
+            }
 
             LockAllStoreSlot();
 
             var inventoryUI = UIManager.Instance.GetComponentInChildren<InventoryUI_2DGameProject>();
-            inventoryUI.RefreshInventorySlots();
+            if (inventoryUI != null)
+            {
+                inventoryUI.RefreshInventorySlots();
+            }
         }
     }
 

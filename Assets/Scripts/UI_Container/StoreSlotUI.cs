@@ -16,7 +16,7 @@ public class StoreSlotUI : MonoBehaviour
     [SerializeField] private Text Text_Description;
 
     private event Action<string> OnSelectEvent;
-    public bool IsUsableItem { get; private set; }
+    public bool IsBuyableItem { get; private set; } = true;
 
     private string _slotDataId;
 
@@ -37,8 +37,6 @@ public class StoreSlotUI : MonoBehaviour
         var itemData = GameDataManager.Instance.GetItemData(itemDataId);
         if (itemData == null) return;
 
-        IsUsableItem = true;
-
         string iconPath = itemData.IconPath;
         if (string.IsNullOrEmpty(iconPath) == true) return;
 
@@ -52,6 +50,10 @@ public class StoreSlotUI : MonoBehaviour
 
     public void InitSlot(string dataId, Action<string> OnclickCallback)
     {
+        _slotDataId = dataId;
+
+        OnSelectEvent = OnclickCallback;
+
         var itemData = GameDataManager.Instance.GetItemData(dataId);
         if (itemData == null)
         {
@@ -61,18 +63,6 @@ public class StoreSlotUI : MonoBehaviour
         SetIcon(dataId);
 
         Text_Description.text = itemData.UseItemDescription;
-
-        string iconPath = itemData.IconPath;
-        if (string.IsNullOrEmpty(iconPath) == true)
-        {
-            return;
-        }
-        // 묻지마 사용 < image에 아이콘, sprite리소스 불러와 줄 때
-        GameUtil.LoadAndSetSpriteImage(Image_MainIcon, iconPath).Forget();
-
-        _slotDataId = dataId;
-
-        OnSelectEvent += OnclickCallback;
     }
 
     private void OnClick_SelectItem()

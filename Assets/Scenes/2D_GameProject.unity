@@ -2646,7 +2646,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 264849626636166653, guid: 616751fe2186af0429974b4ac37d1a73, type: 3}
       propertyPath: m_Radius
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1002223131063273723, guid: 616751fe2186af0429974b4ac37d1a73, type: 3}
       propertyPath: m_Controller
