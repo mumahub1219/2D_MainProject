@@ -13,10 +13,7 @@ public class QuitUI : UIBase
 
     public void Onclick_OpenLobbyUI()
     {
-        GameManager.Inst.InitializationRespawnSpot();
-
-        UIManager.Instance.OpenContentUI(UIType.LobbyUI);
-        UIManager.Instance.ClosePopupUI(UIType.QuitUI);
+        GameManager.Inst.ReturnToLobby();
     }
 
     public void Onclick_QuitGame()

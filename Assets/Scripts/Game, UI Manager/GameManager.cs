@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,7 +39,6 @@ public class GameManager : MonoBehaviour
     private void LoadSaveData()
     {
         _playerModel = NetworkManager.Inst.RequstLoadSaveData();
-        
     }
 
     private void CreateNewPlayerData()
@@ -143,6 +143,11 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.RemoveHudSlot(instanceId);
 
         UIManager.Instance.AddHudSlot(instanceId, transform);
+    }
+
+    public void ReturnToLobby()
+    {
+        SceneManager.LoadScene("2D_GameProject");
     }
 
     // 아이템 관련
