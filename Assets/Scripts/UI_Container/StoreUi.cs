@@ -110,9 +110,6 @@ public class StoreUI : UIBase
             }
             _storeItemSlotList.Clear();
         }
-
-        if (Button_CloseBG != null) Button_CloseBG.gameObject.SetActive(true);
-        if (Button_Close != null) Button_Close.gameObject.SetActive(true);
     }
 
     private void OnClick_BuyItem()
