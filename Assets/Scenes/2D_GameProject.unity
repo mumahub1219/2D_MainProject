@@ -2622,6 +2622,22 @@ PrefabInstance:
       propertyPath: _spawnObjectDataId
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8155046108661203971, guid: 110411934e80aa14c872abe3b84172d8, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9014282
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155046108661203971, guid: 110411934e80aa14c872abe3b84172d8, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0823997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155046108661203971, guid: 110411934e80aa14c872abe3b84172d8, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.009960175
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155046108661203971, guid: 110411934e80aa14c872abe3b84172d8, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.11499983
+      objectReference: {fileID: 0}
     - target: {fileID: 8183679278390018175, guid: 110411934e80aa14c872abe3b84172d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0057
