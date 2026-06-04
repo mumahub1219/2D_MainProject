@@ -17,7 +17,7 @@ public class GroundMoveLeft : ObjectBase_2D
         _lastPosition = transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         GroundMovement();
         CalculateVelocity();
